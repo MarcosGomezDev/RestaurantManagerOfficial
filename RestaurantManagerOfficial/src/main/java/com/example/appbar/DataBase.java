@@ -33,6 +33,7 @@ public class DataBase {
     public DataBase(String ROOT_USER) { this.ROOT_USER = ROOT_USER; }
 
     public FirebaseDatabase getInstance() { return instance; }
+
     public DatabaseReference DataRef (String path) {
         DatabaseReference databaseReference = getInstance().getReference(path);
         return databaseReference;

@@ -32,7 +32,7 @@ import java.util.Objects;
 @SuppressWarnings("ALL") // Esto hay que quitarlo
 public class LogIn extends AppCompatActivity implements View.OnClickListener{
 
-    private DataBase dataBase = new DataBase();
+    private DataBase dataBase;
     private DatabaseReference myRef;
 
     private Items item;
@@ -52,9 +52,10 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
         setContentView(R.layout.activity_log_in);
         setTitle(R.string.app_name);
 
+        dataBase = new DataBase();
         myRef = dataBase.getInstance().getReference();
-        item = new Items();
 
+        item = new Items();
         if (! item.correctInto) {
             item.addAllSampleItems();
             item.correctInto = true;
