@@ -1,7 +1,13 @@
 package com.example.appbar.ui;
 
-public class Items {
+import com.example.appbar.DataBase;
+import com.google.firebase.database.DatabaseReference;
 
+import java.util.HashMap;
+import java.util.Map;
+
+public class Items {
+    private DataBase dataBase = new DataBase();
     private final String coffee = "Café";
     private final String coffeeMilk = "Café con leche";
     private final String coffeAlone= "Café solo";
@@ -33,9 +39,27 @@ public class Items {
     private final String dissert_brownie = "Brownie";
     private final String dissert_ice_cream = "Helado";
 
+    HashMap<String, String> item = new HashMap<String, String>();
 
     public void createItems() {
+        item.put(coffee,"Café");
 
+
+
+        // Tengo que pensar un poco mas como voy a introducir los datos.
+
+
+
+
+
+
+
+
+
+        DatabaseReference myRef = dataBase.getInstance().getReference(dataBase.ROOT_USER())
+                .child(dataBase.PARENT_ITEMS())
+                .child(dataBase.CHILD_FIRST_NAME());
+        myRef.setValue(coffee);
     }
 
 

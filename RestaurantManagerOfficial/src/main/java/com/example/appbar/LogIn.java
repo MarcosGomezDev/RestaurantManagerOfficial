@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.appbar.databinding.FragmentHomeBinding;
+import com.example.appbar.ui.Items;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -37,6 +38,8 @@ import java.util.regex.Pattern;
 @SuppressWarnings("ALL") // Esto hay que quitarlo
 public class LogIn extends AppCompatActivity implements View.OnClickListener{
 
+    private DataBase dataBase = new DataBase();
+    private Items items = new Items();
     private AwesomeValidation awesomeValidation;
     private FirebaseAuth mFirebaseAuth;
     private EditText emailEditText, passwordEditText;
@@ -52,6 +55,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
         setTitle(R.string.app_name);
+        //items.createItems();
 
         date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         emailEditText = findViewById(R.id.emailEditText);
@@ -87,6 +91,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
                 pass = passwordEditText.getText().toString();
                 if(awesomeValidation.validate()) {
                     setSignIn(email, pass);
+                    dataBase.setROOT_USER(email);
                 } else {
                     Toast.makeText(LogIn.this, "Error en la validación.",
                             Toast.LENGTH_LONG).show();
