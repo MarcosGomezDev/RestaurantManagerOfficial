@@ -50,9 +50,7 @@ public class Items {
 
     public void addItem(String PK, String description, double price){
         myRef = dataBase.getInstance().getReference();
-
         Items addSampleItems = new Items(description, price);
-
         myRef.child(dataBase.PARENT_ITEMS()).child(PK).setValue(addSampleItems);
     }
 
@@ -64,98 +62,31 @@ public class Items {
         addItem("cola", "Coca Cola", 1.4);
         addItem("water", "Agua", 1.4);
         addItem("wine", "Vino", 1.4);
-        addItem("coffee", "Café", 1.4);
-        addItem("coffee", "Café", 1.4);
-        addItem("coffee", "Café", 1.4);
-        addItem("coffee", "Café", 1.4);
-        addItem("coffee", "Café", 1.4);
-        addItem("coffee", "Café", 1.4);
-        addItem("coffee", "Café", 1.4);
-        addItem("coffee", "Café", 1.4);
-        addItem("coffee", "Café", 1.4);
-        addItem("coffee", "Café", 1.4);
-        addItem("coffee", "Café", 1.4);
-        addItem("coffee", "Café", 1.4);
-        addItem("coffee", "Café", 1.4);
-        addItem("coffee", "Café", 1.4);
-        addItem("coffee", "Café", 1.4);
+        addItem("cesar_salad", "Ensalada César", 1.4);
+        addItem("mixed_salad", "Ensalada Mixta", 1.4);
+        addItem("iberic_salad", "Ensalada Ibérica", 1.4);
+        addItem("starter_iberian_ham", "Jamón Ibérico", 1.4);
+        addItem("starter_bread_tomato", "Pan con tomate", 1.4);
+        addItem("starter_cheese", "Queso", 1.4);
+        addItem("starter_chips", "Patatas fritas", 1.4);
+        addItem("starter_spicy_potatoes", "Patatas bravas", 1.4);
+        addItem("meat_sirloin", "Solomillo", 1.4);
+        addItem("meat_entrecote", "Entrecot", 1.4);
+        addItem("meat_ribeye", "Chuletón", 1.4);
+        addItem("rice_paella", "Paella", 1.4);
+        addItem("rice_black", "Arroz negro", 1.4);
+        addItem("rice_shellfish", "Arroz con mariscos", 1.4);
+        addItem("fish_cod", "Bacalao", 1.4);
+        addItem("fish_tuna", "Atún", 1.4);
+        addItem("fish_hake", "Merluza", 1.4);
+        addItem("kids_chicken_breast", "Pollo a la plancha", 1.4);
+        addItem("kids_spaghetti_bolognese", "Espagueti a la boloñesa", 1.4);
+        addItem("kids_nuggets", "Nuggets", 1.4);
+        addItem("dissert_cheesecake", "Tarta de queso", 1.4);
+        addItem("dissert_brownie", "Brownie", 1.4);
+        addItem("dissert_ice_cream", "Helado", 1.4);
 
     }
 
 }
-
-/*
-
-    private final String coffee = "Café";
-    private final String coffeeMilk = "Café con leche";
-    private final String coffeAlone= "Café solo";
-    private final String beer = "Cerveza";
-    private final String cola= "Coca Cola";
-    private final String water = "Agua";
-    private final String wine = "Vino";
-    private final String cesar_salad = "Ensalada César";
-    private final String mixed_salad = "Ensalada Mixta";
-    private final String iberic_salad = "Ensalada Ibérica";
-    private final String starter_iberian_ham= "Jamón Ibérico";
-    private final String starter_bread_tomato = "Pan con tomate";
-    private final String starter_cheese = "Queso";
-    private final String starter_chips = "Patatas fritas";
-    private final String starter_spicy_potatoes = "Patatas bravas";
-    private final String meat_sirloin = "Solomillo";
-    private final String meat_entrecote = "Entrecot";
-    private final String meat_ribeye = "Chuletón";
-    private final String rice_paella = "Paella";
-    private final String rice_black = "Arroz negro";
-    private final String rice_shellfish = "Arroz con mariscos";
-    private final String fish_cod = "Bacalao";
-    private final String fish_tuna = "Atún";
-    private final String fish_hake = "Merluza";
-    private final String kids_chicken_breast = "Pollo a la plancha";
-    private final String kids_spaghetti_bolognese= "Espagueti a la boloñesa";
-    private final String kids_nuggets = "Nuggets";
-    private final String dissert_cheesecake = "Tarta de queso";
-    private final String dissert_brownie = "Brownie";
-    private final String dissert_ice_cream = "Helado";
-
-
-
-
-
-
-    private void items() {
-
-        itemsMap = new HashMap<String, String>(){{
-            put("coffee","Café");
-            put("coffeeMilk","Café con leche");
-            put("coffeAlone","");
-            put("beer","Cerveza");
-            put("cola","Coca Cola");
-            put("water","Agua");
-            put("wine","Vino");
-            put("cesar_salad","Ensalada César");
-            put("mixed_salad","Ensalada Mixta");
-            put("iberic_salad","Jamón Ibérico");
-            put("starter_iberian_ham","Ensalada Ibérica");
-            put("starter_bread_tomato","Pan con tomate");
-            put("starter_cheese","Queso");
-            put("starter_chips","Patatas fritas");
-            put("starter_spicy_potatoes","Patatas bravas");
-            put("meat_sirloin","Solomillo");
-            put("meat_entrecote","Entrecot");
-            put("","");
-            put("","");
-            put("","");
-            put("","");
-            put("","");
-            put("","");
-            put("","");
-            put("","");
-            put("","");
-            put("","");
-            put("","");
-            put("","");
-        }};
-    }
-
- */
 

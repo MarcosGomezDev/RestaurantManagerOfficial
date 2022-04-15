@@ -53,11 +53,12 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
         setTitle(R.string.app_name);
 
         myRef = dataBase.getInstance().getReference();
-
-        /*if (!new Item().isCorrectInto()) {
-            createSampleItems();
-        }*/
-
+        item = new Items();
+/*
+        if (! item.correctInto) {
+            item.addAllSampleItems();
+        }
+*/
         date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
@@ -118,7 +119,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
                 break;
 
             case R.id.addItemButton:
-                additem("water2", "Agua", 2.0);
+                item.addAllSampleItems();
 
             default:
                 Toast.makeText(LogIn.this, "Algo salió mal.", Toast.LENGTH_LONG).show();
@@ -208,6 +209,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
     public void additem (@NonNull String PK, @NonNull String description, @NonNull double price) {
 
         item = new Items(description, price);
+
         myRef.child(dataBase.PARENT_ITEMS()).child(PK).setValue(item);
 
     }
