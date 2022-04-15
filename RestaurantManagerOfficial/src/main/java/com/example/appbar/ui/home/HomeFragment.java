@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.example.appbar.Items;
 import com.example.appbar.LogIn;
 import com.example.appbar.MainActivity;
 import com.example.appbar.R;
@@ -43,13 +44,12 @@ public class HomeFragment extends Fragment {
 
         // Este text va fuera
         Button logOutButton = view.findViewById(R.id.logOutButton);
+        Items item = new Items();
 
         logOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getActivity(), LogIn.class);
-                getActivity().startActivity(intent);
+                item.addAllSampleItems();
             }
         });
 

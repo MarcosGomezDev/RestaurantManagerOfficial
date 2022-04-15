@@ -40,7 +40,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
     private FirebaseAuth mFirebaseAuth;
     private EditText emailEditText, passwordEditText;
     private CheckBox recUserCheck, conditionsCheck;
-    private Button logInButton, signInButton, rellenarButton, addItem;
+    private Button logInButton, signInButton, rellenarButton;
     private String date;
     private String email;
     private String pass;
@@ -54,11 +54,12 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
 
         myRef = dataBase.getInstance().getReference();
         item = new Items();
-/*
+
         if (! item.correctInto) {
             item.addAllSampleItems();
+            item.correctInto = true;
         }
-*/
+
         date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
@@ -66,13 +67,11 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
         logInButton = findViewById(R.id.logInButton);
         signInButton = findViewById(R.id.signInButton);
         rellenarButton = findViewById(R.id.rellenarButton);
-        addItem = findViewById(R.id.addItemButton);
         recUserCheck = findViewById(R.id.recUserCheck);
         conditionsCheck = findViewById(R.id.conditionsCheckBox);
         logInButton.setOnClickListener(this);
         signInButton.setOnClickListener(this);
         rellenarButton.setOnClickListener(this);
-        addItem.setOnClickListener(this);
 
         recUserCheck.setChecked(true);
         conditionsCheck.setChecked(false);
@@ -95,7 +94,6 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
                 pass = passwordEditText.getText().toString();
                 if(awesomeValidation.validate()) {
                     setSignIn(email, pass);
-                    //dataBase.setROOT_USER(email);
                 } else {
                     Toast.makeText(LogIn.this, "Error en la validación.",
                             Toast.LENGTH_LONG).show();
@@ -117,9 +115,6 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
                 emailEditText.setText("marcos@marcos.es");
                 passwordEditText.setText("marcos");
                 break;
-
-            case R.id.addItemButton:
-                item.addAllSampleItems();
 
             default:
                 Toast.makeText(LogIn.this, "Algo salió mal.", Toast.LENGTH_LONG).show();
@@ -194,7 +189,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
+        FirebaseUser currentUser = mFirebaseAuth.getInstance().getCurrentUser();
         if(currentUser != null){
             goHome();
         }
