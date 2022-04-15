@@ -2,49 +2,45 @@ package com.example.appbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.Navigation;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
-import com.example.appbar.databinding.FragmentHomeBinding;
-import com.example.appbar.ui.Items;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
-import java.util.concurrent.Executor;
-import java.util.regex.Pattern;
 
 @SuppressWarnings("ALL") // Esto hay que quitarlo
 public class LogIn extends AppCompatActivity implements View.OnClickListener{
 
     private DataBase dataBase = new DataBase();
-    private Items items = new Items();
+    private DatabaseReference myRef;
+
+    private Items item;
     private AwesomeValidation awesomeValidation;
     private FirebaseAuth mFirebaseAuth;
     private EditText emailEditText, passwordEditText;
     private CheckBox recUserCheck, conditionsCheck;
-    private Button logInButton, signInButton, rellenarButton;
+    private Button logInButton, signInButton, rellenarButton, addItem;
     private String date;
     private String email;
     private String pass;
@@ -55,7 +51,12 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
         setTitle(R.string.app_name);
-        //items.createItems();
+
+        myRef = dataBase.getInstance().getReference();
+
+        /*if (!new Item().isCorrectInto()) {
+            createSampleItems();
+        }*/
 
         date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         emailEditText = findViewById(R.id.emailEditText);
@@ -64,11 +65,13 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
         logInButton = findViewById(R.id.logInButton);
         signInButton = findViewById(R.id.signInButton);
         rellenarButton = findViewById(R.id.rellenarButton);
+        addItem = findViewById(R.id.addItemButton);
         recUserCheck = findViewById(R.id.recUserCheck);
         conditionsCheck = findViewById(R.id.conditionsCheckBox);
         logInButton.setOnClickListener(this);
         signInButton.setOnClickListener(this);
         rellenarButton.setOnClickListener(this);
+        addItem.setOnClickListener(this);
 
         recUserCheck.setChecked(true);
         conditionsCheck.setChecked(false);
@@ -91,7 +94,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
                 pass = passwordEditText.getText().toString();
                 if(awesomeValidation.validate()) {
                     setSignIn(email, pass);
-                    dataBase.setROOT_USER(email);
+                    //dataBase.setROOT_USER(email);
                 } else {
                     Toast.makeText(LogIn.this, "Error en la validación.",
                             Toast.LENGTH_LONG).show();
@@ -113,6 +116,9 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
                 emailEditText.setText("marcos@marcos.es");
                 passwordEditText.setText("marcos");
                 break;
+
+            case R.id.addItemButton:
+                additem("water2", "Agua", 2.0);
 
             default:
                 Toast.makeText(LogIn.this, "Algo salió mal.", Toast.LENGTH_LONG).show();
@@ -191,6 +197,18 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
         if(currentUser != null){
             goHome();
         }
+
+    }
+
+    private void createSampleItems() {
+        item = new Items();
+        item.addAllSampleItems();
+    }
+
+    public void additem (@NonNull String PK, @NonNull String description, @NonNull double price) {
+
+        item = new Items(description, price);
+        myRef.child(dataBase.PARENT_ITEMS()).child(PK).setValue(item);
 
     }
 

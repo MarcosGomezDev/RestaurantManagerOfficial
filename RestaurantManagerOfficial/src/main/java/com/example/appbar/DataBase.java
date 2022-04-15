@@ -3,13 +3,17 @@ package com.example.appbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.Serializable;
+
 @SuppressWarnings({"FieldCanBeLocal", "UnnecessaryLocalVariable"})
 public class DataBase {
+
     private final FirebaseDatabase instance = FirebaseDatabase.getInstance(
             "https://restaurantmanagerofficial-default-rtdb.europe-west1.firebasedatabase.app/");
+
     private String ROOT_USER;
     private final String PARENT_EMPLOYEES = "employees";
-    private final String PARENT_ITEMS = "items";
+    private final String PARENT_ITEMS = "Productos";
     private final String PARENT_STAFF = "staff";
     private final String PARENT_STAFF_SIGN_IN = "staff_signin";
     private final String PARENT_BOOKING = "booking";

@@ -116,6 +116,13 @@
             android:layout_height="wrap_content"
             android:text="Rellanar Auto"
             android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/addItemButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Añadir Item"
+            android:textColor="#212121" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
