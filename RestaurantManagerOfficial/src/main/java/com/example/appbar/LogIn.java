@@ -35,7 +35,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
     private DataBase dataBase;
     private DatabaseReference myRef;
 
-    private Items item2;
+    private Items item;
     private AwesomeValidation awesomeValidation;
     private FirebaseAuth mFirebaseAuth;
     private EditText emailEditText, passwordEditText;
