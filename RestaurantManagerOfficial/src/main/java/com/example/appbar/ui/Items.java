@@ -31,7 +31,7 @@ public class Items {
     private final String kids_nuggets = "Nuggets";
     private final String dissert_cheesecake = "Tarta de queso";
     private final String dissert_brownie = "Brownie";
-    private final String dissert_ice_cream = "Helado";
+    private final String dissert_ice_cream = "Helado2";
 
 
     public void createItems() {
