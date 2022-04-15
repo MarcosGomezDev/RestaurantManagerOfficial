@@ -1,6 +1,8 @@
 package com.example.appbar;
 
 import com.example.appbar.DataBase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
 import java.io.Serializable;
@@ -51,7 +53,9 @@ public class Items {
     public void addItem(String PK, String description, double price){
         myRef = dataBase.getInstance().getReference();
         Items addSampleItems = new Items(description, price);
-        myRef.child(dataBase.PARENT_ITEMS()).child(PK).setValue(addSampleItems);
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String userUID = currentUser.getUid();
+        myRef.child(userUID).child(dataBase.PARENT_ITEMS()).child(PK).setValue(addSampleItems);
     }
 
     public void addAllSampleItems() {
