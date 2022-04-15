@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_tables"
+        android:name="com.example.appbar.ui.tables.TablesFragment"
+        android:label="Mesas"
+        tools:layout="@layout/fragment_tables" >
+        <action
+            android:id="@+id/action_nav_tables_to_nav_table_selected"
+            app:destination="@id/nav_table_selected" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_table_selected"
+        android:name="com.example.appbar.ui.table_selected.TableSelectedFragment"
+        android:label="Mesa seleccionada"
+        tools:layout="@layout/fragment_table_selected" >
+        <action
+            android:id="@+id/action_nav_table_selected_to_cashFragment"
+            app:destination="@id/nav_cash_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.appbar.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_staff_signin"
+        android:name="com.example.appbar.ui.staff_signin.StaffSignInFragment"
+        android:label="@string/staff_sign_in"
+        tools:layout="@layout/fragment_staff_signin" />
+
+    <fragment
+        android:id="@+id/nav_cash_history"
+        android:name="com.example.appbar.ui.cash_history.CashHistoryFragment"
+        android:label="@string/cash_history"
+        tools:layout="@layout/fragment_cash_history" />
+
+    <fragment
+        android:id="@+id/nav_bookings"
+        android:name="com.example.appbar.ui.bookings.BookingsFragment"
+        android:label="@string/bookings"
+        tools:layout="@layout/fragment_bookings" />
+
+    <fragment
+        android:id="@+id/nav_cash_fragment"
+        android:name="com.example.appbar.ui.cash.CashFragment"
+        android:label="CashFragment"
+        tools:layout="@layout/fragment_cash">
+        <action
+            android:id="@+id/action_nav_cash_fragment_to_nav_tables"
+            app:destination="@id/nav_tables" />
+    </fragment>
+</navigation>

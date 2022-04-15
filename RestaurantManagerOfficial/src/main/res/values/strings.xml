@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Restaurant Manager</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">RestaurantManager</string>
+    <string name="nav_header_subtitle">by MoonTecnologies</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_tables">Mesas</string>
+    <string name="cash_history">Historial de caja</string>
+    <string name="staff_sign_in">Fichar</string>
+    <string name="bookings">Reservas</string>
+    <string name="password">Contraseña</string>
+    <string name="remember_user">Recordar usuario</string>
+    <string name="log_in">INICIAR SESIÓN</string>
+    <string name="sign_in">REGISTRAR</string>
+    <string name="email">Correo electrónico</string>
+    <string name="cashButton">Cobrar</string>
+    <string name="invalid_mail">Ingrese mail válido</string>
+    <string name="invalid_password">Ingrese una contraseña mayor a 6 digitos</string>
+    <string name="accept_conditions">Acepto condiciones de uso</string>
+    <string name="terms_conditions">Acepto los Terminos y condiciones.</string>
+    <string name="src_conditions">Términos y condiciones</string>
+    <string name="nav_log_out">Cerrar sesión</string>
+
+</resources>

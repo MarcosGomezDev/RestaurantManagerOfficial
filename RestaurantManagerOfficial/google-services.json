@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "194000219320",
+    "firebase_url": "https://restaurantmanagerofficial-default-rtdb.europe-west1.firebasedatabase.app/",
+    "project_id": "restaurantmanagerofficial",
+    "storage_bucket": "restaurantmanagerofficial.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:194000219320:android:3c217434959aa7382ad84d",
+        "android_client_info": {
+          "package_name": "com.example.appbar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "194000219320-11k4508mqpn84h45c2huthhraf2ck571.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAw-_jUXj64HHQA9BhbsrF9-DT7KqBT-tU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "194000219320-11k4508mqpn84h45c2huthhraf2ck571.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
