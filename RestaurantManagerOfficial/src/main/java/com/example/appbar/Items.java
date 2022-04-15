@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class Items {
+public class Items implements Serializable{
     private DataBase dataBase = new DataBase();
     private DatabaseReference myRef;
     public static boolean correctInto = false;
@@ -56,6 +56,13 @@ public class Items {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         String userUID = currentUser.getUid();
         myRef.child(userUID).child(dataBase.PARENT_ITEMS()).child(PK).setValue(addSampleItems);
+    }
+
+    public void listItems(){
+        myRef = dataBase.getInstance().getReference();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String userUID = currentUser.getUid();
+        myRef.child(userUID).child(dataBase.PARENT_ITEMS()).getDatabase();
     }
 
     public void addAllSampleItems() {

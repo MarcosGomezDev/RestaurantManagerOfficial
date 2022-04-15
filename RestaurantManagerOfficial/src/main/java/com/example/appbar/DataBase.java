@@ -11,7 +11,6 @@ public class DataBase {
     private final FirebaseDatabase instance = FirebaseDatabase.getInstance(
             "https://restaurantmanagerofficial-default-rtdb.europe-west1.firebasedatabase.app/");
 
-    private String ROOT_USER;
     private final String PARENT_EMPLOYEES = "employees";
     private final String PARENT_ITEMS = "Productos";
     private final String PARENT_STAFF = "staff";
@@ -30,20 +29,12 @@ public class DataBase {
     private final String CHILD_ID_ITEM = "id_item";
 
     public DataBase() {}
-    public DataBase(String ROOT_USER) { this.ROOT_USER = ROOT_USER; }
 
     public FirebaseDatabase getInstance() { return instance; }
 
     public DatabaseReference DataRef (String path) {
         DatabaseReference databaseReference = getInstance().getReference(path);
         return databaseReference;
-    }
-
-    public void setROOT_USER(String ROOT_USER) {
-        this.ROOT_USER = ROOT_USER;
-    }
-    public String ROOT_USER() {
-        return ROOT_USER;
     }
 
     public String PARENT_EMPLOYEES() {
