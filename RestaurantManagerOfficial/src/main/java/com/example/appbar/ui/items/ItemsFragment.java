@@ -10,10 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.appbar.DataBase;
-import com.example.appbar.databinding.FragmentCashBinding;
+import com.example.appbar.Data.DataBase;
 import com.example.appbar.databinding.FragmentItemsBinding;
-import com.example.appbar.ui.cash.CashViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;

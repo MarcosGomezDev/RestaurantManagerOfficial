@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.appbar.ui.home.HomeFragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -23,9 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.appbar.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.PrimitiveIterator;
-
-public class MainActivity extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
@@ -70,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_log_out:
                 FirebaseAuth.getInstance().signOut();
                 Toast.makeText(this, "Hecho", Toast.LENGTH_LONG).show();
-                Intent goSignIn = new Intent(MainActivity.this, LogIn.class);
+                Intent goSignIn = new Intent(MenuActivity.this, LogIn.class);
                 startActivity(goSignIn);
                 return true;
             default:

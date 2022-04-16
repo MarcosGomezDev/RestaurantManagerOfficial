@@ -1,20 +1,20 @@
 package com.example.appbar.ui.bookings;
 
-public class Datos {
+public class BookingsData {
 
     private String nombre;
     private String email;
     private String telefono;
     private String fecha;
 
-    public Datos(String nombre, String email, String telefono, String fecha) {
+    public BookingsData(String nombre, String email, String telefono, String fecha) {
         this.nombre = nombre;
         this.email = email;
         this.telefono = telefono;
         this.fecha = fecha;
     }
 
-    public Datos() {
+    public BookingsData() {
     }
 
     public String getFecha() {

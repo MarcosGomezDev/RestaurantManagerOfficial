@@ -1,16 +1,12 @@
-package com.example.appbar;
+package com.example.appbar.Data;
 
-import com.example.appbar.DataBase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
-public class Items implements Serializable{
+public class ItemsData implements Serializable{
     private DataBase dataBase = new DataBase();
     private DatabaseReference myRef;
     public static boolean correctInto = false;
@@ -18,10 +14,10 @@ public class Items implements Serializable{
     private String description;
     private double price;
 
-    public Items() {
+    public ItemsData() {
     }
 
-    public Items(String description, double price) {
+    public ItemsData(String description, double price) {
         this.description = description;
         this.price = price;
     }
@@ -52,7 +48,7 @@ public class Items implements Serializable{
 
     public void addItem(String PK, String description, double price){
         myRef = dataBase.getInstance().getReference();
-        Items addSampleItems = new Items(description, price);
+        ItemsData addSampleItems = new ItemsData(description, price);
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         String userUID = currentUser.getUid();
         myRef.child(userUID).child(dataBase.PARENT_ITEMS()).child(PK).setValue(addSampleItems);

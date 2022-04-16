@@ -1,29 +1,27 @@
 package com.example.appbar.ui.home;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
-import com.example.appbar.Items;
-import com.example.appbar.LogIn;
-import com.example.appbar.MainActivity;
+import com.example.appbar.Data.DataBase;
+import com.example.appbar.Data.ItemsData;
 import com.example.appbar.R;
 import com.example.appbar.databinding.FragmentHomeBinding;
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    private DataBase dataBase = new DataBase();
+    private DatabaseReference myRef;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -44,12 +42,16 @@ public class HomeFragment extends Fragment {
 
         // Este text va fuera
         Button logOutButton = view.findViewById(R.id.logOutButton);
-        Items item = new Items();
+        ItemsData item = new ItemsData();
 
         logOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                item.addAllSampleItems();
+
+                //item.listItems();
+
+
+
             }
         });
 

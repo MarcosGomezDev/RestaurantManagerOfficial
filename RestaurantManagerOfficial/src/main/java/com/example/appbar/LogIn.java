@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.example.appbar.Data.DataBase;
+import com.example.appbar.Data.ItemsData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -35,7 +37,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
     private DataBase dataBase;
     private DatabaseReference myRef;
 
-    private Items item;
+    private ItemsData item;
     private AwesomeValidation awesomeValidation;
     private FirebaseAuth mFirebaseAuth;
     private EditText emailEditText, passwordEditText;
@@ -55,7 +57,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
         dataBase = new DataBase();
         myRef = dataBase.getInstance().getReference();
 
-        item = new Items();
+        item = new ItemsData();
         if (! item.correctInto) {
             item.addAllSampleItems();
             item.correctInto = true;
@@ -168,7 +170,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
 
     private void goHome() {
         Intent logIn = new Intent(LogIn.this,
-                MainActivity.class);
+                MenuActivity.class);
         logIn.putExtra("email", emailEditText.getText().toString());
         logIn.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |
                 Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -198,13 +200,13 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
     }
 
     private void createSampleItems() {
-        item = new Items();
+        item = new ItemsData();
         item.addAllSampleItems();
     }
 
     public void additem (@NonNull String PK, @NonNull String description, @NonNull double price) {
 
-        item = new Items(description, price);
+        item = new ItemsData(description, price);
 
         myRef.child(dataBase.PARENT_ITEMS()).child(PK).setValue(item);
 
