@@ -30,6 +30,21 @@ public class DataBase {
 
     public DataBase() {}
 
+    public void generateKey() {
+
+        /*
+
+        Aqui implantaremos un metodo que genera automaticamente claves primarias para usarlas en la
+        base de datos.
+
+
+
+         */
+
+    }
+
+
+
     public FirebaseDatabase getInstance() { return instance; }
 
     public DatabaseReference getDatabaseReference() { return databaseReference; }
