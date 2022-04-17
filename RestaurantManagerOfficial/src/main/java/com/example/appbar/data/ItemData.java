@@ -36,6 +36,8 @@ public class ItemData {
         return price;
     }
 
+    public String getPriceString() { return String.valueOf(price); }
+
     public void setPrice(double price) {
         this.price = price;
     }
