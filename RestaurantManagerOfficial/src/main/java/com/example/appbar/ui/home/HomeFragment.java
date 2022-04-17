@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.appbar.data.ItemsData;
+import com.example.appbar.data.ItemData;
 import com.example.appbar.R;
 import com.example.appbar.databinding.FragmentHomeBinding;
 
@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment {
 
         // Este text va fuera
         Button logOutButton = view.findViewById(R.id.logOutButton);
-        ItemsData item = new ItemsData();
+        ItemData item = new ItemData();
 
         logOutButton.setOnClickListener(new View.OnClickListener() {
             @Override

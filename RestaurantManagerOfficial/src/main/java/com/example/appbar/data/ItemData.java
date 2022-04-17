@@ -41,12 +41,12 @@ public class ItemData {
     }
 
     public void addItem(String PK, String description, double price){
-        ItemData addSampleItemsData = new ItemData(description, price);
+        ItemData addItem = new ItemData(description, price);
         String userUID = dataBase.getCurrentUser().getUid();
         dataBase.getDatabaseReference().child(userUID)
                 .child(dataBase.PARENT_ITEMS())
                 .child(PK)
-                .setValue(addSampleItemsData);
+                .setValue(addItem);
     }
 
     public void listItems(){
