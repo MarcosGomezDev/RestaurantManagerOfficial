@@ -11,7 +11,7 @@
         android:theme="@style/Theme.AppBar">
 
         <activity
-            android:name=".LogIn"
+            android:name=".LogInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

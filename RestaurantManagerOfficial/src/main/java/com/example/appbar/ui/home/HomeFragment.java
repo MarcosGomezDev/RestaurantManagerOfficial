@@ -11,17 +11,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.appbar.Data.DataBase;
-import com.example.appbar.Data.ItemsData;
+import com.example.appbar.data.ItemsData;
 import com.example.appbar.R;
 import com.example.appbar.databinding.FragmentHomeBinding;
-import com.google.firebase.database.DatabaseReference;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
-    private DataBase dataBase = new DataBase();
-    private DatabaseReference myRef;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -47,11 +43,7 @@ public class HomeFragment extends Fragment {
         logOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //item.listItems();
-
-
-
+                item.addAllSampleItems();
             }
         });
 

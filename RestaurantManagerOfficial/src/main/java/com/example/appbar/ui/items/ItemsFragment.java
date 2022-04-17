@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.appbar.Data.DataBase;
+import com.example.appbar.data.DataBase;
 import com.example.appbar.databinding.FragmentItemsBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,7 +20,6 @@ public class ItemsFragment extends Fragment {
 
     private FragmentItemsBinding binding;
     private DataBase dataBase = new DataBase();
-    private DatabaseReference myRef = dataBase.getInstance().getReference();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -48,7 +47,7 @@ public class ItemsFragment extends Fragment {
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         String userUID = currentUser.getUid();
-        myRef.child(userUID).child(dataBase.PARENT_ITEMS()).getDatabase();
+        dataBase.getDatabaseReference().child(userUID).child(dataBase.PARENT_ITEMS()).getDatabase();
 
 
     }
