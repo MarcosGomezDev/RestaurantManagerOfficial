@@ -43,7 +43,7 @@ public class HomeFragment extends Fragment {
         logOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                item.addAllSampleItems();
             }
         });
 

@@ -1,11 +1,13 @@
 package com.example.appbar.ui.items;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.service.controls.actions.FloatAction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +30,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ItemsFragment extends Fragment {
 
@@ -61,7 +64,7 @@ public class ItemsFragment extends Fragment {
         userUID = dataBase.getCurrentUser().getUid();
         myRef = dataBase.getInstance().getReference(userUID).child(dataBase.PARENT_ITEMS());
         context = this.getActivity();
-
+        list = new ArrayList<>();
 
         addItemButton = view.findViewById(R.id.addItemButton);
         addItemButton.setOnClickListener(new View.OnClickListener() {
@@ -71,18 +74,28 @@ public class ItemsFragment extends Fragment {
             }
         });
 
-
         recyclerView.setHasFixedSize(true);
-        //recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-        list = new ArrayList<>();
         itemAdapter = new ItemAdapter(context, list);
         recyclerView.setAdapter(itemAdapter);
 
+        itemAdapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//              Aqui ira el evento que realice la modificacion de un producto.
+//              updateItem(list.get(recyclerView.getChildAdapterPosition(v)).getDescription(),
+//                         list.get(recyclerView.getChildAdapterPosition(v)).getPriceString());
 
+
+
+                Toast.makeText(context, "Seleccionado " +
+                        list.get(recyclerView.getChildAdapterPosition(v)).getDescription(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         myRef.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
@@ -97,18 +110,9 @@ public class ItemsFragment extends Fragment {
 
             }
         });
-
-
-
-
     }
 
-    public void listItems(){
-
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        String userUID = currentUser.getUid();
-        dataBase.getDatabaseReference().child(userUID).child(dataBase.PARENT_ITEMS()).getDatabase();
-
+    public void updateItem (String descripcion, String price) {
 
     }
 
@@ -117,4 +121,5 @@ public class ItemsFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 }

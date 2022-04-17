@@ -42,6 +42,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     private String date;
     private String email;
     private String pass;
+    public static boolean newLogin = true;
 
     @SuppressLint("SimpleDateFormat")
     @Override
@@ -53,9 +54,9 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         dataBase = new DataBase();
 
         item = new ItemData();
-        if (!item.correctInto && dataBase.getCurrentUser() != null) {
+        if (newLogin && dataBase.getCurrentUser() != null) {
             item.addAllSampleItems();
-            item.correctInto = true;
+            newLogin = true;
         }
 
         date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
@@ -189,7 +190,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         if(dataBase.getCurrentUser() != null){
             goHome();
         }
-
     }
 
     private void createSampleItems() {

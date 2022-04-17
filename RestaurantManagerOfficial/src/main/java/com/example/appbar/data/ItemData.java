@@ -3,7 +3,6 @@ package com.example.appbar.data;
 public class ItemData {
 
     private DataBase dataBase = new DataBase();
-    public static boolean correctInto = false;
     private String PK;
     private String description;
     private double price;
@@ -12,6 +11,12 @@ public class ItemData {
     }
 
     public ItemData(String description, double price) {
+        this.description = description;
+        this.price = price;
+    }
+
+    public ItemData(String PK, String description, double price) {
+        this.PK = PK;
         this.description = description;
         this.price = price;
     }
@@ -43,7 +48,7 @@ public class ItemData {
     }
 
     public void addItem(String PK, String description, double price){
-        ItemData addItem = new ItemData(description, price);
+        ItemData addItem = new ItemData(PK, description, price);
         String userUID = dataBase.getCurrentUser().getUid();
         dataBase.getDatabaseReference().child(userUID)
                 .child(dataBase.PARENT_ITEMS())
