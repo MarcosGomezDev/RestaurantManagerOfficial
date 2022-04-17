@@ -41,7 +41,7 @@ public class ItemData {
     }
 
     public void addItem(String PK, String description, double price){
-        ItemsData addSampleItemsData = new ItemsData(description, price);
+        ItemData addSampleItemsData = new ItemData(description, price);
         String userUID = dataBase.getCurrentUser().getUid();
         dataBase.getDatabaseReference().child(userUID)
                 .child(dataBase.PARENT_ITEMS())
