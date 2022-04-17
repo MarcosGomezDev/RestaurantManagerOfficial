@@ -36,19 +36,19 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         setSupportActionBar(binding.appBarMain.toolbar);
 
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_tables, R.id.nav_staff_signin, R.id.nav_bookings,
+                R.id.nav_home, R.id.nav_tables, R.id.nav_items, R.id.nav_staff_signin, R.id.nav_bookings,
                 R.id.nav_cash_history)
                 .setOpenableLayout(drawer)
                 .build();
@@ -66,7 +66,7 @@ public class MenuActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_log_out:
                 FirebaseAuth.getInstance().signOut();
-                Toast.makeText(this, "Hecho", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Sesión cerrada", Toast.LENGTH_LONG).show();
                 Intent goSignIn = new Intent(MenuActivity.this, LogInActivity.class);
                 startActivity(goSignIn);
                 return true;

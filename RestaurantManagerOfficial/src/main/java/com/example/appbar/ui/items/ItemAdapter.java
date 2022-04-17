@@ -14,12 +14,12 @@ import com.example.appbar.data.ItemData;
 
 import java.util.ArrayList;
 
-public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.MyViewHolder> {
+public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> {
 
     private Context context;
     private ArrayList<ItemData> list;
 
-    public ItemsAdapter(Context context, ArrayList<ItemData> list) {
+    public ItemAdapter(Context context, ArrayList<ItemData> list) {
         this.context = context;
         this.list = list;
     }
