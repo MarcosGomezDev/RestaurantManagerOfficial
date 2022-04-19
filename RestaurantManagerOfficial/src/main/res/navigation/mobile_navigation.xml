@@ -35,7 +35,19 @@
         android:id="@+id/nav_items"
         android:name="com.example.appbar.ui.items.ItemsFragment"
         android:label="Productos"
-        tools:layout="@layout/fragment_items" />
+        tools:layout="@layout/fragment_items">
+        <action
+            android:id="@+id/action_nav_tables_to_nav_table_selected"
+            app:destination="@id/nav_item_add_update" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_item_add_update"
+        android:name="com.example.appbar.ui.item_add_update.ItemAddUpdateFragment"
+        android:label="Modificación de producto"
+        tools:layout="@layout/fragment_item_add_update" />
+
+
 
     <fragment
         android:id="@+id/nav_staff_signin"

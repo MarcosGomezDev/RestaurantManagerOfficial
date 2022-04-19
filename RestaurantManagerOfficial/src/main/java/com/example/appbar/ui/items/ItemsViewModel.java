@@ -10,7 +10,6 @@ public class ItemsViewModel extends ViewModel {
 
     public ItemsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is staff_signin fragment");
     }
 
     public LiveData<String> getText() {

@@ -329,12 +329,12 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         DataBase.DataRef(DataBase.PATH_EMPLOYEES).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                textView2.setText(snapshot.getValue(String.class) + " " + date);
+                updateTitleText.setText(snapshot.getValue(String.class) + " " + date);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                textView2.setText("Error en la conexión con la base de datos.");
+                updateTitleText.setText("Error en la conexión con la base de datos.");
             }
         });
 
@@ -343,12 +343,12 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
             dataBase.DataRef(dataBase.getPATH_EMPLOYEES()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    textView2.setText(snapshot.getValue(String.class) + " " + date);
+                    updateTitleText.setText(snapshot.getValue(String.class) + " " + date);
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    textView2.setText("Error en la conexión con la base de datos.");
+                    updateTitleText.setText("Error en la conexión con la base de datos.");
                 }
             });
         }

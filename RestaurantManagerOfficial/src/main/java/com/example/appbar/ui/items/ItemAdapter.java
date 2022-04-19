@@ -41,6 +41,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
         holder.descriptionTextView.setText(item.getDescription());
         holder.priceTextView.setText(item.getPriceString());
 
+
     }
 
     @Override

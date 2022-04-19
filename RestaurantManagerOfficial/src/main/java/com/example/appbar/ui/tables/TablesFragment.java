@@ -38,7 +38,6 @@ public class TablesFragment extends Fragment implements View.OnClickListener{
         super.onViewCreated(view, savedInstanceState);
 
         table1Button = view.findViewById(R.id.table1Button);
-        //table1Button.setOnClickListener(this);
         table1Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

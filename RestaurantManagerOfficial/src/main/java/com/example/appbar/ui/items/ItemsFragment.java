@@ -3,16 +3,13 @@ package com.example.appbar.ui.items;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.service.controls.actions.FloatAction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,22 +18,21 @@ import com.example.appbar.R;
 import com.example.appbar.data.DataBase;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.databinding.FragmentItemsBinding;
+import com.example.appbar.ui.item_add_update.ItemAddUpdateFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class ItemsFragment extends Fragment {
 
     private FragmentItemsBinding binding;
     private DataBase dataBase;
     private DatabaseReference myRef;
+    public static String currentItemString;
     private ItemAdapter itemAdapter;
     private RecyclerView recyclerView;
     private ArrayList<ItemData> list;
@@ -46,12 +42,8 @@ public class ItemsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ItemsViewModel cashHistoryViewModel =
-                new ViewModelProvider(this).get(ItemsViewModel.class);
-
         binding = FragmentItemsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
         return root;
     }
 
@@ -83,14 +75,15 @@ public class ItemsFragment extends Fragment {
         itemAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//              Aqui ira el evento que realice la modificacion de un producto.
-//              updateItem(list.get(recyclerView.getChildAdapterPosition(v)).getDescription(),
-//                         list.get(recyclerView.getChildAdapterPosition(v)).getPriceString());
 
+                ItemAddUpdateFragment.currentPkItemString =
+                        list.get(recyclerView.getChildAdapterPosition(v)).getPK();
 
+                Navigation.findNavController(v).navigate(R.id.nav_item_add_update);
 
-                Toast.makeText(context, "Seleccionado " +
-                        list.get(recyclerView.getChildAdapterPosition(v)).getDescription(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Seleccionado " +
+//                        list.get(recyclerView.getChildAdapterPosition(v)).getPK(),
+//                        Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -112,14 +105,9 @@ public class ItemsFragment extends Fragment {
         });
     }
 
-    public void updateItem (String descripcion, String price) {
-
-    }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }
-
 }
