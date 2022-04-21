@@ -47,8 +47,6 @@
         android:label="Modificación de producto"
         tools:layout="@layout/fragment_item_add_update" />
 
-
-
     <fragment
         android:id="@+id/nav_staff_signin"
         android:name="com.example.appbar.ui.staff_signin.StaffSignInFragment"
@@ -65,7 +63,17 @@
         android:id="@+id/nav_bookings"
         android:name="com.example.appbar.ui.bookings.BookingsFragment"
         android:label="@string/bookings"
-        tools:layout="@layout/fragment_bookings" />
+        tools:layout="@layout/fragment_bookings">
+        <action
+            android:id="@+id/action_nav_booking_selected"
+            app:destination="@id/nav_booking_selected" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_booking_selected"
+        android:name="com.example.appbar.ui.booking_select.BookingSelectFragment"
+        android:label="@string/cash_history"
+        tools:layout="@layout/fragment_booking_select" />
 
     <fragment
         android:id="@+id/nav_cash_fragment"

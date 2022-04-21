@@ -5,6 +5,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @SuppressWarnings({"FieldCanBeLocal", "UnnecessaryLocalVariable"})
 public class DataBase {
 
@@ -31,11 +34,21 @@ public class DataBase {
 
     public DataBase() {}
 
-    public String generatePK() {
-        String userUID = currentUser.getUid();
-        databaseReference.child(userUID).child("key");
+//    public String generatePK() {
+//        String userUID = currentUser.getUid();
+//        databaseReference.child(userUID).child("key");
+//
+//        return String.valueOf(key);
+//    }
 
-        return String.valueOf(key);
+    public void startDatabase() {
+
+//        databaseReference.child(userUID).child("controlPK").setValue("100000");
+//        Map<String, String> mapPK = new HashMap<>();
+//        mapPK.put("PK", "100000");
+        ItemData it = new ItemData("hola", 90);
+        String userUID = currentUser.getUid();
+        databaseReference.child(userUID).setValue(it);
     }
 
     public FirebaseDatabase getInstance() { return instance; }

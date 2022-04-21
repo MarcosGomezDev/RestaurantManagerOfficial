@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -39,6 +40,7 @@ public class BookingsFragment extends Fragment {
     private FragmentBookingsBinding binding;
     private FloatingActionButton fa_annadir,fa_fecha;
     private TextView tv_fecha;
+    private FloatingActionButton bt;
 
     RecyclerView recyclerView;
 
@@ -66,6 +68,7 @@ public class BookingsFragment extends Fragment {
 
         tv_fecha = view.findViewById(R.id.tv_fecha);
         recyclerView = view.findViewById(R.id.bookingR);
+
         dataBase = new DataBase();
         userUID = dataBase.getCurrentUser().getUid();
         myRef = dataBase.getInstance().getReference(userUID).child(dataBase.PARENT_BOOKING());

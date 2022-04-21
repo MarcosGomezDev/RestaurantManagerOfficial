@@ -19,8 +19,8 @@ import com.example.appbar.databinding.FragmentHomeBinding;
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
-    private DataBase dataBase;
     private ItemData item;
+    private DataBase dataBase;
     private boolean noItems = true;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -39,14 +39,8 @@ public class HomeFragment extends Fragment {
 
         Button logOutButton = view.findViewById(R.id.logOutButton);
         item = new ItemData();
-        dataBase = new DataBase();
 
-        String userUID = dataBase.getCurrentUser().getUid();
-        dataBase.getDatabaseReference().child(userUID);
-        if (noItems) {
-            item.addAllSampleItems();
-            noItems = false;
-        }
+        //dataBase.startDatabase();
 
         logOutButton.setOnClickListener(new View.OnClickListener() {
             @Override

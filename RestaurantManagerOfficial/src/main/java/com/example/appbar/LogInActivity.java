@@ -96,6 +96,8 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                 pass = passwordEditText.getText().toString();
                 if(awesomeValidation.validate()) {
                     createAccount(email, pass);
+
+
                 } else {
                     Toast.makeText(LogInActivity.this, "Error en la validación.",
                             Toast.LENGTH_LONG).show();

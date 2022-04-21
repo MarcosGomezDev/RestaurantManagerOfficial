@@ -65,17 +65,17 @@ public class ItemData {
     }
 
     public void addAllSampleItems() {
-        addItem(dataBase.generatePK(), "Café", 1.4);
-        addItem(dataBase.generatePK(), "Café con leche", 1.4);
-        addItem(dataBase.generatePK(), "Café solo", 1.4);
-        addItem(dataBase.generatePK(), "Cerveza", 1.4);
-        addItem(dataBase.generatePK(), "Coca Cola", 1.4);
-        addItem(dataBase.generatePK(), "Agua", 1.4);
-        addItem(dataBase.generatePK(), "Vino", 1.4);
-        addItem(dataBase.generatePK(), "Ensalada César", 1.4);
-        addItem(dataBase.generatePK(), "Ensalada Mixta", 1.4);
-        addItem(dataBase.generatePK(), "Ensalada Ibérica", 1.4);
-        addItem(dataBase.generatePK(), "Jamón Ibérico", 1.4);
+//        addItem(dataBase.generatePK(), "Café", 1.4);
+//        addItem(dataBase.generatePK(), "Café con leche", 1.4);
+//        addItem(dataBase.generatePK(), "Café solo", 1.4);
+//        addItem(dataBase.generatePK(), "Cerveza", 1.4);
+//        addItem(dataBase.generatePK(), "Coca Cola", 1.4);
+//        addItem(dataBase.generatePK(), "Agua", 1.4);
+//        addItem(dataBase.generatePK(), "Vino", 1.4);
+//        addItem(dataBase.generatePK(), "Ensalada César", 1.4);
+//        addItem(dataBase.generatePK(), "Ensalada Mixta", 1.4);
+//        addItem(dataBase.generatePK(), "Ensalada Ibérica", 1.4);
+//        addItem(dataBase.generatePK(), "Jamón Ibérico", 1.4);
         addItem("starter_bread_tomato", "Pan con tomate", 1.4);
         addItem("starter_cheese", "Queso", 1.4);
         addItem("starter_chips", "Patatas fritas", 1.4);
