@@ -12,6 +12,7 @@ public class DataBase {
             "https://restaurantmanagerofficial-default-rtdb.europe-west1.firebasedatabase.app/");
     private DatabaseReference databaseReference = instance.getReference();
     private FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+    private int key = 10000;
     private final String PARENT_ITEMS = "Productos";
     private final String PARENT_STAFF = "staff";
     private final String PARENT_STAFF_SIGN_IN = "staff_signin";
@@ -30,26 +31,22 @@ public class DataBase {
 
     public DataBase() {}
 
-    public void generateKey() {
+    public String generatePK() {
+        String userUID = currentUser.getUid();
+        databaseReference.child(userUID).child("key");
 
-        /*
-
-        Aqui implantaremos un metodo que genera automaticamente claves primarias para usarlas en la
-        base de datos.
-
-
-
-         */
-
+        return String.valueOf(key);
     }
-
-
 
     public FirebaseDatabase getInstance() { return instance; }
 
     public DatabaseReference getDatabaseReference() { return databaseReference; }
 
     public FirebaseUser getCurrentUser() { return currentUser; }
+
+    public int getKey() { return key; }
+
+    public void setKey(int key) { this.key = key; }
 
     public String PARENT_ITEMS() {
         return PARENT_ITEMS;

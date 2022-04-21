@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.appbar.data.DataBase;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.R;
 import com.example.appbar.databinding.FragmentHomeBinding;
@@ -18,6 +19,9 @@ import com.example.appbar.databinding.FragmentHomeBinding;
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    private DataBase dataBase;
+    private ItemData item;
+    private boolean noItems = true;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -26,9 +30,6 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-
-
         return root;
     }
 
@@ -36,9 +37,16 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Este text va fuera
         Button logOutButton = view.findViewById(R.id.logOutButton);
-        ItemData item = new ItemData();
+        item = new ItemData();
+        dataBase = new DataBase();
+
+        String userUID = dataBase.getCurrentUser().getUid();
+        dataBase.getDatabaseReference().child(userUID);
+        if (noItems) {
+            item.addAllSampleItems();
+            noItems = false;
+        }
 
         logOutButton.setOnClickListener(new View.OnClickListener() {
             @Override

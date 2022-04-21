@@ -33,7 +33,6 @@ import java.util.Objects;
 public class LogInActivity extends AppCompatActivity implements View.OnClickListener{
 
     private DataBase dataBase;
-    private ItemData item;
     private AwesomeValidation awesomeValidation;
     private FirebaseAuth mFirebaseAuth;
     private EditText emailEditText, passwordEditText;
@@ -52,12 +51,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         setTitle(R.string.app_name);
 
         dataBase = new DataBase();
-
-        item = new ItemData();
-        if (newLogin && dataBase.getCurrentUser() != null) {
-            item.addAllSampleItems();
-            newLogin = true;
-        }
 
         date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         emailEditText = findViewById(R.id.emailEditText);
@@ -190,19 +183,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         if(dataBase.getCurrentUser() != null){
             goHome();
         }
-    }
-
-    private void createSampleItems() {
-        item = new ItemData();
-        item.addAllSampleItems();
-    }
-
-    public void additem (@NonNull String PK, @NonNull String description, @NonNull double price) {
-
-        item = new ItemData(description, price);
-
-        dataBase.getDatabaseReference().child(dataBase.PARENT_ITEMS()).child(PK).setValue(item);
-
     }
 
     private void getToastError(String error) {

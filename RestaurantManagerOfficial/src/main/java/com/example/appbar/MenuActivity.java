@@ -50,8 +50,8 @@ public class MenuActivity extends AppCompatActivity {
         NavigationView navigationView = binding.navView;
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_tables, R.id.nav_items, R.id.nav_staff_signin, R.id.nav_bookings,
-                R.id.nav_cash_history)
+                R.id.nav_home, R.id.nav_tables, R.id.nav_items, R.id.nav_staff_signin,
+                R.id.nav_bookings, R.id.nav_cash_history)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this,

@@ -6,6 +6,7 @@ public class ItemData {
     private String PK;
     private String description;
     private double price;
+    public boolean noItems = true;
 
     public ItemData() {
     }
@@ -64,17 +65,17 @@ public class ItemData {
     }
 
     public void addAllSampleItems() {
-        addItem("coffee", "Café", 1.4);
-        addItem("coffeeMilk", "Café con leche", 1.4);
-        addItem("coffeAlone", "Café solo", 1.4);
-        addItem("beer", "Cerveza", 1.4);
-        addItem("cola", "Coca Cola", 1.4);
-        addItem("water", "Agua", 1.4);
-        addItem("wine", "Vino", 1.4);
-        addItem("cesar_salad", "Ensalada César", 1.4);
-        addItem("mixed_salad", "Ensalada Mixta", 1.4);
-        addItem("iberic_salad", "Ensalada Ibérica", 1.4);
-        addItem("starter_iberian_ham", "Jamón Ibérico", 1.4);
+        addItem(dataBase.generatePK(), "Café", 1.4);
+        addItem(dataBase.generatePK(), "Café con leche", 1.4);
+        addItem(dataBase.generatePK(), "Café solo", 1.4);
+        addItem(dataBase.generatePK(), "Cerveza", 1.4);
+        addItem(dataBase.generatePK(), "Coca Cola", 1.4);
+        addItem(dataBase.generatePK(), "Agua", 1.4);
+        addItem(dataBase.generatePK(), "Vino", 1.4);
+        addItem(dataBase.generatePK(), "Ensalada César", 1.4);
+        addItem(dataBase.generatePK(), "Ensalada Mixta", 1.4);
+        addItem(dataBase.generatePK(), "Ensalada Ibérica", 1.4);
+        addItem(dataBase.generatePK(), "Jamón Ibérico", 1.4);
         addItem("starter_bread_tomato", "Pan con tomate", 1.4);
         addItem("starter_cheese", "Queso", 1.4);
         addItem("starter_chips", "Patatas fritas", 1.4);
