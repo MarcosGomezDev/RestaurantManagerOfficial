@@ -59,13 +59,10 @@
             android:layout_height="562dp"
             android:orientation="vertical">
 
-            <ListView
-                android:id="@+id/lista"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/bookingR"
                 android:layout_width="match_parent"
-                android:layout_height="641dp">
-
-            </ListView>
-
+                android:layout_height="match_parent" />
         </LinearLayout>
 
     </LinearLayout>
