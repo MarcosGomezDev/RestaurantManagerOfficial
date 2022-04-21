@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,12 +36,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class BookingsFragment extends Fragment {
+public class BookingsFragment extends Fragment implements View.OnClickListener {
 
     private FragmentBookingsBinding binding;
-    private FloatingActionButton fa_annadir,fa_fecha;
     private TextView tv_fecha;
-    private FloatingActionButton bt;
+    FloatingActionButton fa_annadir;
 
     RecyclerView recyclerView;
 
@@ -68,6 +68,15 @@ public class BookingsFragment extends Fragment {
 
         tv_fecha = view.findViewById(R.id.tv_fecha);
         recyclerView = view.findViewById(R.id.bookingR);
+        fa_annadir = view.findViewById(R.id.fa_annadir);
+
+
+        fa_annadir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.nav_booking_selected);
+            }
+        });
 
         dataBase = new DataBase();
         userUID = dataBase.getCurrentUser().getUid();
@@ -115,4 +124,8 @@ public class BookingsFragment extends Fragment {
         tv_fecha.setText(date);
     }
 
+    @Override
+    public void onClick(View view) {
+
+    }
 }
