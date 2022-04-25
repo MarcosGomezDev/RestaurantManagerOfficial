@@ -29,7 +29,6 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.MyView
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.booking_view,parent,false);
-
         return new MyViewHolder(v);
 
     }

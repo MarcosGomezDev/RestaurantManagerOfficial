@@ -53,6 +53,7 @@ public class ItemsFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.itemListRecyclerView);
         dataBase = new DataBase();
+
         userUID = dataBase.getCurrentUser().getUid();
         myRef = dataBase.getInstance().getReference(userUID).child(dataBase.PARENT_ITEMS());
         context = this.getActivity();

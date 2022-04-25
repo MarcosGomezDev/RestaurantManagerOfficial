@@ -66,6 +66,7 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        dataBase = new DataBase();
         tv_fecha = view.findViewById(R.id.tv_fecha);
         recyclerView = view.findViewById(R.id.bookingR);
         fa_annadir = view.findViewById(R.id.fa_annadir);
@@ -78,14 +79,16 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-        dataBase = new DataBase();
+
         userUID = dataBase.getCurrentUser().getUid();
         myRef = dataBase.getInstance().getReference(userUID).child(dataBase.PARENT_BOOKING());
         context = this.getActivity();
         list = new ArrayList<>();
 
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
         bookingsAdapter = new BookingsAdapter(context, list);
         recyclerView.setAdapter(bookingsAdapter);
 
