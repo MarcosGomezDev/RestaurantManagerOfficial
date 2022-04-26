@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -82,9 +83,9 @@ public class ItemsFragment extends Fragment {
 
                 Navigation.findNavController(v).navigate(R.id.nav_item_add_update);
 
-//                Toast.makeText(context, "Seleccionado " +
-//                        list.get(recyclerView.getChildAdapterPosition(v)).getPK(),
-//                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Seleccionado " +
+                        list.get(recyclerView.getChildAdapterPosition(v)).getPK(),
+                        Toast.LENGTH_SHORT).show();
             }
         });
 

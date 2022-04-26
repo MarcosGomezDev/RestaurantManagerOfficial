@@ -15,19 +15,21 @@ import com.example.appbar.data.DataBase;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.R;
 import com.example.appbar.databinding.FragmentHomeBinding;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
-    private ItemData item;
-    private DataBase dataBase;
-    private boolean noItems = true;
+    private DataBase dataBase = new DataBase();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         return root;
@@ -38,18 +40,28 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Button logOutButton = view.findViewById(R.id.logOutButton);
-        item = new ItemData();
-
-        //dataBase.startDatabase();
 
         logOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                item.addAllSampleItems();
-            }
+            public void onClick(View v) {}
         });
-
-
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        String userUID = dataBase.getCurrentUser().getUid();
+        dataBase.getDatabaseReference().child(userUID).child(dataBase.PARENT_ITEMS())
+            .addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ItemData item = new ItemData();
+                if(!snapshot.exists()){
+                   item.addAllSampleItems();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
+    }
 }

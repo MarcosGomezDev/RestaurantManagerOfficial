@@ -47,6 +47,8 @@ public class ItemAddUpdateFragment extends Fragment {
         getDescriptionTextView = view.findViewById(R.id.getDescriptionTextView);
         getPriceTextView = view.findViewById(R.id.getPriceTextView);
 
+        //getDescriptionTextView.setText();
+
         //beforeTextView.setText(currentPkItemString);
         Toast.makeText(getContext(), currentPkItemString, Toast.LENGTH_SHORT).show();
 
