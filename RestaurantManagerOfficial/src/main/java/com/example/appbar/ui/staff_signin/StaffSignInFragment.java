@@ -14,8 +14,14 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.appbar.R;
+import com.example.appbar.data.DataBase;
 import com.example.appbar.data.StaffData;
 import com.example.appbar.databinding.FragmentStaffSigninBinding;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
@@ -23,10 +29,16 @@ import java.util.Date;
 import java.time.*;
 
 public class StaffSignInFragment extends Fragment implements View.OnClickListener {
+
 Button horaini_button,horafin_button,fecha_button,comporbar_button,fichar_button,terminar_button;
 TextView horaini_textView,horafin_textView,fecha_textView;
 EditText dni_editText;
 
+    private DataBase dataBase;
+    private DatabaseReference myRref;
+    private String userUID;
+    private StaffData data;
+    private final String PARENT_STAFF = "staff";
     private FragmentStaffSigninBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -71,6 +83,7 @@ EditText dni_editText;
 
 
 
+
     }
     @Override
     public void onDestroyView() {
@@ -90,7 +103,6 @@ EditText dni_editText;
                 break;
             case R.id.horafin_button:
 
-                horafin_textView.setText(hora());
                 fichar_button.setEnabled(true);
 
                 break;
@@ -100,13 +112,20 @@ EditText dni_editText;
 
                 break;
             case R.id.comprobar_button:
+                Search();
+
                 break;
             case R.id.fichar_button:
 
-                StaffData data = new StaffData(dni_editText.getText().toString().trim(),horaini_textView.getText().toString().trim(),horafin_textView.getText().toString(),fecha_textView.getText().toString().trim());
+                data = new StaffData();
+                data.addBookings(dni_editText.getText().toString().trim(),
+                        horaini_textView.getText().toString().trim(),
+                        horafin_textView.getText().toString(),
+                        fecha_textView.getText().toString().trim());
                 break;
             case R.id.terminar_button:
                 fichar_button.setEnabled(true);
+                horafin_textView.setText(hora());
                 break;
         }
 
@@ -118,5 +137,29 @@ EditText dni_editText;
     public String fecha(){
         String date = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
     return date;
+    }
+
+    public void Search(){
+
+
+        userUID = dataBase.getCurrentUser().getUid();
+        dataBase.getDatabaseReference().child(userUID).child("staff").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+
+
+
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
