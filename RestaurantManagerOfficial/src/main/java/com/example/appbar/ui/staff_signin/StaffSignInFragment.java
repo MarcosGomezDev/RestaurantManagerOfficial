@@ -34,7 +34,7 @@ Button horaini_button,horafin_button,fecha_button,comporbar_button,fichar_button
 TextView horaini_textView,horafin_textView,fecha_textView;
 EditText dni_editText;
 
-    private DataBase dataBase;
+    private DataBase dataBase = new DataBase();
     private DatabaseReference myRref;
     private String userUID;
     private StaffData data;
@@ -77,9 +77,11 @@ EditText dni_editText;
         fichar_button.setOnClickListener(this);
         terminar_button.setOnClickListener(this);
 
-        horafin_button.setEnabled(false);
-        fichar_button.setEnabled(false);
-        terminar_button.setEnabled(false);
+        horaini_button.setEnabled(true);
+        horafin_button.setEnabled(true);
+        fichar_button.setEnabled(true);
+        terminar_button.setEnabled(true);
+        fecha_button.setEnabled(true);
 
 
 
@@ -141,20 +143,17 @@ EditText dni_editText;
 
     public void Search(){
 
-
+        int control = 0;
         userUID = dataBase.getCurrentUser().getUid();
-        dataBase.getDatabaseReference().child(userUID).child("staff").addValueEventListener(new ValueEventListener() {
+        dataBase.getDatabaseReference().child(userUID).child("staff").child(dni_editText.getText().toString()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-
-
-
-
+                   String dni = snapshot.child("dni").getValue().toString().trim();
+                   data = snapshot.getValue(StaffData.class);
+                   horaini_textView.setText(data.getHoraini());
                 }
-
-
-            }
+             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

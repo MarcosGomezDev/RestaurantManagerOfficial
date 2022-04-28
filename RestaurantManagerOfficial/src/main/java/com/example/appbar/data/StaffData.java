@@ -10,7 +10,7 @@ public class StaffData {
     public StaffData() {
     }
 
-    public StaffData(String fecha, String horaini, String horafin, String dni) {
+    public StaffData(String dni, String horaini, String horafin, String fecha) {
         this.fecha = fecha;
         this.horaini = horaini;
         this.horafin = horafin;
