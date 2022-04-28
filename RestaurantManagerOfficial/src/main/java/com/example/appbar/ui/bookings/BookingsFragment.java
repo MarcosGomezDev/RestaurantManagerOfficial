@@ -54,12 +54,9 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        BookingsViewmodel ficharViewModel =
-                new ViewModelProvider(this).get(BookingsViewmodel.class);
 
         binding = FragmentBookingsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
         return root;
     }
     @Override
@@ -79,12 +76,10 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-
         userUID = dataBase.getCurrentUser().getUid();
         myRef = dataBase.getInstance().getReference(userUID).child(dataBase.PARENT_BOOKING());
         context = this.getActivity();
         list = new ArrayList<>();
-
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -101,18 +96,12 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
                 }
                 bookingsAdapter.notifyDataSetChanged();
             }
-
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-
         fecha();
-
-
-
     }
 
     @Override

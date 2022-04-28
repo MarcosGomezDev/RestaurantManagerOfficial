@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -78,14 +80,27 @@ public class ItemsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                ItemAddUpdateFragment.currentPkItemString =
-                        list.get(recyclerView.getChildAdapterPosition(v)).getPK();
+//                ItemAddUpdateFragment.currentPkItemString =
+//                        list.get(recyclerView.getChildAdapterPosition(v)).getPK();
+//                Toast.makeText(context, "Seleccionado " +
+//                                list.get(recyclerView.getChildAdapterPosition(v)).getPK(),
+//                        Toast.LENGTH_SHORT).show();
+
+                Bundle bundle = new Bundle();
+                bundle.putString("currentItemID", list.get(recyclerView.getChildAdapterPosition(v))
+                        .getPK());
+                Fragment fragment = new ItemAddUpdateFragment();
+                fragment.setArguments(bundle);
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.nav_item_add_update, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
 
                 Navigation.findNavController(v).navigate(R.id.nav_item_add_update);
 
-               Toast.makeText(context, "Seleccionado " +
-                        list.get(recyclerView.getChildAdapterPosition(v)).getPK(),
-                      Toast.LENGTH_SHORT).show();
+
             }
         });
 

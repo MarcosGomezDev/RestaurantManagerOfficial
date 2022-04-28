@@ -40,6 +40,16 @@ public class ItemAddUpdateFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Bundle bundle = getArguments();
+        if(bundle != null) {
+            String currentPkItemString = bundle.getString("currentItemID");
+            Toast.makeText(getContext(), currentPkItemString, Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getContext(), "Error Bundle", Toast.LENGTH_LONG).show();
+        }
+
+
+
         updateDescriptionEditText = view.findViewById(R.id.updatePriceEditText);
         updatePriceEditText = view.findViewById(R.id.updateDescriptionEditText);
         beforeTextView = view.findViewById(R.id.beforeTextView);
@@ -47,8 +57,10 @@ public class ItemAddUpdateFragment extends Fragment {
         getDescriptionTextView = view.findViewById(R.id.getDescriptionTextView);
         getPriceTextView = view.findViewById(R.id.getPriceTextView);
 
+        //getDescriptionTextView.setText();
+
         //beforeTextView.setText(currentPkItemString);
-        Toast.makeText(getContext(), currentPkItemString, Toast.LENGTH_SHORT).show();
+
 
         addUpdateOkButton = view.findViewById(R.id.addUpdateOkButton);
         addUpdateOkButton.setOnClickListener(new View.OnClickListener() {
