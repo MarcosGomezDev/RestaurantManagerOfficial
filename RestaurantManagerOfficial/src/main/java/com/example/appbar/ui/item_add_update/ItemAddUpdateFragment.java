@@ -7,15 +7,19 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.appbar.R;
+import com.example.appbar.data.DataBase;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.databinding.FragmentItemAddUpdateBinding;
+import com.example.appbar.ui.items.ItemsFragment;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -23,11 +27,20 @@ import java.util.ArrayList;
 public class ItemAddUpdateFragment extends Fragment {
 
     private FragmentItemAddUpdateBinding binding;
-    public  static String currentPkItemString;
+    private DataBase dataBase = new DataBase();
+    private String currentPkItemString;
+    private String currentDescriptionItemString;
+    private String currentPriceItemString;
     private Button addUpdateOkButton;
     private EditText updateDescriptionEditText, updatePriceEditText;
     private TextView beforeTextView, afterTextView, getDescriptionTextView, getPriceTextView;
     private ArrayList<ItemData> list;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -40,36 +53,51 @@ public class ItemAddUpdateFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Bundle bundle = getArguments();
-        if(bundle != null) {
-            String currentPkItemString = bundle.getString("currentItemID");
-            Toast.makeText(getContext(), currentPkItemString, Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(getContext(), "Error Bundle", Toast.LENGTH_LONG).show();
-        }
-
-
-
         updateDescriptionEditText = view.findViewById(R.id.updatePriceEditText);
         updatePriceEditText = view.findViewById(R.id.updateDescriptionEditText);
         beforeTextView = view.findViewById(R.id.beforeTextView);
         afterTextView = view.findViewById(R.id.afterTextView);
         getDescriptionTextView = view.findViewById(R.id.getDescriptionTextView);
         getPriceTextView = view.findViewById(R.id.getPriceTextView);
+        currentPkItemString = ItemsFragment.currentPkItemString;
+        currentDescriptionItemString = ItemsFragment.currentDescriptionItemString;
+        currentPriceItemString = ItemsFragment.currentPriceItemString;
 
-        //getDescriptionTextView.setText();
-
-        //beforeTextView.setText(currentPkItemString);
-
+        getDescriptionTextView.setText(currentDescriptionItemString);
+        getPriceTextView.setText(currentPriceItemString);
 
         addUpdateOkButton = view.findViewById(R.id.addUpdateOkButton);
         addUpdateOkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                updateItem(
+                        currentPkItemString,
+                        updateDescriptionEditText.getText().toString(),
+                        updatePriceEditText.getText().toString()
+                );
             }
         });
+    }
 
+    public void updateItem(String PK, String description, String price) {
+        String userUID = dataBase.getCurrentUser().getUid();
+        dataBase.getDatabaseReference()
+                .child(userUID)
+                .child(dataBase.PARENT_ITEMS())
+                .child(PK)
+                .setValue(description.replace(" ", "_"));
+        dataBase.getDatabaseReference()
+                .child(userUID)
+                .child(dataBase.PARENT_ITEMS())
+                .child(PK)
+                .child("description")
+                .setValue(description);
+        dataBase.getDatabaseReference()
+                .child(userUID)
+                .child(dataBase.PARENT_ITEMS())
+                .child(PK)
+                .child("price")
+                .setValue(price + "€");
     }
 
     @Override
@@ -77,6 +105,5 @@ public class ItemAddUpdateFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
 
 }

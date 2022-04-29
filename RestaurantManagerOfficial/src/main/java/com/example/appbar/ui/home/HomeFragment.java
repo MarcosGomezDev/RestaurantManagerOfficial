@@ -50,6 +50,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
         String userUID = dataBase.getCurrentUser().getUid();
         dataBase.getDatabaseReference().child(userUID).child(dataBase.PARENT_ITEMS())
             .addValueEventListener(new ValueEventListener() {
