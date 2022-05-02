@@ -4,13 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/AppColorPrincipal"
+    android:textAlignment="center"
     tools:context=".ui.home.HomeFragment">
 
+    <TextView
+        android:id="@+id/fechaact_textView"
+        android:layout_width="209dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="186dp"
+        android:layout_marginBottom="25dp"
+        android:text="TextView"
+        android:textAlignment="textEnd"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.187" />
+
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:orientation="vertical"
@@ -21,81 +40,115 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="77dp"
+            android:layout_height="82dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="256dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:backgroundTint="@color/teal_700"
-                android:text="TextView"
-                android:textAlignment="center"
-                android:textColor="@color/white" />
+                android:src="@drawable/mail_31108" />
 
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/teal_700"
-                android:text="TextView"
-                android:textAlignment="center"
-                android:textColor="@color/white" />
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/reserva_textView"
+                    android:layout_width="172dp"
+                    android:layout_height="49dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginBottom="29dp"
+                    android:text="TextView"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="62dp"
+            android:layout_height="82dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView17"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:src="@drawable/contactlist_theuser_802" />
 
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="TextView" />
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/empleados_textView"
+                    android:layout_width="172dp"
+                    android:layout_height="49dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginBottom="29dp"
+                    android:text="TextView"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="116dp"
+            android:layout_height="82dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="258dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:src="@drawable/comida_china" />
 
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="TextView" />
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/item_textView"
+                    android:layout_width="172dp"
+                    android:layout_height="49dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginBottom="23dp"
+                    android:text="TextView"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/logOutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/logOutButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Añadir productos"
-        android:textColor="#212121"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

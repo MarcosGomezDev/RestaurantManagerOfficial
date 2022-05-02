@@ -27,14 +27,14 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.MyView
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public BookingsAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.booking_view,parent,false);
-        return new MyViewHolder(v);
+        return new BookingsAdapter.MyViewHolder(v);
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BookingsAdapter.MyViewHolder holder, int position) {
 
         BookingsData bookings = list.get(position);
         holder.fechaTextView.setText(bookings.getFecha());

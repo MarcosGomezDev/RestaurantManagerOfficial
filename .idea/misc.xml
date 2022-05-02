@@ -11,7 +11,6 @@
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/content_main.xml" value="0.42617753623188404" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/dialog.xml" value="0.5" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_home.xml" value="0.33" />
-        <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_item_add_update.xml" value="0.33" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_tables.xml" value="0.41458333333333336" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/nav_header_main.xml" value="0.75" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/menu/activity_main_drawer.xml" value="0.4479166666666667" />
@@ -50,16 +49,16 @@
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/proyecto fin de grado/RestaurantManagerOfficial/RestaurantManagerOfficial/src/main/res/layout/content_main.xml" value="0.17028985507246377" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/proyecto fin de grado/RestaurantManagerOfficial/RestaurantManagerOfficial/src/main/res/layout/dialog.xml" value="0.19" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/proyecto fin de grado/RestaurantManagerOfficial/RestaurantManagerOfficial/src/main/res/layout/fragment_booking_select.xml" value="0.25" />
-        <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/proyecto fin de grado/RestaurantManagerOfficial/RestaurantManagerOfficial/src/main/res/layout/fragment_bookings.xml" value="0.18" />
+        <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/proyecto fin de grado/RestaurantManagerOfficial/RestaurantManagerOfficial/src/main/res/layout/fragment_bookings.xml" value="0.33" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/proyecto fin de grado/RestaurantManagerOfficial/RestaurantManagerOfficial/src/main/res/layout/fragment_cash.xml" value="0.17028985507246377" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/proyecto fin de grado/RestaurantManagerOfficial/RestaurantManagerOfficial/src/main/res/layout/fragment_cash_history.xml" value="0.17028985507246377" />
-        <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/proyecto fin de grado/RestaurantManagerOfficial/RestaurantManagerOfficial/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/proyecto fin de grado/RestaurantManagerOfficial/RestaurantManagerOfficial/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/proyecto fin de grado/RestaurantManagerOfficial/RestaurantManagerOfficial/src/main/res/layout/fragment_item_add_update.xml" value="0.12590579710144928" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/proyecto fin de grado/RestaurantManagerOfficial/RestaurantManagerOfficial/src/main/res/layout/fragment_items.xml" value="0.17028985507246377" />
-        <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/proyecto fin de grado/RestaurantManagerOfficial/RestaurantManagerOfficial/src/main/res/layout/fragment_staff_signin.xml" value="0.17028985507246377" />
+        <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/proyecto fin de grado/RestaurantManagerOfficial/RestaurantManagerOfficial/src/main/res/layout/fragment_staff_signin.xml" value="0.25" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/proyecto fin de grado/RestaurantManagerOfficial/RestaurantManagerOfficial/src/main/res/layout/fragment_table_selected.xml" value="0.17028985507246377" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/proyecto fin de grado/RestaurantManagerOfficial/RestaurantManagerOfficial/src/main/res/layout/fragment_tables.xml" value="0.17028985507246377" />
-        <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/proyecto fin de grado/RestaurantManagerOfficial/RestaurantManagerOfficial/src/main/res/layout/item_view.xml" value="0.11775362318840579" />
+        <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/proyecto fin de grado/RestaurantManagerOfficial/RestaurantManagerOfficial/src/main/res/layout/item_view.xml" value="0.25" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/proyecto fin de grado/RestaurantManagerOfficial/RestaurantManagerOfficial/src/main/res/layout/nav_header_main.xml" value="0.17028985507246377" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/proyecto fin de grado/RestaurantManagerOfficial/RestaurantManagerOfficial/src/main/res/layout/recycler_view_item.xml" value="0.12590579710144928" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/proyecto fin de grado/RestaurantManagerOfficial/RestaurantManagerOfficial/src/main/res/menu/activity_main_drawer.xml" value="0.33" />

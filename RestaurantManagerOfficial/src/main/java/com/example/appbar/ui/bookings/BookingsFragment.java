@@ -39,69 +39,38 @@ import java.util.Date;
 public class BookingsFragment extends Fragment implements View.OnClickListener {
 
     private FragmentBookingsBinding binding;
-    private TextView tv_fecha;
+    private TextView tv_fecha,textView5;
+    private ListView lista;
     FloatingActionButton fa_annadir;
 
-    RecyclerView recyclerView;
-
-    BookingsAdapter bookingsAdapter;
-    ArrayList<BookingsData> list;
-
-    private DataBase dataBase;
-    private DatabaseReference myRef;
-    private Context context;
+    private DataBase dataBase = new DataBase();
     private String userUID;
+    private BookingsData data;
+
+    ArrayAdapter<String> adapter;
+    ArrayList<BookingsData> mlista = new ArrayList<>();
+    ArrayList<String> mlistaString = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentBookingsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+       // lista = root.findViewById(R.id.lista);
         return root;
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        dataBase = new DataBase();
         tv_fecha = view.findViewById(R.id.tv_fecha);
-        recyclerView = view.findViewById(R.id.bookingR);
+        //lista =view.findViewById(R.id.lista);
         fa_annadir = view.findViewById(R.id.fa_annadir);
 
 
-        fa_annadir.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.nav_booking_selected);
-            }
-        });
-
-        userUID = dataBase.getCurrentUser().getUid();
-        myRef = dataBase.getInstance().getReference(userUID).child(dataBase.PARENT_BOOKING());
-        context = this.getActivity();
-        list = new ArrayList<>();
-
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-
-        bookingsAdapter = new BookingsAdapter(context, list);
-        recyclerView.setAdapter(bookingsAdapter);
-
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    BookingsData bookingsData = dataSnapshot.getValue(BookingsData.class);
-                    list.add(bookingsData);
-                }
-                bookingsAdapter.notifyDataSetChanged();
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        fa_annadir.setOnClickListener(this);
         fecha();
+        reservas();
     }
 
     @Override
@@ -115,9 +84,28 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
         String date = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
         tv_fecha.setText(date);
     }
+    public void reservas(){
+
+        userUID = dataBase.getCurrentUser().getUid();
+        dataBase.getDatabaseReference().child(userUID).child("booking").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+    }
 
     @Override
-    public void onClick(View view) {
-
+    public void onClick(View v) {
+        Navigation.findNavController(v).navigate(R.id.nav_booking_selected);
     }
 }
