@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/AppColorPrincipal"
+    android:background="#F5F5F5"
+    android:backgroundTint="@color/browser_actions_bg_grey"
     android:textAlignment="center"
     tools:context=".ui.home.HomeFragment">
 
@@ -13,30 +14,43 @@
         android:layout_width="209dp"
         android:layout_height="29dp"
         android:layout_marginStart="186dp"
-        android:layout_marginBottom="25dp"
-        android:text="TextView"
+        android:layout_marginTop="16dp"
+        android:text="! Error"
         android:textAlignment="textEnd"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.187" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="354dp"
+        android:layout_height="637dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/fechaact_textView">
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:text="Restaurant Manager"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="match_parent"
+            android:layout_height="189dp"
+            android:src="@mipmap/cust_ms" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,11 +58,11 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/imageView12"
                 android:layout_width="256dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@drawable/mail_31108" />
+                android:src="@drawable/icons8_directorio_64" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -63,7 +77,7 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="35dp"
                     android:layout_marginBottom="29dp"
-                    android:text="TextView"
+                    android:text="No hay reservas activas"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -80,11 +94,11 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="260dp"
-                android:layout_height="wrap_content"
+                android:id="@+id/imageView13"
+                android:layout_width="256dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@drawable/contactlist_theuser_802" />
+                android:src="@drawable/icons8_tarjeta_de_empleado_64" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -99,7 +113,7 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="35dp"
                     android:layout_marginBottom="29dp"
-                    android:text="TextView"
+                    android:text="No hay empleados activos"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -115,11 +129,11 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="258dp"
-                android:layout_height="wrap_content"
+                android:id="@+id/imageView14"
+                android:layout_width="256dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@drawable/comida_china" />
+                android:src="@drawable/icons8_baguette_64" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -134,7 +148,7 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="35dp"
                     android:layout_marginBottom="23dp"
-                    android:text="TextView"
+                    android:text="No hay productos de alta"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -144,11 +158,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/logOutButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
