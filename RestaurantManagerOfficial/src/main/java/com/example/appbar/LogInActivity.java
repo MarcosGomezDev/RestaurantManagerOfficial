@@ -41,7 +41,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth mFirebaseAuth;
     private EditText emailEditText, passwordEditText;
     private CheckBox recUserCheck, conditionsCheck;
-    private Button logInButton, signInButton, rellenarButton;
+    private Button logInButton, signInButton, rellenarButton, rellenarButton2;
     private String date;
     private String email;
     private String pass;
@@ -61,12 +61,17 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         recUserCheck = findViewById(R.id.recUserCheck);
         logInButton = findViewById(R.id.logInButton);
         signInButton = findViewById(R.id.signInButton);
+
+        // Estod dos botones son los de pruebas
         rellenarButton = findViewById(R.id.rellenarButton);
+        rellenarButton2 = findViewById(R.id.rellenarButton2);
+
         recUserCheck = findViewById(R.id.recUserCheck);
         conditionsCheck = findViewById(R.id.conditionsCheckBox);
         logInButton.setOnClickListener(this);
         signInButton.setOnClickListener(this);
         rellenarButton.setOnClickListener(this);
+        rellenarButton2.setOnClickListener(this);
         recUserCheck.setChecked(true);
         conditionsCheck.setChecked(false);
 
@@ -106,9 +111,13 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.rellenarButton:
+                emailEditText.setText("sergio@maquina.es");
+                passwordEditText.setText("sergio");
+                break;
+
+            case R.id.rellenarButton2:
                 emailEditText.setText("marcos@marcos.es");
                 passwordEditText.setText("marcos");
-                break;
 
             default:
                 Toast.makeText(LogInActivity.this, "Algo salió mal.", Toast.LENGTH_LONG).show();

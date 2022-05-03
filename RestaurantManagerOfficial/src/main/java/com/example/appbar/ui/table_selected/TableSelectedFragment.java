@@ -25,22 +25,14 @@ public class TableSelectedFragment extends Fragment implements View.OnClickListe
 
     public View onCreateView (@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        TableSelectedViewModel galleryViewModel =
-                new ViewModelProvider(this).get(TableSelectedViewModel.class);
-
         binding = FragmentTableSelectedBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
         return root;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (TablesFragment.navItem) {
-            ((AppCompatActivity)getActivity()).getSupportActionBar()
-                    .setTitle("Productos");
-        }
 
         cashButton = view.findViewById(R.id.cashButton);
         cashButton.setOnClickListener(this);

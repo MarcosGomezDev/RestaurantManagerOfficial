@@ -15,9 +15,7 @@ public class ItemData {
         this.price = price;
     }
 
-    public String getPK() {
-        return PK;
-    }
+    //public String PK() { return PK; }
 
     public void setPK(String PK) {
         this.PK = PK;
@@ -43,10 +41,9 @@ public class ItemData {
         ItemData addItem = new ItemData(description, price);
         String userUID = dataBase.getCurrentUser().getUid();
         String PK = description.replace(" ", "_");
-        addItem.setPK(PK);
         dataBase.getDatabaseReference().child(userUID)
                 .child(dataBase.PARENT_ITEMS())
-                .child(addItem.getPK())
+                .child(PK)
                 .setValue(addItem);
     }
 

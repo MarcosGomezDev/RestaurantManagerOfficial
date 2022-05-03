@@ -43,15 +43,10 @@ public class ItemAddUpdateFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (ItemsFragment.navItem) {
-            ((AppCompatActivity)getActivity()).getSupportActionBar()
-                    .setTitle("Modificación de producto");
-        }
-
-        if (TablesFragment.navItem) {
-            ((AppCompatActivity)getActivity()).getSupportActionBar()
-                    .setTitle("Añadir producto");
-        }
+//        if (ItemsFragment.navItem) {
+//            ((AppCompatActivity)getActivity()).getSupportActionBar()
+//                    .setTitle("Modificación de producto");
+//        }
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -109,7 +104,7 @@ public class ItemAddUpdateFragment extends Fragment {
                 .child(dataBase.PARENT_ITEMS())
                 .child(PK)
                 .child("price")
-                .setValue(price + "€");
+                .setValue(price);
     }
 
     @Override

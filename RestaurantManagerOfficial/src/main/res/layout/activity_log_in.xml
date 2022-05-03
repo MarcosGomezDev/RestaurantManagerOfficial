@@ -114,7 +114,14 @@
             android:id="@+id/rellenarButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Rellanar Auto"
+            android:text="Rellanar Sergio"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/rellenarButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rellanar Marcos"
             android:textColor="#FFFFFF" />
 
     </LinearLayout>

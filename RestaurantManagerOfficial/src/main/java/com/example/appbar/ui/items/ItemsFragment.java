@@ -35,7 +35,6 @@ public class ItemsFragment extends Fragment {
     public static String currentPkItemString;
     public static String currentDescriptionItemString;
     public static String currentPriceItemString;
-    public static boolean navItem = false;
     private ItemAdapter itemAdapter;
     private RecyclerView recyclerView;
     private ArrayList<ItemData> list;
@@ -54,6 +53,7 @@ public class ItemsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        addItemButton = view.findViewById(R.id.addItemButton);
         recyclerView = view.findViewById(R.id.itemListRecyclerView);
         dataBase = new DataBase();
         currentPkItemString = " ";
@@ -62,21 +62,6 @@ public class ItemsFragment extends Fragment {
         myRef = dataBase.getInstance().getReference(userUID).child(dataBase.PARENT_ITEMS());
         context = this.getActivity();
         list = new ArrayList<>();
-
-        addItemButton = view.findViewById(R.id.addItemButton);
-        addItemButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                currentPkItemString = list.get(
-                        recyclerView.getChildAdapterPosition(v)).getPK();
-                currentDescriptionItemString = list.get(
-                        recyclerView.getChildAdapterPosition(v)).getDescription();
-                currentPriceItemString = String.valueOf(list.get(
-                        recyclerView.getChildAdapterPosition(v)).getPrice());
-                TablesFragment.navItem = true;
-                Navigation.findNavController(v).navigate(R.id.nav_item_add_update);
-            }
-        });
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -87,24 +72,21 @@ public class ItemsFragment extends Fragment {
         itemAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TablesFragment.navItem) {
-                    currentPkItemString = list.get(
-                            recyclerView.getChildAdapterPosition(v)).getPK();
+//                    currentPkItemString = list.get(
+//                            recyclerView.getChildAdapterPosition(v)).getPK();
                     currentDescriptionItemString = list.get(
                             recyclerView.getChildAdapterPosition(v)).getDescription();
                     currentPriceItemString = String.valueOf(list.get(
                             recyclerView.getChildAdapterPosition(v)).getPrice());
-                    Navigation.findNavController(v).navigate(R.id.nav_table_selected);
-                } else {
-                    currentPkItemString = list.get(
-                            recyclerView.getChildAdapterPosition(v)).getPK();
-                    currentDescriptionItemString = list.get(
-                            recyclerView.getChildAdapterPosition(v)).getDescription();
-                    currentPriceItemString = String.valueOf(list.get(
-                            recyclerView.getChildAdapterPosition(v)).getPrice());
-                    navItem = true;
                     Navigation.findNavController(v).navigate(R.id.nav_item_add_update);
-                }
+
+            }
+        });
+
+        addItemButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.nav_item_add_update);
             }
         });
 
