@@ -50,7 +50,7 @@
             android:textSize="24sp" />
 
         <EditText
-            android:id="@+id/updateDescriptionEditText"
+            android:id="@+id/updatePriceEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -61,7 +61,7 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/updatePriceEditText"
+            android:id="@+id/updateDescriptionEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

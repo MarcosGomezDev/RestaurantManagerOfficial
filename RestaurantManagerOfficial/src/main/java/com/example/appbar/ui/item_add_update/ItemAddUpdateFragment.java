@@ -7,11 +7,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.appbar.R;
 import com.example.appbar.data.DataBase;
@@ -86,10 +88,12 @@ public class ItemAddUpdateFragment extends Fragment {
                         .child(userUID)
                         .child(dataBase.PARENT_ITEMS())
                         .child(currentPk).removeValue();
-                dataBase.getDatabaseReference()
-                        .child(userUID)
-                        .child(dataBase.PARENT_ITEMS())
-                        .child(description.replace(" ", "_")).setValue(item);
+//                dataBase.getDatabaseReference()
+//                        .child(userUID)
+//                        .child(dataBase.PARENT_ITEMS())
+//                        .child(description.replace(" ", "_")).setValue(item);
+                Toast.makeText(getContext(), "Articulo modificado", Toast.LENGTH_LONG).show();
+                Navigation.findNavController(v).navigate(R.id.nav_items);
             }
         });
     }
