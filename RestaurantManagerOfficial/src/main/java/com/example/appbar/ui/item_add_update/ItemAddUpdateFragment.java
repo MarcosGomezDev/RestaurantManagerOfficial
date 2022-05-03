@@ -18,6 +18,7 @@ import com.example.appbar.data.DataBase;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.databinding.FragmentItemAddUpdateBinding;
 import com.example.appbar.ui.items.ItemsFragment;
+import com.example.appbar.ui.tables.TablesFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -45,6 +46,11 @@ public class ItemAddUpdateFragment extends Fragment {
         if (ItemsFragment.navItem) {
             ((AppCompatActivity)getActivity()).getSupportActionBar()
                     .setTitle("Modificación de producto");
+        }
+
+        if (TablesFragment.navItem) {
+            ((AppCompatActivity)getActivity()).getSupportActionBar()
+                    .setTitle("Añadir producto");
         }
     }
 

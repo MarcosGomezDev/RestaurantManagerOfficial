@@ -18,6 +18,7 @@ import com.example.appbar.R;
 import com.example.appbar.data.DataBase;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.databinding.FragmentItemsBinding;
+import com.example.appbar.ui.tables.TablesFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -66,7 +67,14 @@ public class ItemsFragment extends Fragment {
         addItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.nav_table_selected);
+                currentPkItemString = list.get(
+                        recyclerView.getChildAdapterPosition(v)).getPK();
+                currentDescriptionItemString = list.get(
+                        recyclerView.getChildAdapterPosition(v)).getDescription();
+                currentPriceItemString = String.valueOf(list.get(
+                        recyclerView.getChildAdapterPosition(v)).getPrice());
+                TablesFragment.navItem = true;
+                Navigation.findNavController(v).navigate(R.id.nav_item_add_update);
             }
         });
 
@@ -79,16 +87,27 @@ public class ItemsFragment extends Fragment {
         itemAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                currentPkItemString = list.get(
-                        recyclerView.getChildAdapterPosition(v)).getPK();
-                currentDescriptionItemString = list.get(
-                        recyclerView.getChildAdapterPosition(v)).getDescription();
-                currentPriceItemString = String.valueOf(list.get(
-                        recyclerView.getChildAdapterPosition(v)).getPrice());
-                navItem = true;
-                Navigation.findNavController(v).navigate(R.id.nav_item_add_update);
+                if (TablesFragment.navItem) {
+                    currentPkItemString = list.get(
+                            recyclerView.getChildAdapterPosition(v)).getPK();
+                    currentDescriptionItemString = list.get(
+                            recyclerView.getChildAdapterPosition(v)).getDescription();
+                    currentPriceItemString = String.valueOf(list.get(
+                            recyclerView.getChildAdapterPosition(v)).getPrice());
+                    Navigation.findNavController(v).navigate(R.id.nav_table_selected);
+                } else {
+                    currentPkItemString = list.get(
+                            recyclerView.getChildAdapterPosition(v)).getPK();
+                    currentDescriptionItemString = list.get(
+                            recyclerView.getChildAdapterPosition(v)).getDescription();
+                    currentPriceItemString = String.valueOf(list.get(
+                            recyclerView.getChildAdapterPosition(v)).getPrice());
+                    navItem = true;
+                    Navigation.findNavController(v).navigate(R.id.nav_item_add_update);
+                }
             }
         });
+
 
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
