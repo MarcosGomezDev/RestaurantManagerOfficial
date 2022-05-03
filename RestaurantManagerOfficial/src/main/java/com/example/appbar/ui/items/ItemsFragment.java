@@ -72,14 +72,11 @@ public class ItemsFragment extends Fragment {
         itemAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                    currentPkItemString = list.get(
-//                            recyclerView.getChildAdapterPosition(v)).getPK();
                     currentDescriptionItemString = list.get(
                             recyclerView.getChildAdapterPosition(v)).getDescription();
                     currentPriceItemString = String.valueOf(list.get(
                             recyclerView.getChildAdapterPosition(v)).getPrice());
                     Navigation.findNavController(v).navigate(R.id.nav_item_add_update);
-
             }
         });
 

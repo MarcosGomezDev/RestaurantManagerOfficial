@@ -38,9 +38,13 @@ public class ItemData {
     }
 
     public void addItem(String description, String price){
+
         ItemData addItem = new ItemData(description, price);
+
         String userUID = dataBase.getCurrentUser().getUid();
+
         String PK = description.replace(" ", "_");
+
         dataBase.getDatabaseReference().child(userUID)
                 .child(dataBase.PARENT_ITEMS())
                 .child(PK)

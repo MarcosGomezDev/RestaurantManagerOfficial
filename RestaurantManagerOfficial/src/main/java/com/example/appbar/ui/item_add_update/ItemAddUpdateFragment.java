@@ -32,7 +32,7 @@ public class ItemAddUpdateFragment extends Fragment {
 
     private FragmentItemAddUpdateBinding binding;
     private DataBase dataBase = new DataBase();
-    private String currentPkItemString;
+    private ItemData item = new ItemData();
     private String currentDescriptionItemString;
     private String currentPriceItemString;
     private Button addUpdateOkButton;
@@ -66,7 +66,6 @@ public class ItemAddUpdateFragment extends Fragment {
         afterTextView = view.findViewById(R.id.afterTextView);
         getDescriptionTextView = view.findViewById(R.id.getDescriptionTextView);
         getPriceTextView = view.findViewById(R.id.getPriceTextView);
-        currentPkItemString = ItemsFragment.currentPkItemString;
         currentDescriptionItemString = ItemsFragment.currentDescriptionItemString;
         currentPriceItemString = ItemsFragment.currentPriceItemString;
 
@@ -77,34 +76,26 @@ public class ItemAddUpdateFragment extends Fragment {
         addUpdateOkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateItem(
-                        currentPkItemString,
-                        updateDescriptionEditText.getText().toString(),
-                        updatePriceEditText.getText().toString()
-                );
+                String description = updateDescriptionEditText.getText().toString();
+                String price = updatePriceEditText.getText().toString();
+                item = new ItemData(description, price);
+                String userUID = dataBase.getCurrentUser().getUid();
+                String currentPk = ItemsFragment.currentDescriptionItemString
+                        .replace(" ", "_");
+                dataBase.getDatabaseReference()
+                        .child(userUID)
+                        .child(dataBase.PARENT_ITEMS())
+                        .child(currentPk).removeValue();
+                dataBase.getDatabaseReference()
+                        .child(userUID)
+                        .child(dataBase.PARENT_ITEMS())
+                        .child(description.replace(" ", "_")).setValue(item);
             }
         });
     }
 
     public void updateItem(String PK, String description, String price) {
-        String userUID = dataBase.getCurrentUser().getUid();
-        dataBase.getDatabaseReference()
-                .child(userUID)
-                .child(dataBase.PARENT_ITEMS())
-                .child(PK)
-                .setValue(description.replace(" ", "_"));
-        dataBase.getDatabaseReference()
-                .child(userUID)
-                .child(dataBase.PARENT_ITEMS())
-                .child(PK)
-                .child("description")
-                .setValue(description);
-        dataBase.getDatabaseReference()
-                .child(userUID)
-                .child(dataBase.PARENT_ITEMS())
-                .child(PK)
-                .child("price")
-                .setValue(price);
+
     }
 
     @Override
