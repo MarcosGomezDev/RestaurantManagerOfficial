@@ -12,16 +12,13 @@
     <TextView
         android:id="@+id/fechaact_textView"
         android:layout_width="209dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="186dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="! Error"
+        android:layout_marginEnd="16dp"
         android:textAlignment="textEnd"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
@@ -40,7 +37,7 @@
         <TextView
             android:id="@+id/textView17"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:text="Restaurant Manager"
             android:textAlignment="center"
             android:textSize="24sp"
