@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/nav_tables"
         android:name="com.example.appbar.ui.tables.TablesFragment"
-        android:label="Mesas"
+        android:label="@string/menu_tables"
         tools:layout="@layout/fragment_tables" >
         <action
             android:id="@+id/action_nav_tables_to_nav_table_selected"
@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/nav_table_selected"
         android:name="com.example.appbar.ui.table_selected.TableSelectedFragment"
-        android:label="Mesa seleccionada"
+        android:label="@string/table_select"
         tools:layout="@layout/fragment_table_selected" >
         <action
             android:id="@+id/action_nav_table_selected_to_cashFragment"
@@ -34,17 +34,26 @@
     <fragment
         android:id="@+id/nav_items"
         android:name="com.example.appbar.ui.items.ItemsFragment"
-        android:label="Productos"
+        android:label="@string/items"
         tools:layout="@layout/fragment_items">
         <action
             android:id="@+id/action_nav_tables_to_nav_table_selected"
             app:destination="@id/nav_item_add_update" />
+        <action
+            android:id="@+id/action_nav_item_new"
+            app:destination="@id/nav_item_new" />
     </fragment>
+
+    <fragment
+        android:id="@+id/nav_item_new"
+        android:name="com.example.appbar.ui.item_new.ItemNewFragment"
+        android:label="Nuevo articulo"
+        tools:layout="@layout/fragment_item_add" />
 
     <fragment
         android:id="@+id/nav_item_add_update"
         android:name="com.example.appbar.ui.item_add_update.ItemAddUpdateFragment"
-        android:label="Modificación"
+        android:label="@string/update"
         tools:layout="@layout/fragment_item_add_update" />
 
     <fragment

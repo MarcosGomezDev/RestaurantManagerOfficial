@@ -24,7 +24,7 @@
     <string name="terms_conditions">Acepto los Terminos y condiciones.</string>
     <string name="src_conditions">Términos y condiciones</string>
     <string name="nav_log_out">Cerrar sesión</string>
-    <string name="productos">Productos</string>
+    <string name="items">Articulos</string>
     <string name="addItemButton">addItemButton</string>
     <string name="update">Modificación</string>
     <string name="price">Precio</string>
@@ -32,5 +32,7 @@
     <string name="ok">OK</string>
     <string name="newText">Nuevo</string>
     <string name="nowText">Actual</string>
+    <string name="table_select">Mesa seleccionada</string>
+    <string name="remove_item">Eliminar Articulo</string>
 
 </resources>

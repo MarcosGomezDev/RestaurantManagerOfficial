@@ -2,8 +2,7 @@ package com.example.appbar.data;
 
 public class ItemData {
 
-    private DataBase dataBase = new DataBase();
-    private String PK;
+    private final DataBase dataBase = new DataBase();
     private String description;
     private String price;
 
@@ -15,36 +14,18 @@ public class ItemData {
         this.price = price;
     }
 
-    //public String PK() { return PK; }
-
-    public void setPK(String PK) {
-        this.PK = PK;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-    public void addItem(String description, String price){
-
+    public void addItem(String description, String price) {
         ItemData addItem = new ItemData(description, price);
-
         String userUID = dataBase.getCurrentUser().getUid();
-
         String PK = description.replace(" ", "_");
-
         dataBase.getDatabaseReference().child(userUID)
                 .child(dataBase.PARENT_ITEMS())
                 .child(PK)

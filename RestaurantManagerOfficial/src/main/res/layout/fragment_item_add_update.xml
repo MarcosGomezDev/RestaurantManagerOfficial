@@ -82,6 +82,21 @@
             android:text="@string/ok"
             android:textSize="18sp"
             android:textStyle="bold"
+            app:cornerRadius="40dp"
+            tools:ignore="DuplicateSpeakableTextCheck" />
+
+        <Button
+            android:id="@+id/removeButton"
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#FF0000"
+            android:elevation="8dp"
+            android:insetLeft="40dp"
+            android:insetRight="40dp"
+            android:text="@string/remove_item"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:cornerRadius="40dp" />
     </LinearLayout>
 

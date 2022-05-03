@@ -8,15 +8,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
-@SuppressWarnings({"FieldCanBeLocal", "UnnecessaryLocalVariable"})
+@SuppressWarnings({"FieldCanBeLocal"})
 public class DataBase {
 
     private final FirebaseDatabase instance = FirebaseDatabase.getInstance(
             "https://restaurantmanagerofficial-default-rtdb.europe-west1.firebasedatabase.app/");
-    private DatabaseReference databaseReference = instance.getReference();
-    private FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-    private int key = 10000;
-    private final String PARENT_ITEMS = "Productos";
+    private final DatabaseReference databaseReference = instance.getReference();
+    private final FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+    private final String PARENT_ITEMS = "items";
     private final String PARENT_STAFF = "staff";
     private final String PARENT_STAFF_SIGN_IN = "staff_signin";
     private final String PARENT_BOOKING = "booking";
@@ -32,17 +31,20 @@ public class DataBase {
     private final String CHILD_DATE = "date";
     private final String CHILD_ID_ITEM = "id_item";
 
-    public DataBase() {}
+    public DataBase() {
+    }
 
-    public FirebaseDatabase getInstance() { return instance; }
+    public FirebaseDatabase getInstance() {
+        return instance;
+    }
 
-    public DatabaseReference getDatabaseReference() { return databaseReference; }
+    public DatabaseReference getDatabaseReference() {
+        return databaseReference;
+    }
 
-    public FirebaseUser getCurrentUser() { return currentUser; }
-
-    public int getKey() { return key; }
-
-    public void setKey(int key) { this.key = key; }
+    public FirebaseUser getCurrentUser() {
+        return currentUser;
+    }
 
     public String PARENT_ITEMS() {
         return PARENT_ITEMS;
@@ -68,23 +70,41 @@ public class DataBase {
         return PARENT_TABLES;
     }
 
-    public String CHILD_FIRST_NAME() { return CHILD_FIRST_NAME; }
+    public String CHILD_FIRST_NAME() {
+        return CHILD_FIRST_NAME;
+    }
 
-    public String CHILD_LAST_NAME() { return CHILD_LAST_NAME; }
+    public String CHILD_LAST_NAME() {
+        return CHILD_LAST_NAME;
+    }
 
-    public String CHILD_PHONE() { return CHILD_PHONE; }
+    public String CHILD_PHONE() {
+        return CHILD_PHONE;
+    }
 
-    public String CHILD_EMAIL() { return CHILD_EMAIL; }
+    public String CHILD_EMAIL() {
+        return CHILD_EMAIL;
+    }
 
-    public String CHILD_NO_BILL() { return CHILD_NO_BILL; }
+    public String CHILD_NO_BILL() {
+        return CHILD_NO_BILL;
+    }
 
-    public String CHILD_PRICE() { return CHILD_PRICE; }
+    public String CHILD_PRICE() {
+        return CHILD_PRICE;
+    }
 
-    public String CHILD_PEOPLES() { return CHILD_PEOPLES; }
+    public String CHILD_PEOPLES() {
+        return CHILD_PEOPLES;
+    }
 
-    public String CHILD_DATE() { return CHILD_DATE; }
+    public String CHILD_DATE() {
+        return CHILD_DATE;
+    }
 
-    public String CHILD_ID_ITEM() { return CHILD_ID_ITEM; }
+    public String CHILD_ID_ITEM() {
+        return CHILD_ID_ITEM;
+    }
 
 
 }

@@ -37,10 +37,9 @@ public class ItemAddUpdateFragment extends Fragment {
     private ItemData item = new ItemData();
     private String currentDescriptionItemString;
     private String currentPriceItemString;
-    private Button addUpdateOkButton;
+    private Button addUpdateOkButton, removeButton;
     private EditText updateDescriptionEditText, updatePriceEditText;
-    private TextView beforeTextView, afterTextView, getDescriptionTextView, getPriceTextView;
-    private ArrayList<ItemData> list;
+    private TextView getDescriptionTextView, getPriceTextView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,17 +63,15 @@ public class ItemAddUpdateFragment extends Fragment {
 
         updateDescriptionEditText = view.findViewById(R.id.updatePriceEditText);
         updatePriceEditText = view.findViewById(R.id.updateDescriptionEditText);
-        beforeTextView = view.findViewById(R.id.beforeTextView);
-        afterTextView = view.findViewById(R.id.afterTextView);
         getDescriptionTextView = view.findViewById(R.id.getDescriptionTextView);
         getPriceTextView = view.findViewById(R.id.getPriceTextView);
         currentDescriptionItemString = ItemsFragment.currentDescriptionItemString;
         currentPriceItemString = ItemsFragment.currentPriceItemString;
-
+        addUpdateOkButton = view.findViewById(R.id.addUpdateOkButton);
+        removeButton = view.findViewById(R.id.removeButton);
         getDescriptionTextView.setText(currentDescriptionItemString);
         getPriceTextView.setText(currentPriceItemString);
 
-        addUpdateOkButton = view.findViewById(R.id.addUpdateOkButton);
         addUpdateOkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,10 +100,22 @@ public class ItemAddUpdateFragment extends Fragment {
                 }
             }
         });
-    }
 
-    public void updateItem(String PK, String description, String price) {
-
+        removeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String userUID = dataBase.getCurrentUser().getUid();
+                String currentPk = currentDescriptionItemString
+                        .replace(" ", "_");
+                dataBase.getDatabaseReference()
+                        .child(userUID)
+                        .child(dataBase.PARENT_ITEMS())
+                        .child(currentPk).removeValue();
+                Toast.makeText(getContext(), "Articulo eliminado", Toast.LENGTH_LONG)
+                        .show();
+                Navigation.findNavController(v).navigate(R.id.nav_items);
+            }
+        });
     }
 
     @Override
@@ -114,5 +123,4 @@ public class ItemAddUpdateFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
 }
