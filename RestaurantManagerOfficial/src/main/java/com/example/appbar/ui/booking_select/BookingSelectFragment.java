@@ -67,5 +67,20 @@ public class BookingSelectFragment extends Fragment implements View.OnClickListe
         fecha_editText.setText("");
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
