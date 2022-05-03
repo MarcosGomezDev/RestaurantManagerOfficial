@@ -44,7 +44,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button logOutButton = view.findViewById(R.id.logOutButton);
+        //Button logOutButton = view.findViewById(R.id.logOutButton);
         reserva_textView = view.findViewById(R.id.reserva_textView);
         item_textView = view.findViewById(R.id.item_textView);
         fechaac_textView = view.findViewById(R.id.fechaact_textView);
@@ -53,10 +53,7 @@ public class HomeFragment extends Fragment {
 
         Reservas();
         empleados_Activos();
-        logOutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {}
-        });
+
     }
 
     @Override
