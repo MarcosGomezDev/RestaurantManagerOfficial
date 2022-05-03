@@ -44,7 +44,7 @@
     <fragment
         android:id="@+id/nav_item_add_update"
         android:name="com.example.appbar.ui.item_add_update.ItemAddUpdateFragment"
-        android:label="Modificación de producto"
+        android:label="Modificación"
         tools:layout="@layout/fragment_item_add_update" />
 
     <fragment

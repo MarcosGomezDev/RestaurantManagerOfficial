@@ -21,6 +21,7 @@ public class TablesFragment extends Fragment implements View.OnClickListener{
 
     private FragmentTablesBinding binding;
     private Button table1Button;
+    public static boolean navItem = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -41,7 +42,8 @@ public class TablesFragment extends Fragment implements View.OnClickListener{
         table1Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.nav_table_selected);
+                navItem = true;
+                Navigation.findNavController(v).navigate(R.id.nav_items);
             }
         });
 

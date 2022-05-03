@@ -34,6 +34,7 @@ public class ItemsFragment extends Fragment {
     public static String currentPkItemString;
     public static String currentDescriptionItemString;
     public static String currentPriceItemString;
+    public static boolean navItem = false;
     private ItemAdapter itemAdapter;
     private RecyclerView recyclerView;
     private ArrayList<ItemData> list;
@@ -84,6 +85,7 @@ public class ItemsFragment extends Fragment {
                         recyclerView.getChildAdapterPosition(v)).getDescription();
                 currentPriceItemString = String.valueOf(list.get(
                         recyclerView.getChildAdapterPosition(v)).getPrice());
+                navItem = true;
                 Navigation.findNavController(v).navigate(R.id.nav_item_add_update);
             }
         });

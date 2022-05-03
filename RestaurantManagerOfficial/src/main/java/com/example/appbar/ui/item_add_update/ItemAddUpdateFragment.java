@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.appbar.R;
@@ -20,8 +21,10 @@ import com.example.appbar.ui.items.ItemsFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.google.protobuf.DescriptorProtos;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class ItemAddUpdateFragment extends Fragment {
@@ -39,7 +42,10 @@ public class ItemAddUpdateFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        if (ItemsFragment.navItem) {
+            ((AppCompatActivity)getActivity()).getSupportActionBar()
+                    .setTitle("Modificación de producto");
+        }
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,

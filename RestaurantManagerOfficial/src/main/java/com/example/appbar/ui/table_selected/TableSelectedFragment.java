@@ -8,12 +8,15 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.appbar.R;
 import com.example.appbar.databinding.FragmentTableSelectedBinding;
+import com.example.appbar.ui.items.ItemsFragment;
+import com.example.appbar.ui.tables.TablesFragment;
 
 public class TableSelectedFragment extends Fragment implements View.OnClickListener{
 
@@ -34,6 +37,10 @@ public class TableSelectedFragment extends Fragment implements View.OnClickListe
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if (TablesFragment.navItem) {
+            ((AppCompatActivity)getActivity()).getSupportActionBar()
+                    .setTitle("Productos");
+        }
 
         cashButton = view.findViewById(R.id.cashButton);
         cashButton.setOnClickListener(this);
@@ -50,7 +57,7 @@ public class TableSelectedFragment extends Fragment implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.cashButton:
-                Navigation.findNavController(v).navigate(R.id.nav_cash_fragment);
+                //Navigation.findNavController(v).navigate(R.id.nav_items);
                 break;
         }
     }
