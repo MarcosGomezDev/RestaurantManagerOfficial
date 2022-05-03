@@ -11,55 +11,70 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appbar.R;
 import com.example.appbar.data.BookingsData;
-import com.example.appbar.data.ItemData;
+import com.example.appbar.data.BookingsData;
+import com.example.appbar.ui.items.ItemAdapter;
 
 import java.util.ArrayList;
 
-public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.MyViewHolder> {
+public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.MyViewHolder> implements View.OnClickListener{
 
     private Context context;
     private ArrayList<BookingsData> list;
+    private View.OnClickListener listener;
 
     public BookingsAdapter(Context context, ArrayList<BookingsData> list) {
         this.context = context;
         this.list = list;
     }
 
+
     @NonNull
     @Override
-    public BookingsAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.booking_view,parent,false);
-        return new BookingsAdapter.MyViewHolder(v);
 
+        v.setOnClickListener(this);
+
+        return  new MyViewHolder(v);
+    }
+
+
+    @Override
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        BookingsData bookingsData = list.get(position);
+        holder.nombreTextView.setText(bookingsData.getNombre());
+       holder.telefonoTextView.setText(bookingsData.getTelefono());
+       holder.emailTextView.setText(bookingsData.getEmail());
+       holder.fechaTextView.setText(bookingsData.getFecha());
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BookingsAdapter.MyViewHolder holder, int position) {
+    public int getItemCount() { return list.size(); }
 
-        BookingsData bookings = list.get(position);
-        holder.fechaTextView.setText(bookings.getFecha());
-        holder.emailTextView.setText(bookings.getEmail());
-        holder.telefonoTextView.setText(bookings.getTelefono());
-        holder.nombreTextView.setText(bookings.getNombre());
-
+    public void setOnClickListener(View.OnClickListener listener) {
+        this.listener = listener;
     }
 
     @Override
-    public int getItemCount() {
-        return 0;
-    }
-
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
-
-        TextView nombreTextView,telefonoTextView,emailTextView,fechaTextView;
-
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            nombreTextView = itemView.findViewById(R.id.nombreTextView);
-            telefonoTextView = itemView.findViewById(R.id.telefonoTextView);
-            emailTextView = itemView.findViewById(R.id.emailTextView);
-            fechaTextView = itemView.findViewById(R.id.fechaTextView);
+    public void onClick(View v) {
+        if(listener != null) {
+            listener.onClick(v);
         }
     }
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+
+        TextView nombreTextView, telefonoTextView,emailTextView,fechaTextView;
+
+        public MyViewHolder(@NonNull View bookingView) {
+            super(bookingView);
+            nombreTextView = bookingView.findViewById(R.id.nombreTextView);
+            telefonoTextView = bookingView.findViewById(R.id.telefonoTextView);
+            fechaTextView = bookingView.findViewById(R.id.fechaact_textView);
+            emailTextView = bookingView.findViewById(R.id.emailTextView);
+
+
+        }
+    }
+
 }
