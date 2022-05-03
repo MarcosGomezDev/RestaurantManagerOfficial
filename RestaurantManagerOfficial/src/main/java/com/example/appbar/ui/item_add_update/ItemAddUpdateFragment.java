@@ -7,11 +7,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.appbar.R;
 import com.example.appbar.data.DataBase;
@@ -32,7 +34,7 @@ public class ItemAddUpdateFragment extends Fragment {
 
     private FragmentItemAddUpdateBinding binding;
     private DataBase dataBase = new DataBase();
-    private String currentPkItemString;
+    private ItemData item = new ItemData();
     private String currentDescriptionItemString;
     private String currentPriceItemString;
     private Button addUpdateOkButton;
@@ -66,7 +68,6 @@ public class ItemAddUpdateFragment extends Fragment {
         afterTextView = view.findViewById(R.id.afterTextView);
         getDescriptionTextView = view.findViewById(R.id.getDescriptionTextView);
         getPriceTextView = view.findViewById(R.id.getPriceTextView);
-        currentPkItemString = ItemsFragment.currentPkItemString;
         currentDescriptionItemString = ItemsFragment.currentDescriptionItemString;
         currentPriceItemString = ItemsFragment.currentPriceItemString;
 
@@ -77,34 +78,35 @@ public class ItemAddUpdateFragment extends Fragment {
         addUpdateOkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateItem(
-                        currentPkItemString,
-                        updateDescriptionEditText.getText().toString(),
-                        updatePriceEditText.getText().toString()
-                );
+                String description = updateDescriptionEditText.getText().toString();
+                String price = updatePriceEditText.getText().toString();
+                if (description.isEmpty() || price.isEmpty()) {
+                    updateDescriptionEditText.setError("Campo obligatorio");
+                    updatePriceEditText.setError("Campo obligatorio");
+                } else {
+                    item = new ItemData(description, price);
+                    String userUID = dataBase.getCurrentUser().getUid();
+                    String currentPk = currentDescriptionItemString
+                            .replace(" ", "_");
+                    dataBase.getDatabaseReference()
+                            .child(userUID)
+                            .child(dataBase.PARENT_ITEMS())
+                            .child(currentPk).removeValue();
+                    dataBase.getDatabaseReference()
+                            .child(userUID)
+                            .child(dataBase.PARENT_ITEMS())
+                            .child(description.replace(" ", "_"))
+                            .setValue(item);
+                    Toast.makeText(getContext(), "Articulo modificado", Toast.LENGTH_LONG)
+                            .show();
+                    Navigation.findNavController(v).navigate(R.id.nav_items);
+                }
             }
         });
     }
 
     public void updateItem(String PK, String description, String price) {
-        String userUID = dataBase.getCurrentUser().getUid();
-        dataBase.getDatabaseReference()
-                .child(userUID)
-                .child(dataBase.PARENT_ITEMS())
-                .child(PK)
-                .setValue(description.replace(" ", "_"));
-        dataBase.getDatabaseReference()
-                .child(userUID)
-                .child(dataBase.PARENT_ITEMS())
-                .child(PK)
-                .child("description")
-                .setValue(description);
-        dataBase.getDatabaseReference()
-                .child(userUID)
-                .child(dataBase.PARENT_ITEMS())
-                .child(PK)
-                .child("price")
-                .setValue(price);
+
     }
 
     @Override
