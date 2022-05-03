@@ -80,20 +80,27 @@ public class ItemAddUpdateFragment extends Fragment {
             public void onClick(View v) {
                 String description = updateDescriptionEditText.getText().toString();
                 String price = updatePriceEditText.getText().toString();
-                item = new ItemData(description, price);
-                String userUID = dataBase.getCurrentUser().getUid();
-                String currentPk = ItemsFragment.currentDescriptionItemString
-                        .replace(" ", "_");
-                dataBase.getDatabaseReference()
-                        .child(userUID)
-                        .child(dataBase.PARENT_ITEMS())
-                        .child(currentPk).removeValue();
-//                dataBase.getDatabaseReference()
-//                        .child(userUID)
-//                        .child(dataBase.PARENT_ITEMS())
-//                        .child(description.replace(" ", "_")).setValue(item);
-                Toast.makeText(getContext(), "Articulo modificado", Toast.LENGTH_LONG).show();
-                Navigation.findNavController(v).navigate(R.id.nav_items);
+                if (description.isEmpty() || price.isEmpty()) {
+                    updateDescriptionEditText.setError("Campo obligatorio");
+                    updatePriceEditText.setError("Campo obligatorio");
+                } else {
+                    item = new ItemData(description, price);
+                    String userUID = dataBase.getCurrentUser().getUid();
+                    String currentPk = currentDescriptionItemString
+                            .replace(" ", "_");
+                    dataBase.getDatabaseReference()
+                            .child(userUID)
+                            .child(dataBase.PARENT_ITEMS())
+                            .child(currentPk).removeValue();
+                    dataBase.getDatabaseReference()
+                            .child(userUID)
+                            .child(dataBase.PARENT_ITEMS())
+                            .child(description.replace(" ", "_"))
+                            .setValue(item);
+                    Toast.makeText(getContext(), "Articulo modificado", Toast.LENGTH_LONG)
+                            .show();
+                    Navigation.findNavController(v).navigate(R.id.nav_items);
+                }
             }
         });
     }
