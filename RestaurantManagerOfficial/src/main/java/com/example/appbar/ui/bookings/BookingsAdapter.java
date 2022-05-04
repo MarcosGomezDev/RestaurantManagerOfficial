@@ -27,25 +27,21 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.MyView
         this.list = list;
     }
 
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.booking_view,parent,false);
-
         v.setOnClickListener(this);
-
         return  new MyViewHolder(v);
     }
-
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         BookingsData bookingsData = list.get(position);
         holder.nombreTextView.setText(bookingsData.getNombre());
-       holder.telefonoTextView.setText(bookingsData.getTelefono());
-       holder.emailTextView.setText(bookingsData.getEmail());
-       holder.fechaTextView.setText(bookingsData.getFecha());
+        holder.telefonoTextView.setText(bookingsData.getTelefono());
+        holder.emailTextView.setText(bookingsData.getEmail());
+        holder.fechaTextView.setText(bookingsData.getFecha());
     }
 
     @Override
@@ -63,18 +59,13 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.MyView
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-
         TextView nombreTextView, telefonoTextView,emailTextView,fechaTextView;
-
         public MyViewHolder(@NonNull View bookingView) {
             super(bookingView);
             nombreTextView = bookingView.findViewById(R.id.nombreTextView);
             telefonoTextView = bookingView.findViewById(R.id.telefonoTextView);
             fechaTextView = bookingView.findViewById(R.id.fechaact_textView);
             emailTextView = bookingView.findViewById(R.id.emailTextView);
-
-
         }
     }
-
 }

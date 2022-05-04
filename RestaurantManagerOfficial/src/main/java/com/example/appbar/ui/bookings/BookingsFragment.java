@@ -41,15 +41,13 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
     private FragmentBookingsBinding binding;
     private TextView tv_fecha,textView5;
     private ListView lista;
-    FloatingActionButton fa_annadir;
-
+    private FloatingActionButton fa_annadir;
     private DataBase dataBase = new DataBase();
     private String userUID;
     private BookingsData data;
-
-    ArrayAdapter<String> adapter;
-    ArrayList<BookingsData> mlista = new ArrayList<>();
-    ArrayList<String> mlistaString = new ArrayList<>();
+    private ArrayAdapter<String> adapter;
+    private ArrayList<BookingsData> mlista = new ArrayList<>();
+    private ArrayList<String> mlistaString = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -65,8 +63,6 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
         tv_fecha = view.findViewById(R.id.tv_fecha);
         //lista =view.findViewById(R.id.lista);
         fa_annadir = view.findViewById(R.id.fa_annadir);
-
-
         fa_annadir.setOnClickListener(this);
         fecha();
         reservas();
@@ -79,12 +75,10 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
     }
 
     public void fecha(){
-
         String date = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
         tv_fecha.setText(date);
     }
     public void reservas(){
-
         userUID = dataBase.getCurrentUser().getUid();
         dataBase.getDatabaseReference().child(userUID).child("booking").addValueEventListener(new ValueEventListener() {
             @Override
