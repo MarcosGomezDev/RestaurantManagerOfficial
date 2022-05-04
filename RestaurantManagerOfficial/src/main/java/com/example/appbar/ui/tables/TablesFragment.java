@@ -10,15 +10,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appbar.R;
 import com.example.appbar.data.DataBase;
-import com.example.appbar.data.ItemData;
 import com.example.appbar.data.TablesData;
 import com.example.appbar.databinding.FragmentTablesBinding;
-import com.example.appbar.ui.items.ItemAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +35,10 @@ public class TablesFragment extends Fragment implements View.OnClickListener{
     private ArrayList<TablesData> list;
     private String userUID;
     private Context context;
+
+    public static String currentNumTableString;
+    public static String currentCapacityTableString;
+    public static boolean currentReservedTableBool;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -57,6 +60,19 @@ public class TablesFragment extends Fragment implements View.OnClickListener{
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         tableAdapter = new TableAdapter(context, list);
         recyclerView.setAdapter(tableAdapter);
+
+        tableAdapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentNumTableString = list.get(
+                        recyclerView.getChildAdapterPosition(v)).getNumTable();
+                currentCapacityTableString = list.get(
+                        recyclerView.getChildAdapterPosition(v)).getNumPeople();
+                currentReservedTableBool = list.get(
+                        recyclerView.getChildAdapterPosition(v)).isReserved();
+                Navigation.findNavController(v).navigate(R.id.nav_table_selected);
+            }
+        });
 
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")

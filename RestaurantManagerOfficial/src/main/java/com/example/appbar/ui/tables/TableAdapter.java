@@ -20,6 +20,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.MyHolder>
     private final Context context;
     private final ArrayList<TablesData> list;
     private View.OnClickListener listener;
+    private String reserved;
 
     public TableAdapter(Context context, ArrayList<TablesData> list) {
         this.context = context;
@@ -37,8 +38,11 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.MyHolder>
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
         TablesData table = list.get(position);
+        if (String.valueOf(table.isReserved()).equals("false")) reserved = "No";
+        if (String.valueOf(table.isReserved()).equals("true")) reserved = "Si";
         holder.tableTextView.setText(table.getNumTable());
         holder.capacityTextView.setText(table.getNumPeople());
+        holder.reservedTextView.setText(reserved);
     }
 
     @Override
@@ -57,12 +61,13 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.MyHolder>
 
     public class MyHolder extends RecyclerView.ViewHolder {
 
-        TextView tableTextView, capacityTextView;
+        TextView tableTextView, capacityTextView, reservedTextView;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
             tableTextView = itemView.findViewById(R.id.tableTextView);
             capacityTextView = itemView.findViewById(R.id.capacityTextView);
+            reservedTextView = itemView.findViewById(R.id.reservedTextView);
         }
     }
 }
