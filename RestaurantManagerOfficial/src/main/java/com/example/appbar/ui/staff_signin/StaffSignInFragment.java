@@ -47,18 +47,13 @@ EditText dni_editText;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        StaffSignInViewModel staffSignInViewModel =
-                new ViewModelProvider(this).get(StaffSignInViewModel.class);
-
         binding = FragmentStaffSigninBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
         return root;
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
 
         horafin_button = view.findViewById(R.id.horafin_button);
         horaini_button = view.findViewById(R.id.horaini_button);

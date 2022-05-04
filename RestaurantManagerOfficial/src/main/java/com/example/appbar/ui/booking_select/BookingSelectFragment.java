@@ -31,9 +31,6 @@ public class BookingSelectFragment extends Fragment implements View.OnClickListe
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        BookingSelectViewModel ficharViewModel =
-                new ViewModelProvider(this).get(BookingSelectViewModel.class);
-
         binding = FragmentBookingSelectBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         return root;

@@ -24,12 +24,8 @@ public class TablesFragment extends Fragment implements View.OnClickListener{
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        TablesViewModel galleryViewModel =
-                new ViewModelProvider(this).get(TablesViewModel.class);
-
         binding = FragmentTablesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
         return root;
     }
 
@@ -44,7 +40,6 @@ public class TablesFragment extends Fragment implements View.OnClickListener{
                 //Navigation.findNavController(v).navigate(R.id.nav_items);
             }
         });
-
     }
 
     @Override

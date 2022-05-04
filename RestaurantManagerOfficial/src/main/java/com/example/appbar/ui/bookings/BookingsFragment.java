@@ -53,7 +53,6 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
         binding = FragmentBookingsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
        // lista = root.findViewById(R.id.lista);

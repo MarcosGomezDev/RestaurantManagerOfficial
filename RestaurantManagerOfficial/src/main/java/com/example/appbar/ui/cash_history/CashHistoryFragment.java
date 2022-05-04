@@ -17,12 +17,8 @@ public class CashHistoryFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        CashHistoryViewModel cashHistoryViewModel =
-                new ViewModelProvider(this).get(CashHistoryViewModel.class);
-
         binding = FragmentCashHistoryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
         return root;
     }
 
@@ -31,6 +27,4 @@ public class CashHistoryFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
-
 }
