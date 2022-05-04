@@ -3,12 +3,12 @@ package com.example.appbar.data;
 public class TablesData {
 
     private int numTable;
-    private int numPersons;
+    private int numPeople;
     private boolean reserved;
 
-    public TablesData(int numTable, int numPersons) {
+    public TablesData(int numTable, int numPeople) {
         this.numTable = numTable;
-        this.numPersons = numPersons;
+        this.numPeople = numPeople;
     }
 
     public int getNumTable() {
@@ -19,12 +19,12 @@ public class TablesData {
         this.numTable = numTable;
     }
 
-    public int getNumPersons() {
-        return numPersons;
+    public int getNumPeople() {
+        return numPeople;
     }
 
-    public void setNumPersons(int numPersons) {
-        this.numPersons = numPersons;
+    public void setNumPeople(int numPeople) {
+        this.numPeople = numPeople;
     }
 
     public boolean isReserved() {
