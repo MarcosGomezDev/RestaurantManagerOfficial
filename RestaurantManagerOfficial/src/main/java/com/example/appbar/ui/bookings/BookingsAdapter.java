@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appbar.R;
 import com.example.appbar.data.BookingsData;
-import com.example.appbar.data.BookingsData;
-import com.example.appbar.ui.items.ItemAdapter;
 
 import java.util.ArrayList;
 
@@ -63,9 +61,9 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.MyView
         public MyViewHolder(@NonNull View bookingView) {
             super(bookingView);
             nombreTextView = bookingView.findViewById(R.id.nombreTextView);
-            telefonoTextView = bookingView.findViewById(R.id.telefonoTextView);
+            telefonoTextView = bookingView.findViewById(R.id.tableTextView);
             fechaTextView = bookingView.findViewById(R.id.fechaact_textView);
-            emailTextView = bookingView.findViewById(R.id.emailTextView);
+            emailTextView = bookingView.findViewById(R.id.capacityTextView);
         }
     }
 }

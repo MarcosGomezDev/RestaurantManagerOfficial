@@ -55,7 +55,7 @@ public class ItemsFragment extends Fragment {
         addItemButton = view.findViewById(R.id.addItemButton);
         recyclerView = view.findViewById(R.id.itemListRecyclerView);
         dataBase = new DataBase();
-        currentPkItemString = " ";
+        //currentPkItemString = " ";
 
         userUID = dataBase.getCurrentUser().getUid();
         myRef = dataBase.getInstance().getReference(userUID).child(dataBase.PARENT_ITEMS());

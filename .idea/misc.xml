@@ -18,9 +18,12 @@
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_item_add.xml" value="0.33" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_item_add_update.xml" value="0.33" />
-        <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_items.xml" value="0.16945288753799392" />
+        <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_items.xml" value="0.25" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_tables.xml" value="0.41458333333333336" />
+        <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/item_view.xml" value="0.1" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/nav_header_main.xml" value="0.75" />
+        <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/recycler_view_item.xml" value="0.5" />
+        <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/table_view.xml" value="0.5" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/menu/activity_main_drawer.xml" value="0.4479166666666667" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/menu/main.xml" value="0.4479166666666667" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/mipmap-anydpi-v26/cust_moon.xml" value="0.1955" />
