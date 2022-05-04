@@ -70,7 +70,6 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         ItemData item = new ItemData();
-                        TablesData table = new TablesData();
                         items= snapshot.getChildrenCount();
                         String numItemsString = "Productos dados de Alta " + items;
                         item_textView.setText(numItemsString);

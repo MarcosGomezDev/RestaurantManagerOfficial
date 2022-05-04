@@ -33,12 +33,14 @@ public class TablesFragment extends Fragment implements View.OnClickListener{
     private TableAdapter tableAdapter;
     private RecyclerView recyclerView;
     private ArrayList<TablesData> list;
-    private String userUID;
     private Context context;
+    private String userUID;
+
 
     public static String currentNumTableString;
     public static String currentCapacityTableString;
     public static boolean currentReservedTableBool;
+    public static int countTable;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
