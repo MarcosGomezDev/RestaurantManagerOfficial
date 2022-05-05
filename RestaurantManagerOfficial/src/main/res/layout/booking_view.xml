@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="100dp"
     android:layout_margin="8dp"
     android:clickable="true"
     app:cardCornerRadius="8dp"
@@ -10,13 +10,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="108dp"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="123dp"
-            android:layout_height="match_parent"
+            android:layout_height="103dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/cust_user_circle_24" />
 
@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:text="Nombre :"
                     android:textColor="@color/black"
-                    android:textSize="20dp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -62,16 +62,16 @@
                     android:layout_height="wrap_content"
                     android:text="Telefono :"
                     android:textColor="@color/black"
-                    android:textSize="20dp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tableTextView"
+                    android:id="@+id/telefonoTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -86,16 +86,16 @@
                     android:layout_height="wrap_content"
                     android:text="Email:"
                     android:textColor="@color/black"
-                    android:textSize="20dp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/capacityTextView"
+                    android:id="@+id/emailTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -110,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:text="Fecha:"
                     android:textColor="@color/black"
-                    android:textSize="20dp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -119,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 

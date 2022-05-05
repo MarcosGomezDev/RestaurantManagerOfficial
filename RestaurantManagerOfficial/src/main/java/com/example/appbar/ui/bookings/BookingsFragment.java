@@ -1,9 +1,13 @@
 package com.example.appbar.ui.bookings;
 
+
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -34,28 +40,29 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
-public class BookingsFragment extends Fragment {
+public class BookingsFragment extends Fragment implements View.OnClickListener {
 
-    private FragmentItemsBinding binding;
+    private FragmentBookingsBinding binding;
     private DataBase dataBase;
     private DatabaseReference myRef;
-    public static String currentPkItemString;
-    public static String currentDescriptionItemString;
-    public static String currentPriceItemString;
     private BookingsAdapter bookingsAdapter;
     private RecyclerView recyclerView;
     private ArrayList<BookingsData> list;
     private String userUID;
     private Context context;
-    private FloatingActionButton addItemButton;
+    private FloatingActionButton fa_fecha,fa_annadir;
+    private TextView fecha2Textview;
+    private ImageView calendario;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentItemsBinding.inflate(inflater, container, false);
+        binding = FragmentBookingsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         return root;
     }
@@ -64,11 +71,30 @@ public class BookingsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        addItemButton = view.findViewById(R.id.addItemButton);
-        recyclerView = view.findViewById(R.id.itemListRecyclerView);
+        fa_annadir = view.findViewById(R.id.fa_annadir);
+        calendario = view.findViewWithTag(R.id.calendario);
+        fecha2Textview = view.findViewById(R.id.fecha2textView);
+        recyclerView = view.findViewById(R.id.r);
+        fecha2Textview.setText(fecha());
+        fa_annadir.setOnClickListener(this);
         dataBase = new DataBase();
-        currentPkItemString = " ";
 
+        reservas();
+
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
+    public String fecha(){
+        String date = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
+        return date;
+    }
+
+    public void reservas(){
         userUID = dataBase.getCurrentUser().getUid();
         myRef = dataBase.getInstance().getReference(userUID).child(dataBase.PARENT_BOOKING());
         context = this.getActivity();
@@ -87,7 +113,9 @@ public class BookingsFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     BookingsData bookingsData = dataSnapshot.getValue(BookingsData.class);
-                    list.add(bookingsData);
+                    if (bookingsData.getFecha().compareTo(fecha2Textview.getText().toString().trim())==0) {
+                        list.add(bookingsData);
+                    }
                 }
                 bookingsAdapter.notifyDataSetChanged();
             }
@@ -95,10 +123,18 @@ public class BookingsFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {}
         });
     }
-
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.fa_annadir:
+                Navigation.findNavController(view).navigate(R.id.nav_booking_selected);
+                break;
+            case R.id.calendario:
+
+            break;
+
+        }
+
+
     }
 }

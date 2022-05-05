@@ -65,8 +65,8 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.MyHolder>
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
-            tableTextView = itemView.findViewById(R.id.tableTextView);
-            capacityTextView = itemView.findViewById(R.id.capacityTextView);
+            tableTextView = itemView.findViewById(R.id.telefonoTextView);
+            capacityTextView = itemView.findViewById(R.id.emailTextView);
             reservedTextView = itemView.findViewById(R.id.reservedTextView);
         }
     }
