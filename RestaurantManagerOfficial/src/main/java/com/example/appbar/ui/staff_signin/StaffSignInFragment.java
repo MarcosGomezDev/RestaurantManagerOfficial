@@ -137,7 +137,7 @@ EditText dni_editText;
    return (dtf2.format(LocalTime.now()));
     }
     public String fecha(){
-        String date = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
+        String date = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
     return date;
     }
 

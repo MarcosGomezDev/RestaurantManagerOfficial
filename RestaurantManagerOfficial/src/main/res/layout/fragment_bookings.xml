@@ -2,52 +2,53 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:id="@+id/calendario"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     tools:context=".MenuActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="399dp"
-        android:layout_height="699dp"
+        android:layout_width="400dp"
+        android:layout_height="596dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/r"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
         <LinearLayout
-            android:layout_width="96dp"
-            android:layout_height="704dp"
+            android:layout_width="263dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fa_fecha"
-                android:layout_width="wrap_content"
-                android:layout_height="76dp"
+            <ImageButton
+                android:id="@+id/calendarioimageButton"
+                android:layout_width="74dp"
+                android:layout_height="77dp"
                 android:layout_weight="1"
-                android:clickable="true"
-                app:backgroundTint="@color/AppColorSecundario"
-                app:srcCompat="@drawable/calendar" />
+                android:backgroundTint="@color/white"
+                app:srcCompat="@drawable/calendario__2_" />
 
             <TextView
-                android:id="@+id/tv_fecha"
-                android:layout_width="match_parent"
-                android:layout_height="401dp"
+                android:id="@+id/fecha2textView"
+                android:layout_width="114dp"
+                android:layout_height="6dp"
                 android:layout_weight="1"
-                android:shadowColor="@color/AppColorGrey"
-                android:text="Fecha"
-                android:textColor="@color/AppColorGrey"
-                android:textColorHighlight="@color/AppColorGrey"
-                android:textColorHint="@color/AppColorGrey"
-                android:textSize="15sp"
-                android:textStyle="bold|italic" />
+                android:text="TextView"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/r"
+                android:layout_width="match_parent"
+                android:layout_height="390dp"
+                android:layout_weight="1" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fa_annadir"
@@ -55,8 +56,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:clickable="true"
-                app:backgroundTint="@color/AppColorSecundario"
+                app:backgroundTint="@color/white"
                 app:srcCompat="@drawable/plus" />
+
         </LinearLayout>
 
     </LinearLayout>

@@ -11,9 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appbar.R;
 import com.example.appbar.data.BookingsData;
-import com.example.appbar.data.BookingsData;
-import com.example.appbar.data.ItemData;
-import com.example.appbar.ui.items.ItemAdapter;
 
 import java.util.ArrayList;
 
@@ -41,8 +38,11 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.MyView
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         BookingsData bookingsData = list.get(position);
-        holder.descriptionTextView.setText(bookingsData.getNombre());
-        holder.priceTextView.setText(String.valueOf(bookingsData.getTelefono()));
+        holder.nombreTextView.setText(bookingsData.getNombre());
+        holder.telefonoTextView.setText((bookingsData.getTelefono()));
+        holder.emailTextView.setText((bookingsData.getEmail()));
+        holder.fechaTextView.setText((bookingsData.getFecha()));
+
     }
 
     @Override
@@ -61,12 +61,15 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.MyView
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView descriptionTextView, priceTextView;
+        TextView nombreTextView, telefonoTextView, emailTextView, fechaTextView;
 
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-            descriptionTextView = itemView.findViewById(R.id.nombreTextView);
-            priceTextView = itemView.findViewById(R.id.capacityTextView);
+        public MyViewHolder(@NonNull View bookView) {
+            super(bookView);
+            nombreTextView = bookView.findViewById(R.id.nombreTextView);
+            telefonoTextView = bookView.findViewById(R.id.telefonoTextView);
+            emailTextView = bookView.findViewById(R.id.emailTextView);
+            fechaTextView  = bookView.findViewById(R.id.fechaTextView);
+
 
         }
     }

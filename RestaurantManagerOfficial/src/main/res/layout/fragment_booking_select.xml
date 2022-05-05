@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="96dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/contactlist_theuser_802" />
+                app:srcCompat="@drawable/campana" />
 
             <TextView
                 android:id="@+id/textView3"

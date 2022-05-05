@@ -46,6 +46,7 @@
             android:id="@+id/imageView11"
             android:layout_width="match_parent"
             android:layout_height="189dp"
+            android:backgroundTint="@color/white"
             android:src="@mipmap/cust_ms" />
 
         <Space
