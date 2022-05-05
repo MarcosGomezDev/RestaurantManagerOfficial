@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.appbar.R;
 import com.example.appbar.data.BookingsData;
 import com.example.appbar.data.BookingsData;
+import com.example.appbar.data.ItemData;
 import com.example.appbar.ui.items.ItemAdapter;
 
 import java.util.ArrayList;
@@ -35,13 +36,13 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.MyView
         return  new MyViewHolder(v);
     }
 
+
+
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         BookingsData bookingsData = list.get(position);
-        holder.nombreTextView.setText(bookingsData.getNombre());
-        holder.telefonoTextView.setText(bookingsData.getTelefono());
-        holder.emailTextView.setText(bookingsData.getEmail());
-        holder.fechaTextView.setText(bookingsData.getFecha());
+        holder.descriptionTextView.setText(bookingsData.getNombre());
+        holder.priceTextView.setText(String.valueOf(bookingsData.getTelefono()));
     }
 
     @Override
@@ -59,13 +60,15 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.MyView
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView nombreTextView, telefonoTextView,emailTextView,fechaTextView;
-        public MyViewHolder(@NonNull View bookingView) {
-            super(bookingView);
-            nombreTextView = bookingView.findViewById(R.id.nombreTextView);
-            telefonoTextView = bookingView.findViewById(R.id.telefonoTextView);
-            fechaTextView = bookingView.findViewById(R.id.fechaact_textView);
-            emailTextView = bookingView.findViewById(R.id.emailTextView);
+
+        TextView descriptionTextView, priceTextView;
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            descriptionTextView = itemView.findViewById(R.id.telefonoTextView);
+            priceTextView = itemView.findViewById(R.id.emailTextView);
+
         }
     }
+
 }
