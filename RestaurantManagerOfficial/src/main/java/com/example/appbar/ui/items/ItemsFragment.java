@@ -26,12 +26,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("FieldCanBeLocal")
 public class ItemsFragment extends Fragment {
 
     private FragmentItemsBinding binding;
     private DataBase dataBase;
     private DatabaseReference myRef;
-    public static String currentPkItemString;
     public static String currentDescriptionItemString;
     public static String currentPriceItemString;
     private ItemAdapter itemAdapter;
@@ -51,20 +51,15 @@ public class ItemsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         addItemButton = view.findViewById(R.id.addItemButton);
         recyclerView = view.findViewById(R.id.itemListRecyclerView);
         dataBase = new DataBase();
-        currentPkItemString = " ";
-
         userUID = dataBase.getCurrentUser().getUid();
         myRef = dataBase.getInstance().getReference(userUID).child(dataBase.PARENT_ITEMS());
         context = this.getActivity();
         list = new ArrayList<>();
-
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-
         itemAdapter = new ItemAdapter(context, list);
         recyclerView.setAdapter(itemAdapter);
 

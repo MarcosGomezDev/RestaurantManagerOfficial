@@ -14,10 +14,11 @@ import com.example.appbar.data.ItemData;
 
 import java.util.ArrayList;
 
-public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> implements View.OnClickListener {
+public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder>
+        implements View.OnClickListener {
 
-    private Context context;
-    private ArrayList<ItemData> list;
+    private final Context context;
+    private final ArrayList<ItemData> list;
     private View.OnClickListener listener;
 
     public ItemAdapter(Context context, ArrayList<ItemData> list) {
@@ -60,10 +61,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            descriptionTextView = itemView.findViewById(R.id.telefonoTextView);
-            priceTextView = itemView.findViewById(R.id.emailTextView);
+            descriptionTextView = itemView.findViewById(R.id.descriptionTextView);
+            priceTextView = itemView.findViewById(R.id.priceTextView);
 
         }
     }
-
 }

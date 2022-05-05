@@ -60,7 +60,6 @@ public class ItemAddUpdateFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         updateDescriptionEditText = view.findViewById(R.id.updatePriceEditText);
         updatePriceEditText = view.findViewById(R.id.updateDescriptionEditText);
         getDescriptionTextView = view.findViewById(R.id.getDescriptionTextView);
