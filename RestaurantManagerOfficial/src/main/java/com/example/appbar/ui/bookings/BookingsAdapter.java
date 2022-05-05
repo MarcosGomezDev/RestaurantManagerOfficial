@@ -65,8 +65,8 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.MyView
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            descriptionTextView = itemView.findViewById(R.id.telefonoTextView);
-            priceTextView = itemView.findViewById(R.id.emailTextView);
+            descriptionTextView = itemView.findViewById(R.id.nombreTextView);
+            priceTextView = itemView.findViewById(R.id.capacityTextView);
 
         }
     }
