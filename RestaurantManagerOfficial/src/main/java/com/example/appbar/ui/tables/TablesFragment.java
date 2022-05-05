@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class TablesFragment extends Fragment implements View.OnClickListener{
+public class TablesFragment extends Fragment {
 
     private FragmentTablesBinding binding;
     private DataBase dataBase;
@@ -35,6 +36,7 @@ public class TablesFragment extends Fragment implements View.OnClickListener{
     private ArrayList<TablesData> list;
     private Context context;
     private String userUID;
+    private Button editTebleeButton;
 
 
     public static String currentNumTableString;
@@ -62,16 +64,24 @@ public class TablesFragment extends Fragment implements View.OnClickListener{
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         tableAdapter = new TableAdapter(context, list);
         recyclerView.setAdapter(tableAdapter);
+        editTebleeButton = view.findViewById(R.id.editTebleeButton);
+
+        editTebleeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                currentNumTableString = list.get(
+//                        recyclerView.getChildAdapterPosition(v)).getNumTable();
+//                currentCapacityTableString = list.get(
+//                        recyclerView.getChildAdapterPosition(v)).getNumPeople();
+//                currentReservedTableBool = list.get(
+//                        recyclerView.getChildAdapterPosition(v)).isReserved();
+                Navigation.findNavController(v).navigate(R.id.nav_table_box);
+            }
+        });
 
         tableAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                currentNumTableString = list.get(
-                        recyclerView.getChildAdapterPosition(v)).getNumTable();
-                currentCapacityTableString = list.get(
-                        recyclerView.getChildAdapterPosition(v)).getNumPeople();
-                currentReservedTableBool = list.get(
-                        recyclerView.getChildAdapterPosition(v)).isReserved();
                 Navigation.findNavController(v).navigate(R.id.nav_table_selected);
             }
         });
@@ -103,14 +113,5 @@ public class TablesFragment extends Fragment implements View.OnClickListener{
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-    }
-
-    @Override
-    public void onClick(View v) {
-//        switch (v.getId()) {
-//            case R.id.table1Button:
-//                Navigation.findNavController(v).navigate(R.id.nav_table_selected);
-//            break;
-//        }
     }
 }

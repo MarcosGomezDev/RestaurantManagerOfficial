@@ -1,5 +1,6 @@
 package com.example.appbar.ui.staff_signin;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -33,17 +34,15 @@ import java.time.*;
 
 public class StaffSignInFragment extends Fragment implements View.OnClickListener {
 
-Button horaini_button,horafin_button,fecha_button,comporbar_button,fichar_button,terminar_button;
-TextView horaini_textView,horafin_textView,fecha_textView;
-EditText dni_editText;
-
+    private FragmentStaffSigninBinding binding;
     private DataBase dataBase = new DataBase();
     private DatabaseReference myRref;
     private String userUID;
-    private StaffData data =null;
-    private final String PARENT_STAFF = "staff";
-    private FragmentStaffSigninBinding binding;
+    private StaffData data;
     private boolean control = false;
+    private Button horaini_button,horafin_button,fecha_button,comporbar_button,fichar_button,terminar_button;
+    private TextView horaini_textView,horafin_textView,fecha_textView;
+    private EditText dni_editText;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -61,13 +60,10 @@ EditText dni_editText;
         comporbar_button = view.findViewById(R.id.comprobar_button);
         fichar_button = view.findViewById(R.id.fichar_button);
         terminar_button = view.findViewById(R.id.terminar_button);
-
         horaini_textView = view.findViewById(R.id.horaini_textView);
         horafin_textView = view.findViewById(R.id.horafin_textView);
         fecha_textView = view.findViewById(R.id.fecha_textView);
-
         dni_editText = view.findViewById(R.id.dni_editText);
-
 
         horafin_button.setOnClickListener(this);
         horaini_button.setOnClickListener(this);
@@ -81,10 +77,6 @@ EditText dni_editText;
         fichar_button.setEnabled(false);
         terminar_button.setEnabled(false);
         fecha_button.setEnabled(false);
-
-
-
-
     }
     @Override
     public void onDestroyView() {
@@ -92,11 +84,11 @@ EditText dni_editText;
         binding = null;
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         Context context;
         switch (view.getId()){
-
             case R.id.horaini_button:
                 horaini_textView.setText(hora());
                 break;
@@ -107,7 +99,6 @@ EditText dni_editText;
                 fecha_textView.setText(fecha());
                 break;
             case R.id.comprobar_button:
-
                 if (dni_editText.getText().length()!=0) {
                     Search();
                 }
@@ -116,7 +107,6 @@ EditText dni_editText;
                 }
                 break;
             case R.id.fichar_button:
-
                 data = new StaffData();
                 data.addBookings(dni_editText.getText().toString().trim(),
                         horaini_textView.getText().toString().trim(),
@@ -124,31 +114,26 @@ EditText dni_editText;
                         fecha_textView.getText().toString().trim());
                 break;
             case R.id.terminar_button:
-
                 Update();
-
-
                 break;
         }
-
     }
+
     public  String hora(){
         DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("HH:mm:ss");
-   return (dtf2.format(LocalTime.now()));
+        return (dtf2.format(LocalTime.now()));
     }
+
     public String fecha(){
         String date = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
-    return date;
+        return date;
     }
 
     public void Search(){
-
-
         userUID = dataBase.getCurrentUser().getUid();
         dataBase.getDatabaseReference().child(userUID).child("staff").child(dni_editText.getText().toString()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 if(snapshot.exists()){
                    String dni = snapshot.child("dni").getValue().toString().trim();
                    data = snapshot.getValue(StaffData.class);
@@ -174,19 +159,16 @@ EditText dni_editText;
                     horaini_button.setEnabled(true);
                     fecha_button.setEnabled(true);
                 }
-             }
+            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-
     }
     public void Update(){
         userUID = dataBase.getCurrentUser().getUid();
         dataBase.getDatabaseReference().child(userUID).child("staff").child(dni_editText.getText().toString()).child("horafin").setValue(horafin_textView.getText());
-
-
     }
 }

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_nav_tables_to_nav_table_selected"
             app:destination="@id/nav_table_selected" />
+        <action
+            android:id="@+id/action_nav_tables_to_nav_table_box"
+            app:destination="@id/nav_table_box" />
     </fragment>
 
     <fragment
@@ -24,6 +27,12 @@
             android:id="@+id/action_nav_table_selected_to_cashFragment"
             app:destination="@id/nav_cash_fragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/nav_table_box"
+        android:name="com.example.appbar.ui.table_box.TableBoxFragment"
+        android:label="Gestion Mesa"
+        tools:layout="@layout/fragment_table_box" />
 
     <fragment
         android:id="@+id/nav_home"
