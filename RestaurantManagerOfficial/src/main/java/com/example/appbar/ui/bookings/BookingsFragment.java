@@ -70,7 +70,7 @@ public class BookingsFragment extends Fragment {
         currentPkItemString = " ";
 
         userUID = dataBase.getCurrentUser().getUid();
-        myRef = dataBase.getInstance().getReference(userUID).child(dataBase.PARENT_ITEMS());
+        myRef = dataBase.getInstance().getReference(userUID).child(dataBase.PARENT_BOOKING());
         context = this.getActivity();
         list = new ArrayList<>();
 
