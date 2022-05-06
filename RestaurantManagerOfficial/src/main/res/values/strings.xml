@@ -34,5 +34,10 @@
     <string name="nowText">Actual</string>
     <string name="table_select">Mesa seleccionada</string>
     <string name="remove_item">Eliminar Articulo</string>
+    <string name="one">1</string>
+    <string name="reservada">RESERVADA</string>
+    <string name="_4">4</string>
+    <string name="todo">TODO</string>
+    <string name="x2">x2</string>
 
 </resources>

@@ -20,7 +20,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.MyHolder>
     private final Context context;
     private final ArrayList<TablesData> list;
     private View.OnClickListener listener;
-    private String reserved;
+
 
     public TableAdapter(Context context, ArrayList<TablesData> list) {
         this.context = context;
@@ -37,9 +37,10 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.MyHolder>
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
+        String reserved = "";
         TablesData table = list.get(position);
-        if (String.valueOf(table.isReserved()).equals("false")) reserved = "No";
-        if (String.valueOf(table.isReserved()).equals("true")) reserved = "Si";
+        if (String.valueOf(table.isReserved()).equals("false")) reserved = "DISPONIBLE";
+        if (String.valueOf(table.isReserved()).equals("true")) reserved = "RESERVADA";
         holder.tableTextView.setText(table.getNumTable());
         holder.capacityTextView.setText(table.getNumPeople());
         holder.reservedTextView.setText(reserved);
@@ -65,8 +66,8 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.MyHolder>
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
-            tableTextView = itemView.findViewById(R.id.telefonoTextView);
-            capacityTextView = itemView.findViewById(R.id.emailTextView);
+            tableTextView = itemView.findViewById(R.id.tableTextView);
+            capacityTextView = itemView.findViewById(R.id.capacityTextView);
             reservedTextView = itemView.findViewById(R.id.reservedTextView);
         }
     }
