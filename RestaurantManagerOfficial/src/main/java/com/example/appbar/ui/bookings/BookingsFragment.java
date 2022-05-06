@@ -3,11 +3,13 @@ package com.example.appbar.ui.bookings;
 
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -29,6 +31,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.appbar.R;
 import com.example.appbar.data.BookingsData;
 import com.example.appbar.data.DataBase;
+import com.example.appbar.data.DatePikerFragment;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.databinding.FragmentBookingsBinding;
 import com.example.appbar.databinding.FragmentItemsBinding;
@@ -46,7 +49,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class BookingsFragment extends Fragment implements View.OnClickListener {
+public class BookingsFragment extends Fragment implements View.OnClickListener,DatePickerDialog.OnDateSetListener {
 
     private FragmentBookingsBinding binding;
     private DataBase dataBase;
@@ -130,11 +133,25 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
                 Navigation.findNavController(view).navigate(R.id.nav_booking_selected);
                 break;
             case R.id.calendario:
+                //DatePikerFragment datepiker = new DatePikerFragment();
+                //datepiker.show(getActivity().getSupportFragmentManager(), "datepiker");
+                com.example.appbar.data.DatePikerFragment mDatePickerDialogFragment;
+                mDatePickerDialogFragment = new com.example.appbar.data.DatePikerFragment();
+                //mDatePickerDialogFragment.show(getFragmentManager(), "DATE PICK");
 
             break;
 
         }
 
 
+    }
+
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+        Calendar c  = Calendar.getInstance();
+        c.set(Calendar.YEAR,year);
+        c.set(Calendar.MONTH,month);
+        c.set(Calendar.DAY_OF_MONTH,day);
     }
 }
