@@ -11,9 +11,6 @@
         android:label="@string/menu_tables"
         tools:layout="@layout/fragment_tables" >
         <action
-            android:id="@+id/action_nav_tables_to_nav_table_selected"
-            app:destination="@id/nav_table_selected" />
-        <action
             android:id="@+id/action_nav_tables_to_nav_table_box"
             app:destination="@id/nav_table_box" />
     </fragment>
@@ -32,7 +29,25 @@
         android:id="@+id/nav_table_box"
         android:name="com.example.appbar.ui.table_box.TableBoxFragment"
         android:label="Gestion Mesa"
-        tools:layout="@layout/fragment_table_box" />
+        tools:layout="@layout/fragment_table_box">
+        <action
+            android:id="@+id/action_nav_tables_to_nav_table_selected"
+            app:destination="@id/nav_table_selected" />
+        <action
+            android:id="@+id/action_nav_table_box_pop2"
+            app:popUpTo="@id/nav_table_box"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_table_items"
+        android:name="com.example.appbar.ui.tables.TableItemsFragment"
+        android:label="Añadir articulo a mesa"
+        tools:layout="@layout/fragment_table_items">
+        <action
+            android:id="@+id/action_nav_tables_to_nav_table_selected"
+            app:destination="@id/nav_table_selected" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_home"

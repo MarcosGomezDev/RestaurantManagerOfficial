@@ -24,9 +24,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -59,7 +56,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         recUserCheck = findViewById(R.id.recUserCheck);
-        logInButton = findViewById(R.id.logInButton);
+        logInButton = findViewById(R.id.noButton);
         signInButton = findViewById(R.id.signInButton);
 
         // Estod dos botones son los de pruebas
@@ -88,7 +85,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.logInButton:
+            case R.id.noButton:
                 email = emailEditText.getText().toString();
                 pass = passwordEditText.getText().toString();
                 if(awesomeValidation.validate()) {

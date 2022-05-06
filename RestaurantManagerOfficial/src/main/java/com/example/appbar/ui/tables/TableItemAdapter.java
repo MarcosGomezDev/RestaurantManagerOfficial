@@ -1,4 +1,4 @@
-package com.example.appbar.ui.items;
+package com.example.appbar.ui.tables;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,28 +14,28 @@ import com.example.appbar.data.ItemData;
 
 import java.util.ArrayList;
 
-public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder>
+public class TableItemAdapter extends RecyclerView.Adapter<TableItemAdapter.MyHolder>
         implements View.OnClickListener {
 
     private final Context context;
     private final ArrayList<ItemData> list;
     private View.OnClickListener listener;
 
-    public ItemAdapter(Context context, ArrayList<ItemData> list) {
+    public TableItemAdapter(Context context, ArrayList<ItemData> list) {
         this.context = context;
         this.list = list;
     }
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.item_view,parent,false);
+    public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(context).inflate(R.layout.table_view_items,parent,false);
         v.setOnClickListener(this);
-        return  new MyViewHolder(v);
+        return  new MyHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyHolder holder, int position) {
         ItemData item = list.get(position);
         holder.descriptionTextView.setText(item.getDescription());
         holder.priceTextView.setText(String.valueOf(item.getPrice()));
@@ -55,9 +55,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder>
         }
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyHolder extends RecyclerView.ViewHolder {
         TextView descriptionTextView, priceTextView;
-        public MyViewHolder(@NonNull View itemView) {
+        public MyHolder(@NonNull View itemView) {
             super(itemView);
             descriptionTextView = itemView.findViewById(R.id.descriptionTextView);
             priceTextView = itemView.findViewById(R.id.priceTextView);

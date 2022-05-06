@@ -1,4 +1,4 @@
-package com.example.appbar.ui.items;
+package com.example.appbar.ui.tables;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -17,9 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.appbar.R;
 import com.example.appbar.data.DataBase;
 import com.example.appbar.data.ItemData;
-import com.example.appbar.databinding.FragmentItemsBinding;
-import com.example.appbar.ui.table_box.TableBoxFragment;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.appbar.databinding.FragmentTableItemsBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,23 +26,22 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 @SuppressWarnings("FieldCanBeLocal")
-public class ItemsFragment extends Fragment {
+public class TableItemsFragment  extends Fragment {
 
-    private FragmentItemsBinding binding;
+    private FragmentTableItemsBinding binding;
     private DataBase dataBase;
     private DatabaseReference myRef;
     public static String currentDescriptionItemString;
     public static String currentPriceItemString;
-    private ItemAdapter itemAdapter;
+    private TableItemAdapter tableItemAdapter;
     private RecyclerView recyclerView;
     private ArrayList<ItemData> list;
     private String userUID;
     private Context context;
-    private FloatingActionButton addItemButton;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentItemsBinding.inflate(inflater, container, false);
+        binding = FragmentTableItemsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         return root;
     }
@@ -52,41 +49,27 @@ public class ItemsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        addItemButton = view.findViewById(R.id.addItemButton);
-        recyclerView = view.findViewById(R.id.itemListRecyclerView);
+        recyclerView = view.findViewById(R.id.tableItemListRecyclerView);
         dataBase = new DataBase();
         userUID = dataBase.getCurrentUser().getUid();
         myRef = dataBase.getInstance().getReference(userUID).child(dataBase.PARENT_ITEMS());
         context = this.getActivity();
         list = new ArrayList<>();
+        tableItemAdapter = new TableItemAdapter(context, list);
+        recyclerView.setAdapter(tableItemAdapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        itemAdapter = new ItemAdapter(context, list);
-        recyclerView.setAdapter(itemAdapter);
 
-
-        itemAdapter.setOnClickListener(new View.OnClickListener() {
+        tableItemAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 currentDescriptionItemString = list.get(
                         recyclerView.getChildAdapterPosition(v)).getDescription();
                 currentPriceItemString = String.valueOf(list.get(
                         recyclerView.getChildAdapterPosition(v)).getPrice());
-                if (TableBoxFragment.comeFromTableBox) {
-                    Navigation.findNavController(v).navigate(R.id.nav_table_box);
-                } else {
-                    Navigation.findNavController(v).navigate(R.id.nav_item_add_update);
-                }
+                Navigation.findNavController(v).navigate(R.id.nav_table_box);
             }
         });
-
-        addItemButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.nav_item_new);
-            }
-        });
-
 
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
@@ -96,7 +79,7 @@ public class ItemsFragment extends Fragment {
                     ItemData itemData = dataSnapshot.getValue(ItemData.class);
                     list.add(itemData);
                 }
-                itemAdapter.notifyDataSetChanged();
+                tableItemAdapter.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}

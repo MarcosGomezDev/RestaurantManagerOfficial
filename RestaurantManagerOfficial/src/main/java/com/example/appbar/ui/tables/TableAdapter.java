@@ -21,7 +21,6 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.MyHolder>
     private final ArrayList<TablesData> list;
     private View.OnClickListener listener;
 
-
     public TableAdapter(Context context, ArrayList<TablesData> list) {
         this.context = context;
         this.list = list;
