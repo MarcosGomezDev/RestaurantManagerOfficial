@@ -43,6 +43,9 @@ public class StaffSignInFragment extends Fragment implements View.OnClickListene
     private Button horaini_button,horafin_button,fecha_button,comporbar_button,fichar_button,terminar_button;
     private TextView horaini_textView,horafin_textView,fecha_textView;
     private EditText dni_editText;
+    private String dia= "dd";
+    private String mes ="MM";
+    private String anno = "yyyy";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -77,6 +80,12 @@ public class StaffSignInFragment extends Fragment implements View.OnClickListene
         fichar_button.setEnabled(false);
         terminar_button.setEnabled(false);
         fecha_button.setEnabled(false);
+
+        StaffData data = new StaffData();
+        dia = data.fechadia();
+        mes = data.fechames();
+        anno = data.fechaanno();
+
     }
     @Override
     public void onDestroyView() {
@@ -131,7 +140,7 @@ public class StaffSignInFragment extends Fragment implements View.OnClickListene
 
     public void Search(){
         userUID = dataBase.getCurrentUser().getUid();
-        dataBase.getDatabaseReference().child(userUID).child("staff").child(dni_editText.getText().toString()).addValueEventListener(new ValueEventListener() {
+        dataBase.getDatabaseReference().child(userUID).child("staff").child((dni_editText.getText().toString()+" "+dia+mes+anno)).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
@@ -169,6 +178,7 @@ public class StaffSignInFragment extends Fragment implements View.OnClickListene
     }
     public void Update(){
         userUID = dataBase.getCurrentUser().getUid();
-        dataBase.getDatabaseReference().child(userUID).child("staff").child(dni_editText.getText().toString()).child("horafin").setValue(horafin_textView.getText());
+        dataBase.getDatabaseReference().child(userUID).child("staff").child((dni_editText.getText().toString()+" "+dia+mes+anno)).child("horafin").setValue(horafin_textView.getText());
     }
+
 }

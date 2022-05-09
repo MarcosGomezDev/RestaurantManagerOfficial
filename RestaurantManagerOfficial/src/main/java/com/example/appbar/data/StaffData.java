@@ -1,11 +1,19 @@
 package com.example.appbar.data;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class StaffData {
     private DataBase dataBase = new DataBase();
     private String fecha;
     private String horaini;
     private String horafin;
     private String dni;
+    private String dia= "dd";
+    private String mes ="MM";
+    private String anno = "yyyy";
+
+
 
     public StaffData() {
     }
@@ -53,8 +61,19 @@ public class StaffData {
         String userUID = dataBase.getCurrentUser().getUid();
         dataBase.getDatabaseReference().child(userUID)
                 .child(dataBase.PARENT_STAFF())
-                .child(dni)
+                .child(dni+" "+fechadia()+fechames()+fechaanno())
                 .setValue(add);
     }
-
+    public String fechadia(){
+        String dia1 = new SimpleDateFormat(dia).format(new Date());
+        return dia1;
+    }
+    public String fechames(){
+        String mes1 = new SimpleDateFormat(mes).format(new Date());
+        return mes1;
+    }
+    public String fechaanno(){
+        String anno1 = new SimpleDateFormat(anno).format(new Date());
+        return anno1;
+    }
 }

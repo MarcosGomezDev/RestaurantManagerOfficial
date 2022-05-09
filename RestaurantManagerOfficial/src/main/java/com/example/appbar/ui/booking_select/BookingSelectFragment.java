@@ -42,6 +42,7 @@ public class BookingSelectFragment extends Fragment implements View.OnClickListe
         email_editText = view.findViewById(R.id.email_editText);
         telefono_editText = view.findViewById(R.id.telefono_editText);
         fecha_editText = view.findViewById(R.id.fecha_editText);
+        personas_editText = view.findViewById(R.id.personas_editText);
         alta_button = view.findViewById(R.id.alta_button);
         alta_button.setOnClickListener(this);
     }
@@ -55,7 +56,7 @@ public class BookingSelectFragment extends Fragment implements View.OnClickListe
     @Override
     public void onClick(View view) {
         BookingsData Datos = new BookingsData();
-        Datos.addBookings(nombre_editText.getText().toString().trim(), email_editText.getText().toString().trim(), telefono_editText.getText().toString().trim(), fecha_editText.getText().toString().trim());
+        Datos.addBookings(nombre_editText.getText().toString().trim(), email_editText.getText().toString().trim(), telefono_editText.getText().toString().trim(), fecha_editText.getText().toString().trim(),personas_editText.getText().toString().trim());
         nombre_editText.setText("");
         email_editText.setText("");
         telefono_editText.setText("");

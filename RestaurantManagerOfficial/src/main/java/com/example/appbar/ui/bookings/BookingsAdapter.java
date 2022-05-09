@@ -42,6 +42,7 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.MyView
         holder.telefonoTextView.setText((bookingsData.getTelefono()));
         holder.emailTextView.setText((bookingsData.getEmail()));
         holder.fechaTextView.setText((bookingsData.getFecha()));
+        holder.personastextView.setText((bookingsData.getPersonas()));
 
     }
 
@@ -61,14 +62,15 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.MyView
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView nombreTextView, telefonoTextView, emailTextView, fechaTextView;
+        TextView nombreTextView, telefonoTextView, emailTextView, fechaTextView,personastextView;
 
         public MyViewHolder(@NonNull View bookView) {
             super(bookView);
             nombreTextView = bookView.findViewById(R.id.nombreTextView);
             telefonoTextView = bookView.findViewById(R.id.telefonoTextView);
             emailTextView = bookView.findViewById(R.id.emailTextView);
-            fechaTextView  = bookView.findViewById(R.id.fechaTextView);
+            fechaTextView  = bookView.findViewById(R.id.TextView);
+            personastextView = bookView.findViewById(R.id.personastextView);
 
 
         }
