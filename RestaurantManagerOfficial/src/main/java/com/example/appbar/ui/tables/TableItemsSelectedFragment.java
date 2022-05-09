@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +19,7 @@ import com.example.appbar.R;
 import com.example.appbar.data.DataBase;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.databinding.FragmentTableItemsBinding;
+import com.example.appbar.ui.items.ItemAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,14 +28,15 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 @SuppressWarnings("FieldCanBeLocal")
-public class TableItemsFragment  extends Fragment {
+public class TableItemsSelectedFragment extends Fragment {
 
     private FragmentTableItemsBinding binding;
     private DataBase dataBase;
+    private ItemData item;
     private DatabaseReference myRef;
     public static String currentDescriptionItemString;
     public static String currentPriceItemString;
-    private TableItemAdapter tableItemAdapter;
+    private ItemAdapter tableItemAdapter;
     private RecyclerView recyclerView;
     private ArrayList<ItemData> list;
     private String userUID;
@@ -55,7 +58,7 @@ public class TableItemsFragment  extends Fragment {
         myRef = dataBase.getInstance().getReference(userUID).child(dataBase.PARENT_ITEMS());
         context = this.getActivity();
         list = new ArrayList<>();
-        tableItemAdapter = new TableItemAdapter(context, list);
+        tableItemAdapter = new ItemAdapter(context, list);
         recyclerView.setAdapter(tableItemAdapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -67,6 +70,20 @@ public class TableItemsFragment  extends Fragment {
                         recyclerView.getChildAdapterPosition(v)).getDescription();
                 currentPriceItemString = String.valueOf(list.get(
                         recyclerView.getChildAdapterPosition(v)).getPrice());
+                item = new ItemData(currentDescriptionItemString, currentPriceItemString);
+                String userUID = dataBase.getCurrentUser().getUid();
+                String currentTablkePk = TablesFragment.currentNumTableString;
+                String currentItemPK = currentDescriptionItemString
+                        .replace(" ", "_");
+                dataBase.getDatabaseReference()
+                        .child(userUID)
+                        .child(dataBase.PARENT_TABLES())
+                        .child(currentTablkePk)
+                        .child("items_basket")
+                        .child(currentItemPK)
+                        .setValue(item);
+                Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_LONG)
+                        .show();
                 Navigation.findNavController(v).navigate(R.id.nav_table_box);
             }
         });

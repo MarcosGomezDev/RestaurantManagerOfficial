@@ -1,5 +1,6 @@
 package com.example.appbar.ui.table_box;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,13 +11,16 @@ import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appbar.R;
 import com.example.appbar.databinding.FragmentTableBoxBinding;
 import com.example.appbar.ui.tables.TablesFragment;
 
+@SuppressWarnings("FieldCanBeLocal")
 public class TableBoxFragment extends Fragment {
 
     private FragmentTableBoxBinding binding;
@@ -24,6 +28,8 @@ public class TableBoxFragment extends Fragment {
     private ImageButton addItemTableButton, removeItemTableButton;
     private Button noButton;
     private Switch reservedSwitch;
+    private RecyclerView recyclerView;
+
     private final String currentTable = "MESA " + TablesFragment.currentNumTableString;
 
     @Nullable
@@ -42,6 +48,7 @@ public class TableBoxFragment extends Fragment {
         addItemTableButton = view.findViewById(R.id.addItemTableButton);
         removeItemTableButton = view.findViewById(R.id.removeItemTableButton);
         noButton = view.findViewById(R.id.noButton);
+        recyclerView = view.findViewById(R.id.itemsTablesRecycler);
         reservedSwitch = view.findViewById(R.id.reservedSwitch);
         noButton.setText(currentTable);
 
@@ -67,5 +74,13 @@ public class TableBoxFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         binding = null;
+    }
+
+    public Switch getReservedSwitch() {
+        return reservedSwitch;
+    }
+
+    public void setReservedSwitch(Switch reservedSwitch) {
+        this.reservedSwitch = reservedSwitch;
     }
 }
