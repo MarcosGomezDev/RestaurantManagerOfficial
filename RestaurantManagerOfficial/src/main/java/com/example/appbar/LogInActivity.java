@@ -117,7 +117,8 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                 passwordEditText.setText("marcos");
 
             default:
-                Toast.makeText(LogInActivity.this, "Algo salió mal.", Toast.LENGTH_LONG).show();
+//                Toast.makeText(LogInActivity.this, "Algo salió mal.",
+//                        Toast.LENGTH_LONG).show();
                 break;
         }
     }
@@ -129,13 +130,17 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(LogInActivity.this, "Usuario iniciado con éxito.",
+                                Toast.makeText(LogInActivity.this,
+                                        "Usuario iniciado con éxito.",
                                         Toast.LENGTH_LONG).show();
                                 goHome();
                             } else {
-                                String errorCode = ((FirebaseAuthException) Objects.requireNonNull(task.getException()))
-                                        .getErrorCode();
-                                getToastError(errorCode);
+//                                String errorCode = ((FirebaseAuthException)
+//                                        Objects.requireNonNull(task.getException())).getErrorCode();
+//                                getToastError(errorCode);
+                                Toast.makeText(LogInActivity.this,
+                                        "Error",
+                                        Toast.LENGTH_LONG).show();
                             }
                         }
                     });
@@ -152,13 +157,17 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(LogInActivity.this, "Usuario registrado con éxito.",
+                                Toast.makeText(LogInActivity.this,
+                                        "Usuario registrado con éxito.",
                                         Toast.LENGTH_LONG).show();
                                 setSignIn(email, password);
                             } else {
-                                String errorCode = ((FirebaseAuthException) Objects.requireNonNull(task.getException()))
-                                        .getErrorCode();
-                                getToastError(errorCode);
+//                                String errorCode = ((FirebaseAuthException)
+//                                        Objects.requireNonNull(task.getException())).getErrorCode();
+//                                getToastError(errorCode);
+                                Toast.makeText(LogInActivity.this,
+                                        "Error",
+                                        Toast.LENGTH_LONG).show();
                             }
                         }
             }));
