@@ -2,7 +2,9 @@ package com.example.appbar.ui.table_box;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +16,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,12 +30,14 @@ import com.example.appbar.data.ItemData;
 import com.example.appbar.databinding.FragmentTableBoxBinding;
 import com.example.appbar.ui.items.ItemAdapter;
 import com.example.appbar.ui.tables.TablesFragment;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class TableBoxFragment extends Fragment {
@@ -47,7 +55,8 @@ public class TableBoxFragment extends Fragment {
     private Button noButton;
     private Switch reservedSwitch;
 
-    private final String currentTable = "MESA " + TablesFragment.currentNumTableString;
+    private final String currentTableTitle = "MESA " + TablesFragment.currentNumTableString;
+    private String currentTable = TablesFragment.currentNumTableString;
 
     @Nullable
     @Override
@@ -67,7 +76,7 @@ public class TableBoxFragment extends Fragment {
         noButton = view.findViewById(R.id.noButton);
         recyclerView = view.findViewById(R.id.itemsTablesRecycler);
         reservedSwitch = view.findViewById(R.id.reservedSwitch);
-        noButton.setText(currentTable);
+        noButton.setText(currentTableTitle);
 
         dataBase = new DataBase();
         userUID = dataBase.getCurrentUser().getUid();
@@ -77,12 +86,15 @@ public class TableBoxFragment extends Fragment {
                 .child("items_basket");
         context = this.getActivity();
         list = new ArrayList<>();
+        tableBasketAdapter = new TableBasketAdapter(context, list);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        tableBasketAdapter = new TableBasketAdapter(context, list);
-        recyclerView.setAdapter(tableBasketAdapter);
+        recyclerView.addItemDecoration(
+                new DividerItemDecoration(
+                        recyclerView.getContext(), DividerItemDecoration.VERTICAL));
 
-        readBasket();
+
+        recyclerView.setAdapter(tableBasketAdapter);
 
         addItemTableButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,8 +113,7 @@ public class TableBoxFragment extends Fragment {
             }
         });
 
-
-
+        readBasket();
 
     }
 
@@ -120,6 +131,36 @@ public class TableBoxFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
         });
+    }
+
+    public void removeItemBasket() {
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView,
+                                  @NonNull RecyclerView.ViewHolder viewHolder,
+                                  @NonNull RecyclerView.ViewHolder target) { return false; }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                //ItemData deletedCourse = list.get(viewHolder.getAbsoluteAdapterPosition());
+                //int position = viewHolder.getAbsoluteAdapterPosition();
+                //list.remove(position);
+
+                String PK = list.get(viewHolder.getBindingAdapterPosition()).getDescription()
+                        .replace(" ", "_");
+
+                dataBase.getDatabaseReference()
+                        .child(userUID)
+                        .child(dataBase.PARENT_TABLES())
+                        .child(currentTable)
+                        .child("items_basket")
+                        .child(PK)
+                        .removeValue();
+
+                tableBasketAdapter.notifyItemRemoved(viewHolder.getBindingAdapterPosition());
+
+            }
+        }).attachToRecyclerView(recyclerView);
     }
 
     @Override

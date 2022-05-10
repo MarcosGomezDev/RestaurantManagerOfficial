@@ -109,7 +109,8 @@ public class ItemAddUpdateFragment extends Fragment {
                 dataBase.getDatabaseReference()
                         .child(userUID)
                         .child(dataBase.PARENT_ITEMS())
-                        .child(currentPk).removeValue();
+                        .child(currentPk)
+                        .removeValue();
                 Toast.makeText(getContext(), "Articulo eliminado", Toast.LENGTH_LONG)
                         .show();
                 Navigation.findNavController(v).navigate(R.id.nav_items);
