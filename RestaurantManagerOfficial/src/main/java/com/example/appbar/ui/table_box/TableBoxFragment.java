@@ -44,8 +44,7 @@ public class TableBoxFragment extends Fragment {
     private String userUID;
     private Context context;
     public static boolean comeFromTableBox;
-    private ImageButton addItemTableButton, removeItemTableButton;
-    private Button noButton;
+    private Button noButton, modifyButton, addItemTableButton;
 
     private final String currentTableTitle = "MESA " + TablesFragment.currentNumTableString;
     private String currentTable = TablesFragment.currentNumTableString;
@@ -64,8 +63,8 @@ public class TableBoxFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         comeFromTableBox = false;
         addItemTableButton = view.findViewById(R.id.addItemTableButton);
-        removeItemTableButton = view.findViewById(R.id.removeItemTableButton);
-        noButton = view.findViewById(R.id.removeItemBasketButton);
+        noButton = view.findViewById(R.id.noButton);
+        modifyButton = view.findViewById(R.id.modifyButton);
         recyclerView = view.findViewById(R.id.itemsTablesRecycler);
         noButton.setText(currentTableTitle);
 
@@ -106,10 +105,10 @@ public class TableBoxFragment extends Fragment {
             }
         });
 
-        removeItemTableButton.setOnClickListener(new View.OnClickListener() {
+        modifyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.nav_remove_items_basket);
+                Navigation.findNavController(v).navigate(R.id.nav_table_selected);
             }
         });
 

@@ -6,108 +6,47 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Añadir articulo"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/addItemTableButton"
-        app:layout_constraintStart_toStartOf="@+id/addItemTableButton"
-        app:layout_constraintTop_toBottomOf="@+id/addItemTableButton" />
-
-    <ImageButton
-        android:id="@+id/addItemTableButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="#4CAF50"
-        android:contentDescription="TODO"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/add_add_circle_white_24"
-        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck,DuplicateSpeakableTextCheck" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Eliminar produto/s"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/removeItemTableButton"
-        app:layout_constraintStart_toStartOf="@+id/removeItemTableButton"
-        app:layout_constraintTop_toBottomOf="@+id/removeItemTableButton" />
-
-    <ImageButton
-        android:id="@+id/removeItemTableButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="#F44336"
-        android:contentDescription="@string/todo"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toStartOf="@+id/reservedSwitch"
-        app:layout_constraintStart_toEndOf="@+id/addItemTableButton"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cust_remove_circle_outline_24"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Reservar"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/reservedSwitch"
-        app:layout_constraintStart_toStartOf="@+id/reservedSwitch"
-        app:layout_constraintTop_toTopOf="@+id/removeItemTableButton" />
-
-    <Switch
-        android:id="@+id/reservedSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toBottomOf="@+id/removeItemTableButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15"
-        tools:ignore="UseSwitchCompatOrMaterialXml" />
-
-    <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
         android:text="Articulos en la mesa:"
         android:textColor="#000000"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/noButton" />
 
     <Button
-        android:id="@+id/removeItemBasketButton"
-        android:layout_width="0dp"
+        android:id="@+id/noButton"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/AppColorPrincipal"
         android:clickable="false"
-        android:insetLeft="20dp"
-        android:insetRight="20dp"
         android:text="MESA"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textColorLink="#FFFFFF"
         android:textStyle="bold"
         app:cornerRadius="40dip"
-        app:layout_constraintBottom_toTopOf="@+id/textView14"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintTop_toTopOf="parent"
         tools:layout_conversion_absoluteHeight="53dp"
         tools:layout_conversion_absoluteWidth="352dp" />
+
+    <Button
+        android:id="@+id/modifyButton"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="Modif."
+        app:cornerRadius="40dip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <RelativeLayout
         android:id="@+id/itemsTablesRelative"
@@ -128,5 +67,44 @@
             app:layout_constraintStart_toStartOf="parent" />
 
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="8dp"
+        android:text="Total Cesta:"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView11"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="34,45 €"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView9" />
+
+    <Button
+        android:id="@+id/addItemTableButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="#4CAF50"
+        android:contentDescription="TODO"
+        android:minHeight="48dp"
+        android:text="Añadir Articulo"
+        app:cornerRadius="40dip"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/add_add_circle_white_24"
+        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck,DuplicateSpeakableTextCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
