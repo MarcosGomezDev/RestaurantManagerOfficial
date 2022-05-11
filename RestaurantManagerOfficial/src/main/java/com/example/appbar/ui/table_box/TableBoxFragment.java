@@ -46,7 +46,6 @@ public class TableBoxFragment extends Fragment {
     public static boolean comeFromTableBox;
     private ImageButton addItemTableButton, removeItemTableButton;
     private Button noButton;
-    private Switch reservedSwitch;
 
     private final String currentTableTitle = "MESA " + TablesFragment.currentNumTableString;
     private String currentTable = TablesFragment.currentNumTableString;
@@ -68,7 +67,6 @@ public class TableBoxFragment extends Fragment {
         removeItemTableButton = view.findViewById(R.id.removeItemTableButton);
         noButton = view.findViewById(R.id.removeItemBasketButton);
         recyclerView = view.findViewById(R.id.itemsTablesRecycler);
-        reservedSwitch = view.findViewById(R.id.reservedSwitch);
         noButton.setText(currentTableTitle);
 
         dataBase = new DataBase();
@@ -94,6 +92,8 @@ public class TableBoxFragment extends Fragment {
                         recyclerView.getChildAdapterPosition(v)).getDescription();
                 ItemsFragment.currentPriceItemString = String.valueOf(list.get(
                         recyclerView.getChildAdapterPosition(v)).getPrice());
+                ItemsFragment.currentUnitItemLong = list.get(
+                        recyclerView.getChildAdapterPosition(v)).getUnits();
                 Navigation.findNavController(v).navigate(R.id.nav_remove_items_basket);
             }
         });
@@ -133,47 +133,39 @@ public class TableBoxFragment extends Fragment {
         });
     }
 
-    public void removeItemBasket() {
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView,
-                                  @NonNull RecyclerView.ViewHolder viewHolder,
-                                  @NonNull RecyclerView.ViewHolder target) { return false; }
-
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                //ItemData deletedCourse = list.get(viewHolder.getAbsoluteAdapterPosition());
-                //int position = viewHolder.getAbsoluteAdapterPosition();
-                //list.remove(position);
-
-                String PK = list.get(viewHolder.getBindingAdapterPosition()).getDescription()
-                        .replace(" ", "_");
-
-                dataBase.getDatabaseReference()
-                        .child(userUID)
-                        .child(dataBase.PARENT_TABLES())
-                        .child(currentTable)
-                        .child("items_basket")
-                        .child(PK)
-                        .removeValue();
-
-                tableBasketAdapter.notifyItemRemoved(viewHolder.getBindingAdapterPosition());
-
-            }
-        }).attachToRecyclerView(recyclerView);
-    }
+//    public void removeItemBasket() {
+//        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+//            @Override
+//            public boolean onMove(@NonNull RecyclerView recyclerView,
+//                                  @NonNull RecyclerView.ViewHolder viewHolder,
+//                                  @NonNull RecyclerView.ViewHolder target) { return false; }
+//
+//            @Override
+//            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+//                //ItemData deletedCourse = list.get(viewHolder.getAbsoluteAdapterPosition());
+//                //int position = viewHolder.getAbsoluteAdapterPosition();
+//                //list.remove(position);
+//
+//                String PK = list.get(viewHolder.getBindingAdapterPosition()).getDescription()
+//                        .replace(" ", "_");
+//
+//                dataBase.getDatabaseReference()
+//                        .child(userUID)
+//                        .child(dataBase.PARENT_TABLES())
+//                        .child(currentTable)
+//                        .child("items_basket")
+//                        .child(PK)
+//                        .removeValue();
+//
+//                tableBasketAdapter.notifyItemRemoved(viewHolder.getBindingAdapterPosition());
+//
+//            }
+//        }).attachToRecyclerView(recyclerView);
+//    }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         binding = null;
-    }
-
-    public Switch getReservedSwitch() {
-        return reservedSwitch;
-    }
-
-    public void setReservedSwitch(Switch reservedSwitch) {
-        this.reservedSwitch = reservedSwitch;
     }
 }

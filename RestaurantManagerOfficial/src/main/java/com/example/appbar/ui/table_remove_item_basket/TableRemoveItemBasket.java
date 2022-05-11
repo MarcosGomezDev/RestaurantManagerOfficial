@@ -67,9 +67,10 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
         subtractItemBasketButton.setOnClickListener(this);
         addItemBasketButton.setOnClickListener(this);
 
+        dataBase = new DataBase();
         userUID = dataBase.getCurrentUser().getUid();
         currentTablePk = TablesFragment.currentNumTableString;
-        dataBase = new DataBase();
+
         myRef = dataBase.getInstance()
                 .getReference(userUID)
                 .child(dataBase.PARENT_TABLES())
@@ -99,26 +100,15 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
                         .show();
                 Navigation.findNavController(v).navigate(R.id.nav_table_box);
                 break;
+
+
             case R.id.addItemBasketButton:
 
-                final long[] units = new long[1];
-                myRef.addValueEventListener(new ValueEventListener() {
-                    @SuppressLint("NotifyDataSetChanged")
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                            ItemData itemData = dataSnapshot.getValue(ItemData.class);
-                            assert itemData != null;
-                            units[0] = itemData.getUnits();
-                        }
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {}
-                });
+                String s = String.valueOf(ItemsFragment.currentUnitItemLong);
 
 
 
-                Toast.makeText(getContext(), (int) units[0], Toast.LENGTH_LONG)
+                Toast.makeText(getContext(), s, Toast.LENGTH_LONG)
                         .show();
 
 //                if (Objects.equals(addDescription, currentDescriptionItemString)) {
@@ -155,9 +145,22 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
         }
     }
 
-    public void getUnits() {
-
-    }
+//    public void getUnits() {
+//        final long[] units = new long[1];
+//        myRef.addValueEventListener(new ValueEventListener() {
+//            @SuppressLint("NotifyDataSetChanged")
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+//                    ItemData itemData = dataSnapshot.getValue(ItemData.class);
+//                    assert itemData != null;
+//                    units[0] = itemData.getUnits();
+//                }
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {}
+//        });
+//    }
 
     @Override
     public void onDestroy() {

@@ -35,6 +35,7 @@ public class ItemsFragment extends Fragment {
     private DatabaseReference myRef;
     public static String currentDescriptionItemString;
     public static String currentPriceItemString;
+    public static long currentUnitItemLong = 9;
     private ItemAdapter itemAdapter;
     private RecyclerView recyclerView;
     private ArrayList<ItemData> list;
