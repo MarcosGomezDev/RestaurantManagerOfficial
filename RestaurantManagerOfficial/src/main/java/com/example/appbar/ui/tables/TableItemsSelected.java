@@ -70,7 +70,7 @@ public class TableItemsSelected extends Fragment {
                         recyclerView.getChildAdapterPosition(v)).getDescription();
                 currentPriceItemString = String.valueOf(list.get(
                         recyclerView.getChildAdapterPosition(v)).getPrice());
-                item = new ItemData(currentDescriptionItemString, currentPriceItemString);
+                item = new ItemData(currentDescriptionItemString, currentPriceItemString, 1);
                 String userUID = dataBase.getCurrentUser().getUid();
                 String currentTablePk = TablesFragment.currentNumTableString;
                 String currentItemPK = currentDescriptionItemString

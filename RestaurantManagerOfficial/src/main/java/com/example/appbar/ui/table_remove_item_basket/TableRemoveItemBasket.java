@@ -36,11 +36,13 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
     private DatabaseReference myRef;
     private ImageButton addItemBasketButton, subtractItemBasketButton;
     private Button removeItemBasketButton;
-    private TextView descriptionItemBasketTextView;
+    private TextView descriptionItemBasketTextView, unitsTextView;
     private String currentDescriptionItemString;
     private String userUID;
     private String currentTablePk;
     private String currentItemPk;
+    private long currentUnits;
+    private long newUnitSub;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -58,6 +60,11 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
         removeItemBasketButton = view.findViewById(R.id.removeItemBasketButton);
         descriptionItemBasketTextView = view.findViewById(R.id.descriptionItemBasketTextView);
         descriptionItemBasketTextView.setText(ItemsFragment.currentDescriptionItemString);
+        unitsTextView = view.findViewById(R.id.unitsTextView);
+
+        currentUnits = ItemsFragment.currentUnitItemLong;
+        unitsTextView.setText(String.valueOf(currentUnits));
+
 
         removeItemBasketButton.setOnClickListener(this);
         subtractItemBasketButton.setOnClickListener(this);
@@ -65,6 +72,7 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
 
         dataBase = new DataBase();
         userUID = dataBase.getCurrentUser().getUid();
+
         currentTablePk = TablesFragment.currentNumTableString;
         currentItemPk = currentDescriptionItemString
                 .replace(" ", "_");
@@ -85,17 +93,19 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
                 break;
             case R.id.addItemBasketButton:
                 addItemBasket();
+                unitsTextView.setText(String.valueOf(newUnitSub));
                 break;
             case R.id.subtractItemBasketButton:
                 subtractItemBasket();
+                unitsTextView.setText(String.valueOf(newUnitSub));
                 break;
         }
     }
 
     public void subtractItemBasket() {
         long oldUnitSub = ItemsFragment.currentUnitItemLong;
-        if (oldUnitSub > 0) {
-            long newUnitSub = oldUnitSub - 1;
+        if (oldUnitSub > 1) {
+            newUnitSub = oldUnitSub - 1;
             dataBase.getDatabaseReference()
                     .child(userUID)
                     .child(dataBase.PARENT_TABLES())
@@ -104,9 +114,10 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
                     .child(currentItemPk)
                     .child("units")
                     .setValue(newUnitSub);
-            Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_LONG)
+            Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_SHORT)
                     .show();
             ItemsFragment.currentUnitItemLong = newUnitSub;
+            unitsTextView.setText(String.valueOf(newUnitSub));
         } else {
             removeItemBasket();
         }
@@ -114,7 +125,7 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
 
     public void addItemBasket() {
         long oldUnitAdd = ItemsFragment.currentUnitItemLong;
-        long newUnitAdd = oldUnitAdd + 1;
+        newUnitSub = oldUnitAdd + 1;
         dataBase.getDatabaseReference()
                 .child(userUID)
                 .child(dataBase.PARENT_TABLES())
@@ -122,10 +133,11 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
                 .child("items_basket")
                 .child(currentItemPk)
                 .child("units")
-                .setValue(newUnitAdd);
-        Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_LONG)
+                .setValue(newUnitSub);
+        Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_SHORT)
                 .show();
-        ItemsFragment.currentUnitItemLong = newUnitAdd;
+        ItemsFragment.currentUnitItemLong = newUnitSub;
+        unitsTextView.setText(String.valueOf(newUnitSub));
     }
 
     public void removeItemBasket() {
@@ -136,7 +148,7 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
                 .child("items_basket")
                 .child(currentItemPk)
                 .removeValue();
-        Toast.makeText(getContext(), "Articulo eliminado", Toast.LENGTH_LONG)
+        Toast.makeText(getContext(), "Articulo eliminado", Toast.LENGTH_SHORT)
                 .show();
     }
 
