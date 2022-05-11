@@ -38,12 +38,9 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
     private Button removeItemBasketButton;
     private TextView descriptionItemBasketTextView;
     private String currentDescriptionItemString;
-    private String currentPriceItemString;
     private String userUID;
     private String currentTablePk;
     private String currentItemPk;
-    private String addDescription = "";
-    private  int count;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -56,7 +53,6 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         currentDescriptionItemString = ItemsFragment.currentDescriptionItemString;
-        currentPriceItemString = ItemsFragment.currentPriceItemString;
         addItemBasketButton = view.findViewById(R.id.addItemBasketButton);
         subtractItemBasketButton = view.findViewById(R.id.subtractItemBasketButton);
         removeItemBasketButton = view.findViewById(R.id.removeItemBasketButton);
@@ -70,16 +66,13 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
         dataBase = new DataBase();
         userUID = dataBase.getCurrentUser().getUid();
         currentTablePk = TablesFragment.currentNumTableString;
-
+        currentItemPk = currentDescriptionItemString
+                .replace(" ", "_");
         myRef = dataBase.getInstance()
                 .getReference(userUID)
                 .child(dataBase.PARENT_TABLES())
                 .child(currentTablePk)
                 .child("items_basket");
-
-
-
-
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -87,8 +80,6 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.removeItemBasketButton:
-                currentItemPk = currentDescriptionItemString
-                        .replace(" ", "_");
                 dataBase.getDatabaseReference()
                         .child(userUID)
                         .child(dataBase.PARENT_TABLES())
@@ -100,67 +91,52 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
                         .show();
                 Navigation.findNavController(v).navigate(R.id.nav_table_box);
                 break;
-
-
             case R.id.addItemBasketButton:
+                long oldUnitAdd = ItemsFragment.currentUnitItemLong;
+                long newUnitAdd = oldUnitAdd + 1;
+                dataBase.getDatabaseReference()
+                        .child(userUID)
+                        .child(dataBase.PARENT_TABLES())
+                        .child(currentTablePk)
+                        .child("items_basket")
+                        .child(currentItemPk)
+                        .child("units")
+                        .setValue(newUnitAdd);
 
-                String s = String.valueOf(ItemsFragment.currentUnitItemLong);
-
-
-
-                Toast.makeText(getContext(), s, Toast.LENGTH_LONG)
+                Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_LONG)
                         .show();
-
-//                if (Objects.equals(addDescription, currentDescriptionItemString)) {
-//                    count++;
-//                    addDescription = currentDescriptionItemString + " " + String.valueOf(count);
-//                }
-//
-//                ItemData item = new ItemData(addDescription, currentPriceItemString);
-//
-//
-//                addDescription = addDescription.replace(" ", "_");
-//
-//
-//                dataBase.getDatabaseReference()
-//                        .child(userUID)
-//                        .child(dataBase.PARENT_TABLES())
-//                        .child(currentTablePk)
-//                        .child("items_basket")
-//                        .child(currentItemPk)
-//                        .setValue(item);
-//                Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_LONG)
-//                        .show();
-//                Navigation.findNavController(v).navigate(R.id.nav_table_box);
-
+                ItemsFragment.currentUnitItemLong = newUnitAdd;
                 break;
-
-
-
             case R.id.subtractItemBasketButton:
-
-
+                long oldUnitSub = ItemsFragment.currentUnitItemLong;
+                if (oldUnitSub > 0) {
+                    long newUnitSub = oldUnitSub - 1;
+                    dataBase.getDatabaseReference()
+                            .child(userUID)
+                            .child(dataBase.PARENT_TABLES())
+                            .child(currentTablePk)
+                            .child("items_basket")
+                            .child(currentItemPk)
+                            .child("units")
+                            .setValue(newUnitSub);
+                    Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_LONG)
+                            .show();
+                    ItemsFragment.currentUnitItemLong = newUnitSub;
+                } else {
+                    dataBase.getDatabaseReference()
+                            .child(userUID)
+                            .child(dataBase.PARENT_TABLES())
+                            .child(currentTablePk)
+                            .child("items_basket")
+                            .child(currentItemPk)
+                            .removeValue();
+                    Toast.makeText(getContext(), "Articulo eliminado", Toast.LENGTH_LONG)
+                            .show();
+                    Navigation.findNavController(v).navigate(R.id.nav_table_box);
+                }
                 break;
-
         }
     }
-
-//    public void getUnits() {
-//        final long[] units = new long[1];
-//        myRef.addValueEventListener(new ValueEventListener() {
-//            @SuppressLint("NotifyDataSetChanged")
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-//                    ItemData itemData = dataSnapshot.getValue(ItemData.class);
-//                    assert itemData != null;
-//                    units[0] = itemData.getUnits();
-//                }
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {}
-//        });
-//    }
 
     @Override
     public void onDestroy() {
