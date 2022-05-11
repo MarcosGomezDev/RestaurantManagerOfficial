@@ -25,11 +25,16 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.MyView
         this.list = list;
     }
 
+    public BookingsAdapter() {
+
+    }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.booking_view,parent,false);
         v.setOnClickListener(this);
+
         return  new MyViewHolder(v);
     }
 
@@ -71,6 +76,7 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.MyView
             emailTextView = bookView.findViewById(R.id.emailTextView);
             fechaTextView  = bookView.findViewById(R.id.TextView);
             personastextView = bookView.findViewById(R.id.personastextView);
+
 
 
         }

@@ -39,66 +39,179 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/calendarioimageButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                app:srcCompat="@drawable/calendario__2_" />
-
             <LinearLayout
-                android:layout_width="212dp"
-                android:layout_height="11dp"
+                android:layout_width="349dp"
+                android:layout_height="59dp"
                 android:layout_weight="0.2"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/diatextView"
-                    android:layout_width="45dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Dia"
-                    android:textAlignment="center" />
-
                 <ImageButton
-                    android:id="@+id/diaimageButton"
+                    android:id="@+id/calendarioimageButton"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:backgroundTint="@color/white"
-                    app:srcCompat="@drawable/add" />
+                    app:srcCompat="@drawable/calendario__2_" />
 
-                <TextView
-                    android:id="@+id/mestextView"
-                    android:layout_width="37dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="mes"
-                    android:textAlignment="center" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="46dp"
+                    android:layout_height="match_parent">
 
-                <ImageButton
-                    android:id="@+id/mesimageButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/white"
-                    app:srcCompat="@drawable/add" />
+                    <TextView
+                        android:id="@+id/diatextView"
+                        android:layout_width="45dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="35dp"
+                        android:layout_weight="1"
+                        android:text="Dia"
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/annotextView"
-                    android:layout_width="42dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="año"
-                    android:textAlignment="center" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <ImageButton
-                    android:id="@+id/annoimageButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/white"
-                    app:srcCompat="@drawable/add" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/ldiaimageButton"
+                        android:layout_width="29dp"
+                        android:layout_height="27dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="29dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/white"
+                        app:layout_constraintBottom_toTopOf="@+id/pdiaimageButton"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/less" />
+
+                    <ImageButton
+                        android:id="@+id/pdiaimageButton"
+                        android:layout_width="29dp"
+                        android:layout_height="27dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_marginBottom="29dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ldiaimageButton"
+                        app:srcCompat="@drawable/plus__3_" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="46dp"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/mestextView"
+                        android:layout_width="47dp"
+                        android:layout_height="70dp"
+                        android:layout_marginTop="35dp"
+                        android:layout_weight="1"
+                        android:text="mes"
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="38dp"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/pmesimageButton"
+                        android:layout_width="29dp"
+                        android:layout_height="27dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_marginBottom="29dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/lmesimageButton"
+                        app:srcCompat="@drawable/plus__3_" />
+
+                    <ImageButton
+                        android:id="@+id/lmesimageButton"
+                        android:layout_width="29dp"
+                        android:layout_height="27dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="29dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/white"
+                        app:layout_constraintBottom_toTopOf="@+id/pmesimageButton"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/less" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="51dp"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/annotextView"
+                        android:layout_width="51dp"
+                        android:layout_height="72dp"
+                        android:layout_marginTop="35dp"
+                        android:layout_weight="1"
+                        android:text="año"
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/pannoimageButton"
+                        android:layout_width="29dp"
+                        android:layout_height="27dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="29dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/lannoimageButton"
+                        app:srcCompat="@drawable/plus__3_" />
+
+                    <ImageButton
+                        android:id="@+id/lannoimageButton"
+                        android:layout_width="29dp"
+                        android:layout_height="27dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="29dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/white"
+                        app:layout_constraintBottom_toTopOf="@+id/pannoimageButton"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/less" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
 

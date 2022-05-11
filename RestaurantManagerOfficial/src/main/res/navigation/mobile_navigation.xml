@@ -110,6 +110,9 @@
         <action
             android:id="@+id/action_nav_booking_selected"
             app:destination="@id/nav_booking_selected" />
+        <action
+            android:id="@+id/action_nav_booking_delete"
+            app:destination="@id/nav_booking_delete" />
     </fragment>
 
     <fragment
@@ -117,6 +120,11 @@
         android:name="com.example.appbar.ui.booking_select.BookingSelectFragment"
         android:label="Reservas"
         tools:layout="@layout/fragment_booking_select" />
+    <fragment
+        android:id="@+id/nav_booking_delete"
+        android:name="com.example.appbar.ui.booking_select.BookingSelectFragment"
+        android:label="Reservas"
+        tools:layout="@layout/fragment_booking_delete" />
 
     <fragment
         android:id="@+id/nav_cash_fragment"
@@ -127,4 +135,5 @@
             android:id="@+id/action_nav_cash_fragment_to_nav_tables"
             app:destination="@id/nav_tables" />
     </fragment>
+
 </navigation>
