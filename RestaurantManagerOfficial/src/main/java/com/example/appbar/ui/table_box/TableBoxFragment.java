@@ -2,9 +2,7 @@ package com.example.appbar.ui.table_box;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +12,7 @@ import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -28,16 +23,14 @@ import com.example.appbar.R;
 import com.example.appbar.data.DataBase;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.databinding.FragmentTableBoxBinding;
-import com.example.appbar.ui.items.ItemAdapter;
+import com.example.appbar.ui.items.ItemsFragment;
 import com.example.appbar.ui.tables.TablesFragment;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class TableBoxFragment extends Fragment {
@@ -73,7 +66,7 @@ public class TableBoxFragment extends Fragment {
         comeFromTableBox = false;
         addItemTableButton = view.findViewById(R.id.addItemTableButton);
         removeItemTableButton = view.findViewById(R.id.removeItemTableButton);
-        noButton = view.findViewById(R.id.noButton);
+        noButton = view.findViewById(R.id.removeItemBasketButton);
         recyclerView = view.findViewById(R.id.itemsTablesRecycler);
         reservedSwitch = view.findViewById(R.id.reservedSwitch);
         noButton.setText(currentTableTitle);
@@ -92,9 +85,18 @@ public class TableBoxFragment extends Fragment {
         recyclerView.addItemDecoration(
                 new DividerItemDecoration(
                         recyclerView.getContext(), DividerItemDecoration.VERTICAL));
-
-
         recyclerView.setAdapter(tableBasketAdapter);
+
+        tableBasketAdapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ItemsFragment.currentDescriptionItemString = list.get(
+                        recyclerView.getChildAdapterPosition(v)).getDescription();
+                ItemsFragment.currentPriceItemString = String.valueOf(list.get(
+                        recyclerView.getChildAdapterPosition(v)).getPrice());
+                Navigation.findNavController(v).navigate(R.id.nav_remove_items_basket);
+            }
+        });
 
         addItemTableButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,9 +109,7 @@ public class TableBoxFragment extends Fragment {
         removeItemTableButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (reservedSwitch.isChecked()) {
-
-                }
+                Navigation.findNavController(v).navigate(R.id.nav_remove_items_basket);
             }
         });
 

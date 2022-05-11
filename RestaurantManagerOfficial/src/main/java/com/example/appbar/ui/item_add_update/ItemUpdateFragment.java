@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 @SuppressWarnings("FieldCanBeLocal")
-public class ItemAddUpdateFragment extends Fragment {
+public class ItemUpdateFragment extends Fragment {
 
     private FragmentItemAddUpdateBinding binding;
     private DataBase dataBase = new DataBase();

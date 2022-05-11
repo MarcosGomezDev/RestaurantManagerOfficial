@@ -41,11 +41,21 @@
 
     <fragment
         android:id="@+id/nav_table_items"
-        android:name="com.example.appbar.ui.tables.TableItemsSelectedFragment"
+        android:name="com.example.appbar.ui.tables.TableItemsSelected"
         android:label="Añadir articulo a mesa"
         tools:layout="@layout/fragment_items">
         <action
             android:id="@+id/action_nav_tables_to_nav_table_selected"
+            app:destination="@id/nav_table_selected" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_remove_items_basket"
+        android:name="com.example.appbar.ui.table_remove_item_basket.TableRemoveItemBasket"
+        android:label="Modificación de cesta"
+        tools:layout="@layout/fragment_remove_item_basket">
+        <action
+            android:id="@+id/action_nav_remove_basket_to_nav_table_selected"
             app:destination="@id/nav_table_selected" />
     </fragment>
 
@@ -76,7 +86,7 @@
 
     <fragment
         android:id="@+id/nav_item_add_update"
-        android:name="com.example.appbar.ui.item_add_update.ItemAddUpdateFragment"
+        android:name="com.example.appbar.ui.item_add_update.ItemUpdateFragment"
         android:label="@string/update"
         tools:layout="@layout/fragment_item_add_update" />
 

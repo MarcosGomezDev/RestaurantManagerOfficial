@@ -21,7 +21,7 @@ public class TableBasketAdapter extends RecyclerView.Adapter<TableBasketAdapter.
 
     private final Context context;
     private final ArrayList<ItemData> list;
-    //private View.OnClickListener listener;
+    private View.OnClickListener listener;
 
     public TableBasketAdapter(Context context, ArrayList<ItemData> list) {
         this.context = context;
@@ -47,15 +47,15 @@ public class TableBasketAdapter extends RecyclerView.Adapter<TableBasketAdapter.
     @Override
     public int getItemCount() { return list.size(); }
 
-//    public void setOnClickListener(View.OnClickListener listener) {
-//        this.listener = listener;
-//    }
+    public void setOnClickListener(View.OnClickListener listener) {
+        this.listener = listener;
+    }
 
     @Override
     public void onClick(View v) {
-//        if(listener != null) {
-//            listener.onClick(v);
-//        }
+        if(listener != null) {
+            listener.onClick(v);
+        }
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

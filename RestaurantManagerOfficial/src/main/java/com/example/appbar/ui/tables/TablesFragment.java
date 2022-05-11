@@ -62,7 +62,7 @@ public class TablesFragment extends Fragment implements View.OnClickListener{
         context = this.getActivity();
         list = new ArrayList<>();
         recyclerView.setHasFixedSize(true);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
         tableAdapter = new TableAdapter(context, list);
         recyclerView.setAdapter(tableAdapter);

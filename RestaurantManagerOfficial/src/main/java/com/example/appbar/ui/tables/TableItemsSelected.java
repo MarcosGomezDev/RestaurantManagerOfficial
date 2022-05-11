@@ -28,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 @SuppressWarnings("FieldCanBeLocal")
-public class TableItemsSelectedFragment extends Fragment {
+public class TableItemsSelected extends Fragment {
 
     private FragmentTableItemsBinding binding;
     private DataBase dataBase;
