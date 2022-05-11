@@ -7,8 +7,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="145dp"
-        android:layout_height="75dp"
+        android:layout_width="201dp"
+        android:layout_height="108dp"
         android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,6 +32,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:background="#887F7F"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/addTextView"
             app:srcCompat="@drawable/add_add_circle_white_24" />
@@ -54,6 +56,8 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:background="#887F7F"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/substactTextView"
             app:srcCompat="@drawable/cust_remove_circle_outline_24" />

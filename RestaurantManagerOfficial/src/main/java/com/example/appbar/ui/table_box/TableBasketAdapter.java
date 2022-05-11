@@ -41,7 +41,6 @@ public class TableBasketAdapter extends RecyclerView.Adapter<TableBasketAdapter.
         ItemData item = list.get(position);
         holder.descriptionTextView.setText(item.getDescription());
         holder.priceTextView.setText(String.valueOf(item.getPrice()));
-        holder.selectedItemCheckBox.setChecked(false);
     }
 
     @Override
@@ -60,12 +59,10 @@ public class TableBasketAdapter extends RecyclerView.Adapter<TableBasketAdapter.
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView descriptionTextView, priceTextView;
-        CheckBox selectedItemCheckBox;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             descriptionTextView = itemView.findViewById(R.id.descriptionTextView);
             priceTextView = itemView.findViewById(R.id.priceTextView);
-            selectedItemCheckBox = itemView.findViewById(R.id.selectedItemCheckBox);
         }
     }
 }

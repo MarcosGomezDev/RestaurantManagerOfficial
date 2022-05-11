@@ -5,6 +5,7 @@ public class ItemData {
     private final DataBase dataBase = new DataBase();
     private String description;
     private String price;
+    private long units;
 
     public ItemData() {
     }
@@ -13,6 +14,16 @@ public class ItemData {
         this.description = description;
         this.price = price;
     }
+
+    public ItemData(String description, String price, long units) {
+        this.description = description;
+        this.price = price;
+        this.units = units;
+    }
+
+    public long getUnits() { return units; }
+
+    public void setUnits(long units) { this.units = units; }
 
     public String getDescription() {
         return description;
@@ -23,7 +34,7 @@ public class ItemData {
     }
 
     public void addItem(String description, String price) {
-        ItemData addItem = new ItemData(description, price);
+        ItemData addItem = new ItemData(description, price, 1);
         String userUID = dataBase.getCurrentUser().getUid();
         String PK = description.replace(" ", "_");
         dataBase.getDatabaseReference().child(userUID)

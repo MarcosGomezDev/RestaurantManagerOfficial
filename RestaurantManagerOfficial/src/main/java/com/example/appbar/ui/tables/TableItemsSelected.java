@@ -72,13 +72,13 @@ public class TableItemsSelected extends Fragment {
                         recyclerView.getChildAdapterPosition(v)).getPrice());
                 item = new ItemData(currentDescriptionItemString, currentPriceItemString);
                 String userUID = dataBase.getCurrentUser().getUid();
-                String currentTablkePk = TablesFragment.currentNumTableString;
+                String currentTablePk = TablesFragment.currentNumTableString;
                 String currentItemPK = currentDescriptionItemString
                         .replace(" ", "_");
                 dataBase.getDatabaseReference()
                         .child(userUID)
                         .child(dataBase.PARENT_TABLES())
-                        .child(currentTablkePk)
+                        .child(currentTablePk)
                         .child("items_basket")
                         .child(currentItemPK)
                         .setValue(item);
