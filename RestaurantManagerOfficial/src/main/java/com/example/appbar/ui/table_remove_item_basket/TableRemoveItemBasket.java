@@ -80,62 +80,64 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.removeItemBasketButton:
-                dataBase.getDatabaseReference()
-                        .child(userUID)
-                        .child(dataBase.PARENT_TABLES())
-                        .child(currentTablePk)
-                        .child("items_basket")
-                        .child(currentItemPk)
-                        .removeValue();
-                Toast.makeText(getContext(), "Articulo eliminado", Toast.LENGTH_LONG)
-                        .show();
+                removeItemBasket();
                 Navigation.findNavController(v).navigate(R.id.nav_table_box);
                 break;
             case R.id.addItemBasketButton:
-                long oldUnitAdd = ItemsFragment.currentUnitItemLong;
-                long newUnitAdd = oldUnitAdd + 1;
-                dataBase.getDatabaseReference()
-                        .child(userUID)
-                        .child(dataBase.PARENT_TABLES())
-                        .child(currentTablePk)
-                        .child("items_basket")
-                        .child(currentItemPk)
-                        .child("units")
-                        .setValue(newUnitAdd);
-
-                Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_LONG)
-                        .show();
-                ItemsFragment.currentUnitItemLong = newUnitAdd;
+                addItemBasket();
                 break;
             case R.id.subtractItemBasketButton:
-                long oldUnitSub = ItemsFragment.currentUnitItemLong;
-                if (oldUnitSub > 0) {
-                    long newUnitSub = oldUnitSub - 1;
-                    dataBase.getDatabaseReference()
-                            .child(userUID)
-                            .child(dataBase.PARENT_TABLES())
-                            .child(currentTablePk)
-                            .child("items_basket")
-                            .child(currentItemPk)
-                            .child("units")
-                            .setValue(newUnitSub);
-                    Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_LONG)
-                            .show();
-                    ItemsFragment.currentUnitItemLong = newUnitSub;
-                } else {
-                    dataBase.getDatabaseReference()
-                            .child(userUID)
-                            .child(dataBase.PARENT_TABLES())
-                            .child(currentTablePk)
-                            .child("items_basket")
-                            .child(currentItemPk)
-                            .removeValue();
-                    Toast.makeText(getContext(), "Articulo eliminado", Toast.LENGTH_LONG)
-                            .show();
-                    Navigation.findNavController(v).navigate(R.id.nav_table_box);
-                }
+                subtractItemBasket();
                 break;
         }
+    }
+
+    public void subtractItemBasket() {
+        long oldUnitSub = ItemsFragment.currentUnitItemLong;
+        if (oldUnitSub > 0) {
+            long newUnitSub = oldUnitSub - 1;
+            dataBase.getDatabaseReference()
+                    .child(userUID)
+                    .child(dataBase.PARENT_TABLES())
+                    .child(currentTablePk)
+                    .child("items_basket")
+                    .child(currentItemPk)
+                    .child("units")
+                    .setValue(newUnitSub);
+            Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_LONG)
+                    .show();
+            ItemsFragment.currentUnitItemLong = newUnitSub;
+        } else {
+            removeItemBasket();
+        }
+    }
+
+    public void addItemBasket() {
+        long oldUnitAdd = ItemsFragment.currentUnitItemLong;
+        long newUnitAdd = oldUnitAdd + 1;
+        dataBase.getDatabaseReference()
+                .child(userUID)
+                .child(dataBase.PARENT_TABLES())
+                .child(currentTablePk)
+                .child("items_basket")
+                .child(currentItemPk)
+                .child("units")
+                .setValue(newUnitAdd);
+        Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_LONG)
+                .show();
+        ItemsFragment.currentUnitItemLong = newUnitAdd;
+    }
+
+    public void removeItemBasket() {
+        dataBase.getDatabaseReference()
+                .child(userUID)
+                .child(dataBase.PARENT_TABLES())
+                .child(currentTablePk)
+                .child("items_basket")
+                .child(currentItemPk)
+                .removeValue();
+        Toast.makeText(getContext(), "Articulo eliminado", Toast.LENGTH_LONG)
+                .show();
     }
 
     @Override
