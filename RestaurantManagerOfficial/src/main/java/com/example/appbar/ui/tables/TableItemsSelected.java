@@ -82,6 +82,7 @@ public class TableItemsSelected extends Fragment {
                         .child("items_basket")
                         .child(currentItemPK)
                         .setValue(item);
+
                 Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_LONG)
                         .show();
                 Navigation.findNavController(v).navigate(R.id.nav_table_box);

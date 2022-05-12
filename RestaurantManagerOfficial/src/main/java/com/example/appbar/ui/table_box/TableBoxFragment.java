@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,6 +47,7 @@ public class TableBoxFragment extends Fragment {
     private Context context;
     public static boolean comeFromTableBox;
     private Button noButton, modifyButton, addItemTableButton;
+    private TextView totalAmountTextView;
 
     private final String currentTableTitle = "MESA " + TablesFragment.currentNumTableString;
     private String currentTable = TablesFragment.currentNumTableString;
@@ -66,6 +69,7 @@ public class TableBoxFragment extends Fragment {
         noButton = view.findViewById(R.id.noButton);
         modifyButton = view.findViewById(R.id.modifyButton);
         recyclerView = view.findViewById(R.id.itemsTablesRecycler);
+        totalAmountTextView = view.findViewById(R.id.totalAmountTextView);
         noButton.setText(currentTableTitle);
 
         dataBase = new DataBase();
@@ -111,9 +115,7 @@ public class TableBoxFragment extends Fragment {
                 Navigation.findNavController(v).navigate(R.id.nav_table_selected);
             }
         });
-
         readBasket();
-
     }
 
     public void readBasket() {
