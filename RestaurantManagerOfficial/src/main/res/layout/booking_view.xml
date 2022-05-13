@@ -17,13 +17,13 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="103dp"
-            android:layout_height="103dp"
-            android:layout_weight="1"
+            android:layout_width="96dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
             app:srcCompat="@drawable/piezas_de_cubiertos" />
 
         <LinearLayout
-            android:layout_width="241dp"
+            android:layout_width="165dp"
             android:layout_height="108dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="16dp"
@@ -151,23 +151,31 @@
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="36dp"
+            android:layout_width="85dp"
             android:layout_height="match_parent">
 
-            <ImageButton
-                android:id="@+id/deleteimageButton"
-                android:layout_width="33dp"
-                android:layout_height="53dp"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="1dp"
-                android:layout_marginBottom="27dp"
+            <Button
+                android:id="@+id/Deletebutton"
+                android:layout_width="60dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="17dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/white"
+                android:backgroundTintMode="src_in"
+                android:shadowColor="@color/black"
+                android:text="Button"
+                android:textAlignment="center"
+                app:icon="@drawable/delete"
+                app:iconPadding="0dp"
+                app:iconTint="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/delete" />
+                app:rippleColor="@color/black"
+                app:strokeColor="@color/black" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>

@@ -193,11 +193,6 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
 
         }
     }
-    public void Eliminar(){
-      annotextView.setText("hola");
-      BookingsAdapter b  = new BookingsAdapter();
 
 
-
-    }
 }

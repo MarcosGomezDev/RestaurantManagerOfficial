@@ -19,7 +19,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.appbar.R;
 import com.example.appbar.data.BookingsData;
 import com.example.appbar.databinding.FragmentBookingDeleteBinding;
-import com.example.appbar.databinding.FragmentBookingSelectBinding;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -32,4 +31,6 @@ public class BookingDeleteFragment {
         View root = binding.getRoot();
         return root;
     }
+
+
 }
