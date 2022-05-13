@@ -7,17 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -93,8 +89,8 @@ public class TableBoxFragment extends Fragment {
             public void onClick(View v) {
                 ItemsFragment.currentDescriptionItemString = list.get(
                         recyclerView.getChildAdapterPosition(v)).getDescription();
-                ItemsFragment.currentPriceItemString = String.valueOf(list.get(
-                        recyclerView.getChildAdapterPosition(v)).getPrice());
+                ItemsFragment.currentPriceItemDouble = list.get(
+                        recyclerView.getChildAdapterPosition(v)).getPrice();
                 ItemsFragment.currentUnitItemLong = list.get(
                         recyclerView.getChildAdapterPosition(v)).getUnits();
                 Navigation.findNavController(v).navigate(R.id.nav_remove_items_basket);

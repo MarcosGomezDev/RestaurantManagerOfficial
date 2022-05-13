@@ -9,18 +9,18 @@
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="50dp"
         android:text="Articulos en la mesa:"
         android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/noButton" />
+        app:layout_constraintTop_toBottomOf="@+id/totalAmountTextView" />
 
     <Button
         android:id="@+id/noButton"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/AppColorPrincipal"
@@ -39,7 +39,7 @@
     <Button
         android:id="@+id/modifyButton"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="@color/teal_200"
@@ -48,64 +48,52 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
-        android:id="@+id/itemsTablesRelative"
-        android:layout_width="410dp"
-        android:layout_height="395dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="111dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView9"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/itemsTablesRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14">
-
-        <!--creating a recycler view for
-            displaying our list of courses-->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/itemsTablesRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </RelativeLayout>
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="24dp"
         android:text="Total Cesta:"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/totalAmountTextView"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/noButton"
+        app:layout_constraintStart_toStartOf="@+id/noButton"
+        app:layout_constraintTop_toBottomOf="@+id/noButton" />
 
     <TextView
         android:id="@+id/totalAmountTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="8dp"
         android:text="34,45 €"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView9" />
+        app:layout_constraintEnd_toEndOf="@+id/textView9"
+        app:layout_constraintStart_toStartOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <Button
         android:id="@+id/addItemTableButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="152dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="#4CAF50"
         android:contentDescription="TODO"
         android:minHeight="48dp"
-        android:text="Añadir Articulo"
+        android:text="Añadir Artículo"
         app:cornerRadius="40dip"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/totalAmountTextView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView9"
         app:srcCompat="@drawable/add_add_circle_white_24"
         tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck,DuplicateSpeakableTextCheck" />
 

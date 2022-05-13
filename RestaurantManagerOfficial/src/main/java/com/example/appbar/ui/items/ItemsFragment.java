@@ -34,7 +34,7 @@ public class ItemsFragment extends Fragment {
     private DataBase dataBase;
     private DatabaseReference myRef;
     public static String currentDescriptionItemString;
-    public static String currentPriceItemString;
+    public static double currentPriceItemDouble;
     public static long currentUnitItemLong = 9;
     private ItemAdapter itemAdapter;
     private RecyclerView recyclerView;
@@ -71,7 +71,7 @@ public class ItemsFragment extends Fragment {
             public void onClick(View v) {
                 currentDescriptionItemString = list.get(
                         recyclerView.getChildAdapterPosition(v)).getDescription();
-                currentPriceItemString = String.valueOf(list.get(
+                currentPriceItemDouble = (list.get(
                         recyclerView.getChildAdapterPosition(v)).getPrice());
                 if (TableBoxFragment.comeFromTableBox) {
                     Navigation.findNavController(v).navigate(R.id.nav_table_box);

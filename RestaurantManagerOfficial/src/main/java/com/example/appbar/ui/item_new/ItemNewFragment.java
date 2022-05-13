@@ -45,12 +45,12 @@ public class ItemNewFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String description = descriptionEditText.getText().toString();
-                String price = priceEditText.getText().toString();
-                if (description.isEmpty() || price.isEmpty()) {
+                double price = Double.parseDouble(priceEditText.getText().toString());
+                if (description.isEmpty() || price < 0) {
                     descriptionEditText.setError("Campo obligatorio");
                     priceEditText.setError("Campo obligatorio");
                 } else {
-                    item = new ItemData(description, price);
+                    item = new ItemData(description, price, 1);
                     String userUID = dataBase.getCurrentUser().getUid();
                     String currentPk = description.replace(" ", "_");
                     dataBase.getDatabaseReference()

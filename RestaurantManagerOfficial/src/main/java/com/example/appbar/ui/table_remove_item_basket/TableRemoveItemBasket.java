@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.appbar.R;
 import com.example.appbar.data.DataBase;
@@ -89,7 +90,6 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
         switch (v.getId()) {
             case R.id.removeItemBasketButton:
                 removeItemBasket();
-                Navigation.findNavController(v).navigate(R.id.nav_table_box);
                 break;
             case R.id.addItemBasketButton:
                 addItemBasket();
@@ -150,6 +150,7 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
                 .removeValue();
         Toast.makeText(getContext(), "Articulo eliminado", Toast.LENGTH_SHORT)
                 .show();
+        NavHostFragment.findNavController(this).navigate(R.id.nav_table_box);
     }
 
     @Override

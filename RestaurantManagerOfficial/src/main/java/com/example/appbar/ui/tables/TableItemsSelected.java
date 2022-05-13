@@ -35,7 +35,7 @@ public class TableItemsSelected extends Fragment {
     private ItemData item;
     private DatabaseReference myRef;
     public static String currentDescriptionItemString;
-    public static String currentPriceItemString;
+    public static double currentPriceItemString;
     private ItemAdapter tableItemAdapter;
     private RecyclerView recyclerView;
     private ArrayList<ItemData> list;
@@ -68,8 +68,8 @@ public class TableItemsSelected extends Fragment {
             public void onClick(View v) {
                 currentDescriptionItemString = list.get(
                         recyclerView.getChildAdapterPosition(v)).getDescription();
-                currentPriceItemString = String.valueOf(list.get(
-                        recyclerView.getChildAdapterPosition(v)).getPrice());
+                currentPriceItemString = list.get(
+                        recyclerView.getChildAdapterPosition(v)).getPrice();
                 item = new ItemData(currentDescriptionItemString, currentPriceItemString, 1);
                 String userUID = dataBase.getCurrentUser().getUid();
                 String currentTablePk = TablesFragment.currentNumTableString;

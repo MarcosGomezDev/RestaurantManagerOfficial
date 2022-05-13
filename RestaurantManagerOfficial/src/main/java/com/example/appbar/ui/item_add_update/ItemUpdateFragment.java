@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -20,14 +19,6 @@ import com.example.appbar.data.DataBase;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.databinding.FragmentItemAddUpdateBinding;
 import com.example.appbar.ui.items.ItemsFragment;
-import com.example.appbar.ui.tables.TablesFragment;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
-import com.google.protobuf.DescriptorProtos;
-
-import java.util.ArrayList;
-import java.util.Objects;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class ItemUpdateFragment extends Fragment {
@@ -36,7 +27,7 @@ public class ItemUpdateFragment extends Fragment {
     private DataBase dataBase = new DataBase();
     private ItemData item = new ItemData();
     private String currentDescriptionItemString;
-    private String currentPriceItemString;
+    private double currentPriceItemDouble;
     private Button addUpdateOkButton, removeButton;
     private EditText updateDescriptionEditText, updatePriceEditText;
     private TextView getDescriptionTextView, getPriceTextView;
@@ -65,22 +56,22 @@ public class ItemUpdateFragment extends Fragment {
         getDescriptionTextView = view.findViewById(R.id.getDescriptionTextView);
         getPriceTextView = view.findViewById(R.id.getPriceTextView);
         currentDescriptionItemString = ItemsFragment.currentDescriptionItemString;
-        currentPriceItemString = ItemsFragment.currentPriceItemString;
+        currentPriceItemDouble = ItemsFragment.currentPriceItemDouble;
         addUpdateOkButton = view.findViewById(R.id.addUpdateOkButton);
         removeButton = view.findViewById(R.id.removeButton);
         getDescriptionTextView.setText(currentDescriptionItemString);
-        getPriceTextView.setText(currentPriceItemString);
+        getPriceTextView.setText(String.valueOf(currentPriceItemDouble));
 
         addUpdateOkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String description = updateDescriptionEditText.getText().toString();
-                String price = updatePriceEditText.getText().toString();
-                if (description.isEmpty() || price.isEmpty()) {
+                double price = Double.parseDouble(updatePriceEditText.getText().toString());
+                if (description.isEmpty() || price < 0) {
                     updateDescriptionEditText.setError("Campo obligatorio");
                     updatePriceEditText.setError("Campo obligatorio");
                 } else {
-                    item = new ItemData(description, price);
+                    item = new ItemData(description, price, 1);
                     String userUID = dataBase.getCurrentUser().getUid();
                     String currentPk = currentDescriptionItemString
                             .replace(" ", "_");
