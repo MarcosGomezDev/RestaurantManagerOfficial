@@ -21,6 +21,7 @@ import com.example.appbar.data.DataBase;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.databinding.FragmentRemoveItemBasketBinding;
 import com.example.appbar.ui.items.ItemsFragment;
+import com.example.appbar.ui.table_box.TableBoxFragment;
 import com.example.appbar.ui.tables.TablesFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,13 +38,14 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
     private DatabaseReference myRef;
     private ImageButton addItemBasketButton, subtractItemBasketButton;
     private Button removeItemBasketButton;
-    private TextView descriptionItemBasketTextView, unitsTextView;
+    private TextView descriptionItemBasketTextView, unitsTextView, totalAmountTextView;
     private String currentDescriptionItemString;
     private String userUID;
     private String currentTablePk;
     private String currentItemPk;
     private long currentUnits;
     private long newUnitSub;
+    private double newPriceAmount;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -61,10 +63,13 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
         removeItemBasketButton = view.findViewById(R.id.removeItemBasketButton);
         descriptionItemBasketTextView = view.findViewById(R.id.descriptionItemBasketTextView);
         descriptionItemBasketTextView.setText(ItemsFragment.currentDescriptionItemString);
+        totalAmountTextView = view.findViewById(R.id.totalAmountTextView);
         unitsTextView = view.findViewById(R.id.unitsTextView);
 
         currentUnits = ItemsFragment.currentUnitItemLong;
         unitsTextView.setText(String.valueOf(currentUnits));
+
+        newPriceAmount = ItemsFragment.currentPriceItemDouble;
 
 
         removeItemBasketButton.setOnClickListener(this);
@@ -114,10 +119,32 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
                     .child(currentItemPk)
                     .child("units")
                     .setValue(newUnitSub);
-            Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_SHORT)
+
+            double oldPriceAmount = ItemsFragment.currentPriceItemDouble;
+            newPriceAmount = newPriceAmount - oldPriceAmount;
+            dataBase.getDatabaseReference()
+                    .child(userUID)
+                    .child(dataBase.PARENT_TABLES())
+                    .child(currentTablePk)
+                    .child("items_basket")
+                    .child(currentItemPk)
+                    .child("price")
+                    .setValue(newPriceAmount);
+            TableBoxFragment.totalAmountDouble -= newPriceAmount;
+
+            dataBase.getDatabaseReference()
+                    .child(userUID)
+                    .child(dataBase.PARENT_TABLES())
+                    .child(currentTablePk)
+                    .child("items_basket")
+                    .child("basket_amount")
+                    .setValue(TableBoxFragment.totalAmountDouble);
+
+            Toast.makeText(getContext(), "Articulo eliminado", Toast.LENGTH_SHORT)
                     .show();
             ItemsFragment.currentUnitItemLong = newUnitSub;
             unitsTextView.setText(String.valueOf(newUnitSub));
+            totalAmountTextView.setText(String.valueOf(TableBoxFragment.totalAmountDouble));
         } else {
             removeItemBasket();
         }
@@ -134,10 +161,31 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
                 .child(currentItemPk)
                 .child("units")
                 .setValue(newUnitSub);
-        Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_SHORT)
-                .show();
         ItemsFragment.currentUnitItemLong = newUnitSub;
         unitsTextView.setText(String.valueOf(newUnitSub));
+
+        double oldPriceAmount = ItemsFragment.currentPriceItemDouble;
+        newPriceAmount = newPriceAmount + oldPriceAmount;
+        dataBase.getDatabaseReference()
+                .child(userUID)
+                .child(dataBase.PARENT_TABLES())
+                .child(currentTablePk)
+                .child("items_basket")
+                .child(currentItemPk)
+                .child("price")
+                .setValue(newPriceAmount);
+        TableBoxFragment.totalAmountDouble += newPriceAmount;
+
+        dataBase.getDatabaseReference()
+                .child(userUID)
+                .child(dataBase.PARENT_TABLES())
+                .child(currentTablePk)
+                .child("items_basket")
+                .child("basket_amount")
+                .setValue(TableBoxFragment.totalAmountDouble);
+
+        Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_SHORT)
+                .show();
     }
 
     public void removeItemBasket() {

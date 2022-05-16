@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import com.example.appbar.data.DataBase;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.databinding.FragmentTableItemsBinding;
 import com.example.appbar.ui.items.ItemAdapter;
+import com.example.appbar.ui.table_box.TableBoxFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,12 +37,13 @@ public class TableItemsSelected extends Fragment {
     private ItemData item;
     private DatabaseReference myRef;
     public static String currentDescriptionItemString;
-    public static double currentPriceItemString;
+    public static double currentPriceItemDouble;
     private ItemAdapter tableItemAdapter;
     private RecyclerView recyclerView;
     private ArrayList<ItemData> list;
     private String userUID;
     private Context context;
+    private TextView totalAmountTextView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -53,6 +56,7 @@ public class TableItemsSelected extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.tableItemListRecyclerView);
+        totalAmountTextView = view.findViewById(R.id.totalAmountTextView);
         dataBase = new DataBase();
         userUID = dataBase.getCurrentUser().getUid();
         myRef = dataBase.getInstance().getReference(userUID).child(dataBase.PARENT_ITEMS());
@@ -63,28 +67,42 @@ public class TableItemsSelected extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
+
+
         tableItemAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 currentDescriptionItemString = list.get(
                         recyclerView.getChildAdapterPosition(v)).getDescription();
-                currentPriceItemString = list.get(
+                currentPriceItemDouble = list.get(
                         recyclerView.getChildAdapterPosition(v)).getPrice();
-                item = new ItemData(currentDescriptionItemString, currentPriceItemString, 1);
+                item = new ItemData(currentDescriptionItemString, currentPriceItemDouble, 1);
                 String userUID = dataBase.getCurrentUser().getUid();
                 String currentTablePk = TablesFragment.currentNumTableString;
                 String currentItemPK = currentDescriptionItemString
                         .replace(" ", "_");
-                dataBase.getDatabaseReference()
-                        .child(userUID)
-                        .child(dataBase.PARENT_TABLES())
-                        .child(currentTablePk)
-                        .child("items_basket")
-                        .child(currentItemPK)
-                        .setValue(item);
 
-                Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_LONG)
-                        .show();
+                if(!currentItemPK.isEmpty()) {
+                    Toast.makeText(getContext(), "El articulo ya existe", Toast.LENGTH_LONG)
+                            .show();
+                } else {
+                    dataBase.getDatabaseReference()
+                            .child(userUID)
+                            .child(dataBase.PARENT_TABLES())
+                            .child(currentTablePk)
+                            .child("items_basket")
+                            .child(currentItemPK)
+                            .setValue(item);
+                    TableBoxFragment.totalAmountDouble += currentPriceItemDouble;
+                    dataBase.getDatabaseReference()
+                            .child(userUID)
+                            .child(dataBase.PARENT_TABLES())
+                            .child(currentTablePk)
+                            .child("items_basket")
+                            .child("basket_amount")
+                            .setValue(TableBoxFragment.totalAmountDouble);
+                    Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_LONG).show();
+                }
                 Navigation.findNavController(v).navigate(R.id.nav_table_box);
             }
         });
@@ -99,8 +117,10 @@ public class TableItemsSelected extends Fragment {
                 }
                 tableItemAdapter.notifyDataSetChanged();
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
         });
     }
 
