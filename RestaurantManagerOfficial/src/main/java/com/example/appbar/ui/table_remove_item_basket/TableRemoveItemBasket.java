@@ -13,29 +13,20 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.appbar.R;
 import com.example.appbar.data.DataBase;
-import com.example.appbar.data.ItemData;
 import com.example.appbar.databinding.FragmentRemoveItemBasketBinding;
 import com.example.appbar.ui.items.ItemsFragment;
 import com.example.appbar.ui.table_box.TableBoxFragment;
 import com.example.appbar.ui.tables.TablesFragment;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.Objects;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class TableRemoveItemBasket extends Fragment implements View.OnClickListener {
 
     private FragmentRemoveItemBasketBinding binding;
     private DataBase dataBase;
-    private DatabaseReference myRef;
     private ImageButton addItemBasketButton, subtractItemBasketButton;
     private Button removeItemBasketButton;
     private TextView descriptionItemBasketTextView, unitsTextView, totalAmountTextView;
@@ -62,6 +53,9 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
         currentDescriptionItemString = ItemsFragment.currentDescriptionItemString;
         newPriceAmount = ItemsFragment.currentPriceItemDouble;
         currentUnits = ItemsFragment.currentUnitItemLong;
+        currentTablePk = TablesFragment.currentNumTableString;
+        currentItemPk = currentDescriptionItemString
+                .replace(" ", "_");
 
         addItemBasketButton = view.findViewById(R.id.addItemBasketButton);
         subtractItemBasketButton = view.findViewById(R.id.subtractItemBasketButton);
@@ -74,15 +68,6 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
         removeItemBasketButton.setOnClickListener(this);
         subtractItemBasketButton.setOnClickListener(this);
         addItemBasketButton.setOnClickListener(this);
-
-        currentTablePk = TablesFragment.currentNumTableString;
-        currentItemPk = currentDescriptionItemString
-                .replace(" ", "_");
-        myRef = dataBase.getInstance()
-                .getReference(userUID)
-                .child(dataBase.PARENT_TABLES())
-                .child(currentTablePk)
-                .child("items_basket");
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -185,7 +170,6 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
                 .child("items_basket")
                 .child("basket_amount")
                 .setValue(TableBoxFragment.totalAmountDouble);
-
         Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_SHORT)
                 .show();
     }
