@@ -1,5 +1,6 @@
 package com.example.appbar.ui.table_selected;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -35,7 +36,7 @@ public class TableSelectedFragment extends Fragment {
     private Context context;
     private String currentNumTableString;
     private String currentCapacityTableString;
-    private Button updateOkButton, removeButton;
+    private Button updateOkButton;
     private EditText updateNumTableEditText, updateCapacityEditText;
     private TextView getNumTableTextView, getCapacityTextView;
     private boolean reservedBool;
@@ -43,10 +44,10 @@ public class TableSelectedFragment extends Fragment {
     public View onCreateView (@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentTableSelectedBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        return root;
+        return binding.getRoot();
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -60,55 +61,39 @@ public class TableSelectedFragment extends Fragment {
         currentCapacityTableString = TablesFragment.currentCapacityTableString;
         reservedBool = TablesFragment.currentReservedTableBool;
         updateOkButton = view.findViewById(R.id.updateOkButton);
-        removeButton = view.findViewById(R.id.removeButton);
         updateNumTableEditText  = view.findViewById(R.id.updateNumTableEditText);
         updateCapacityEditText = view.findViewById(R.id.updateCapacityEditText);
         getNumTableTextView = view.findViewById(R.id.getNumTableTextView);
         getCapacityTextView = view.findViewById(R.id.getCapacityTextView);
-        getNumTableTextView.setText(currentNumTableString);
-        getCapacityTextView.setText(currentCapacityTableString);
+        getNumTableTextView.setText("Mesa número " + currentNumTableString);
+        getCapacityTextView.setText("Capacidad de la mesa: " + currentCapacityTableString + " personas");
 
         TablesFragment.countTable = tableAdapter.getItemCount();
 
-        updateOkButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String numTable = updateNumTableEditText.getText().toString();
-                String capacity = updateCapacityEditText.getText().toString();
-                if (numTable.isEmpty() || capacity.isEmpty()) {
-                    updateNumTableEditText.setError("Campo obligatorio");
-                    updateCapacityEditText.setError("Campo obligatorio");
-                } else {
-                    table = new TablesData(numTable, capacity, reservedBool);
-                    String userUID = dataBase.getCurrentUser().getUid();
-                    String currentPk = TablesFragment.currentNumTableString;
-                    dataBase.getDatabaseReference()
-                            .child(userUID)
-                            .child(dataBase.PARENT_TABLES())
-                            .child(currentPk).removeValue();
-                    dataBase.getDatabaseReference()
-                            .child(userUID)
-                            .child(dataBase.PARENT_TABLES())
-                            .child(numTable)
-                            .setValue(table);
-                    Toast.makeText(getContext(), "Mesa modificada", Toast.LENGTH_LONG)
-                            .show();
-                    Navigation.findNavController(v).navigate(R.id.nav_tables);
-                }
-            }
-        });
-        removeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                String userUID = dataBase.getCurrentUser().getUid();
-//                String currentPk = currentNumTableString;
-//                dataBase.getDatabaseReference()
-//                        .child(userUID)
-//                        .child(dataBase.PARENT_TABLES())
-//                        .child(currentPk).removeValue();
-//                Toast.makeText(getContext(), "Mesa Eliminada", Toast.LENGTH_LONG)
-//                        .show();
-//                Navigation.findNavController(v).navigate(R.id.nav_tables);
+        updateOkButton.setOnClickListener(v -> {
+
+            String numTable = updateNumTableEditText.getText().toString();
+            String capacity = updateCapacityEditText.getText().toString();
+
+            if (numTable.isEmpty() || capacity.isEmpty()) {
+                updateNumTableEditText.setError("Campo obligatorio");
+                updateCapacityEditText.setError("Campo obligatorio");
+            } else {
+                table = new TablesData(numTable, capacity, reservedBool);
+                String userUID = dataBase.getCurrentUser().getUid();
+                String currentPk = TablesFragment.currentNumTableString;
+                dataBase.getDatabaseReference()
+                        .child(userUID)
+                        .child(dataBase.PARENT_TABLES())
+                        .child(currentPk).removeValue();
+                dataBase.getDatabaseReference()
+                        .child(userUID)
+                        .child(dataBase.PARENT_TABLES())
+                        .child(numTable)
+                        .setValue(table);
+                Toast.makeText(getContext(), "Mesa modificada", Toast.LENGTH_LONG)
+                        .show();
+                Navigation.findNavController(v).navigate(R.id.nav_tables);
             }
         });
     }

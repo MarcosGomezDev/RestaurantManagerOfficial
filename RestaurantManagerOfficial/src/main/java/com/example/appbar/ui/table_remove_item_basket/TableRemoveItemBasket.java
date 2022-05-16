@@ -50,14 +50,19 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentRemoveItemBasketBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        return root;
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        dataBase = new DataBase();
+        userUID = dataBase.getCurrentUser().getUid();
+
         currentDescriptionItemString = ItemsFragment.currentDescriptionItemString;
+        newPriceAmount = ItemsFragment.currentPriceItemDouble;
+        currentUnits = ItemsFragment.currentUnitItemLong;
+
         addItemBasketButton = view.findViewById(R.id.addItemBasketButton);
         subtractItemBasketButton = view.findViewById(R.id.subtractItemBasketButton);
         removeItemBasketButton = view.findViewById(R.id.removeItemBasketButton);
@@ -65,19 +70,10 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
         descriptionItemBasketTextView.setText(ItemsFragment.currentDescriptionItemString);
         totalAmountTextView = view.findViewById(R.id.totalAmountTextView);
         unitsTextView = view.findViewById(R.id.unitsTextView);
-
-        currentUnits = ItemsFragment.currentUnitItemLong;
         unitsTextView.setText(String.valueOf(currentUnits));
-
-        newPriceAmount = ItemsFragment.currentPriceItemDouble;
-
-
         removeItemBasketButton.setOnClickListener(this);
         subtractItemBasketButton.setOnClickListener(this);
         addItemBasketButton.setOnClickListener(this);
-
-        dataBase = new DataBase();
-        userUID = dataBase.getCurrentUser().getUid();
 
         currentTablePk = TablesFragment.currentNumTableString;
         currentItemPk = currentDescriptionItemString
@@ -122,6 +118,7 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
 
             double oldPriceAmount = ItemsFragment.currentPriceItemDouble;
             newPriceAmount = newPriceAmount - oldPriceAmount;
+            newPriceAmount = Math.round(newPriceAmount * 100d) / 100d;
             dataBase.getDatabaseReference()
                     .child(userUID)
                     .child(dataBase.PARENT_TABLES())
@@ -130,8 +127,10 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
                     .child(currentItemPk)
                     .child("price")
                     .setValue(newPriceAmount);
-            TableBoxFragment.totalAmountDouble -= newPriceAmount;
 
+            TableBoxFragment.totalAmountDouble -= newPriceAmount;
+            TableBoxFragment.totalAmountDouble = Math
+                    .round(TableBoxFragment.totalAmountDouble * 100d) / 100d;
             dataBase.getDatabaseReference()
                     .child(userUID)
                     .child(dataBase.PARENT_TABLES())
@@ -166,6 +165,7 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
 
         double oldPriceAmount = ItemsFragment.currentPriceItemDouble;
         newPriceAmount = newPriceAmount + oldPriceAmount;
+        newPriceAmount = Math.round(newPriceAmount * 100d) / 100d;
         dataBase.getDatabaseReference()
                 .child(userUID)
                 .child(dataBase.PARENT_TABLES())
@@ -175,6 +175,8 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
                 .child("price")
                 .setValue(newPriceAmount);
         TableBoxFragment.totalAmountDouble += newPriceAmount;
+        TableBoxFragment.totalAmountDouble = Math
+                .round(TableBoxFragment.totalAmountDouble * 100d) / 100d;
 
         dataBase.getDatabaseReference()
                 .child(userUID)

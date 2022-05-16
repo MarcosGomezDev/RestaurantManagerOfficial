@@ -31,6 +31,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import kotlin.contracts.Returns;
 
@@ -48,17 +49,16 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener{
     public static double totalAmountDouble;
     private Button noButton, modifyButton, addItemTableButton;
     private TextView totalAmountTextView;
+    private final String currentTable = TablesFragment.currentNumTableString;
+    private final String currentTableTitle = "MESA " + currentTable;
 
-    private final String currentTableTitle = "MESA " + TablesFragment.currentNumTableString;
-    private String currentTable = TablesFragment.currentNumTableString;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentTableBoxBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        return root;
+        return binding.getRoot();
     }
 
     @Override
@@ -72,10 +72,10 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener{
         totalAmountTextView = view.findViewById(R.id.totalAmountTextView);
         modifyButton.setOnClickListener(this);
         addItemTableButton.setOnClickListener(this);
+        noButton.setText(currentTableTitle);
 
         dataBase = new DataBase();
         userUID = dataBase.getCurrentUser().getUid();
-
         context = this.getActivity();
         list = new ArrayList<>();
         tableBasketAdapter = new TableBasketAdapter(context, list);
@@ -84,10 +84,6 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener{
         recyclerView.addItemDecoration(new DividerItemDecoration(
                         recyclerView.getContext(), DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(tableBasketAdapter);
-
-//        totalAmountTextView.setText(String.valueOf(totalAmountDouble));
-//        if (list.isEmpty()) totalAmountTextView.setText(String.valueOf(0.0));
-        noButton.setText(currentTableTitle);
 
         tableBasketAdapter.setOnClickListener(v -> {
             ItemsFragment.currentDescriptionItemString = list.get(
@@ -99,16 +95,11 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener{
             Navigation.findNavController(v).navigate(R.id.nav_remove_items_basket);
         });
 
-        readBasket();
-        getBasket();
-    }
-
-    public void readBasket() {
-        DatabaseReference myRef = dataBase.getInstance().getReference(userUID)
+        DatabaseReference ref_items_basket = dataBase.getInstance().getReference(userUID)
                 .child(dataBase.PARENT_TABLES())
-                .child(TablesFragment.currentNumTableString)
+                .child(currentTable)
                 .child("items_basket");
-        myRef.addValueEventListener(new ValueEventListener() {
+        ref_items_basket.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -117,37 +108,31 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener{
                         ItemData itemData = dataSnapshot.getValue(ItemData.class);
                         list.add(itemData);
                     } catch (Exception e) {
-                        Log.println(Log.WARN,"***Fallo controlado***", "Añadido hijo a base de datos sin objeto.");
+                        Log.println(Log.WARN, "***********Fallo***********",
+                                "TableBoxFragment.java, line: 118");
                     }
-
                 }
                 tableBasketAdapter.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
         });
-    }
 
-    public void getBasket() {
-        DatabaseReference myRef = dataBase.getInstance().getReference(userUID)
+        DatabaseReference ref_basket_amount = dataBase.getInstance().getReference(userUID)
                 .child(dataBase.PARENT_TABLES())
-                .child(TablesFragment.currentNumTableString)
+                .child(currentTable)
                 .child("items_basket")
                 .child("basket_amount");
-
-        myRef.addValueEventListener(new ValueEventListener() {
+        ref_basket_amount.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    String res = snapshot.getValue().toString();
+                    String res = snapshot.getValue().toString().trim();
                     totalAmountTextView.setText(res + " €");
-                    Toast.makeText(getContext(), res, Toast.LENGTH_SHORT)
-                            .show();
                 } else {
                     totalAmountTextView.setText("0 €");
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
         });
@@ -168,8 +153,7 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener{
                 Navigation.findNavController(v).navigate(R.id.nav_table_items);
                 break;
             case R.id.modifyButton:
-                getBasket();
-                //Navigation.findNavController(v).navigate(R.id.nav_table_selected);
+                Navigation.findNavController(v).navigate(R.id.nav_table_selected);
                 break;
         }
     }
