@@ -36,7 +36,8 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
     private String currentItemPk;
     private long currentUnits;
     private long newUnitSub;
-    private double newPriceAmount;
+    private double currentPriceItemDouble;
+    private double totalItemAmount;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -51,7 +52,8 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
         userUID = dataBase.getCurrentUser().getUid();
 
         currentDescriptionItemString = ItemsFragment.currentDescriptionItemString;
-        newPriceAmount = ItemsFragment.currentPriceItemDouble;
+        currentPriceItemDouble = ItemsFragment.currentPriceItemDouble;
+        totalItemAmount = TableBoxFragment.totalItemAmount;
         currentUnits = ItemsFragment.currentUnitItemLong;
         currentTablePk = TablesFragment.currentNumTableString;
         currentItemPk = currentDescriptionItemString
@@ -88,55 +90,8 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
         }
     }
 
-    public void subtractItemBasket() {
-        long oldUnitSub = ItemsFragment.currentUnitItemLong;
-        if (oldUnitSub > 1) {
-            newUnitSub = oldUnitSub - 1;
-            dataBase.getDatabaseReference()
-                    .child(userUID)
-                    .child(dataBase.PARENT_TABLES())
-                    .child(currentTablePk)
-                    .child("items_basket")
-                    .child(currentItemPk)
-                    .child("units")
-                    .setValue(newUnitSub);
-
-            double oldPriceAmount = ItemsFragment.currentPriceItemDouble;
-            newPriceAmount = newPriceAmount - oldPriceAmount;
-            newPriceAmount = Math.round(newPriceAmount * 100d) / 100d;
-            dataBase.getDatabaseReference()
-                    .child(userUID)
-                    .child(dataBase.PARENT_TABLES())
-                    .child(currentTablePk)
-                    .child("items_basket")
-                    .child(currentItemPk)
-                    .child("price")
-                    .setValue(newPriceAmount);
-
-            TableBoxFragment.totalAmountDouble -= newPriceAmount;
-            TableBoxFragment.totalAmountDouble = Math
-                    .round(TableBoxFragment.totalAmountDouble * 100d) / 100d;
-            dataBase.getDatabaseReference()
-                    .child(userUID)
-                    .child(dataBase.PARENT_TABLES())
-                    .child(currentTablePk)
-                    .child("items_basket")
-                    .child("basket_amount")
-                    .setValue(TableBoxFragment.totalAmountDouble);
-
-            Toast.makeText(getContext(), "Articulo eliminado", Toast.LENGTH_SHORT)
-                    .show();
-            ItemsFragment.currentUnitItemLong = newUnitSub;
-            unitsTextView.setText(String.valueOf(newUnitSub));
-            totalAmountTextView.setText(String.valueOf(TableBoxFragment.totalAmountDouble));
-        } else {
-            removeItemBasket();
-        }
-    }
-
     public void addItemBasket() {
-        long oldUnitAdd = ItemsFragment.currentUnitItemLong;
-        newUnitSub = oldUnitAdd + 1;
+        newUnitSub = ItemsFragment.currentUnitItemLong + 1;
         dataBase.getDatabaseReference()
                 .child(userUID)
                 .child(dataBase.PARENT_TABLES())
@@ -148,18 +103,17 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
         ItemsFragment.currentUnitItemLong = newUnitSub;
         unitsTextView.setText(String.valueOf(newUnitSub));
 
-        double oldPriceAmount = ItemsFragment.currentPriceItemDouble;
-        newPriceAmount = newPriceAmount + oldPriceAmount;
-        newPriceAmount = Math.round(newPriceAmount * 100d) / 100d;
+        totalItemAmount = totalItemAmount + currentPriceItemDouble;
+        totalItemAmount = Math.round(totalItemAmount * 100d) / 100d;
         dataBase.getDatabaseReference()
                 .child(userUID)
                 .child(dataBase.PARENT_TABLES())
                 .child(currentTablePk)
                 .child("items_basket")
                 .child(currentItemPk)
-                .child("price")
-                .setValue(newPriceAmount);
-        TableBoxFragment.totalAmountDouble += newPriceAmount;
+                .child("amountPrice")
+                .setValue(totalItemAmount);
+        TableBoxFragment.totalAmountDouble += currentPriceItemDouble;
         TableBoxFragment.totalAmountDouble = Math
                 .round(TableBoxFragment.totalAmountDouble * 100d) / 100d;
 
@@ -174,7 +128,62 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
                 .show();
     }
 
+    public void subtractItemBasket() {
+        long oldUnitSub = ItemsFragment.currentUnitItemLong;
+        if (oldUnitSub >= 1) {
+            newUnitSub = oldUnitSub - 1;
+            dataBase.getDatabaseReference()
+                    .child(userUID)
+                    .child(dataBase.PARENT_TABLES())
+                    .child(currentTablePk)
+                    .child("items_basket")
+                    .child(currentItemPk)
+                    .child("units")
+                    .setValue(newUnitSub);
+
+            totalItemAmount = totalItemAmount - currentPriceItemDouble;
+            totalItemAmount = Math.round(totalItemAmount * 100d) / 100d;
+            dataBase.getDatabaseReference()
+                    .child(userUID)
+                    .child(dataBase.PARENT_TABLES())
+                    .child(currentTablePk)
+                    .child("items_basket")
+                    .child(currentItemPk)
+                    .child("amountPrice")
+                    .setValue(totalItemAmount);
+
+            TableBoxFragment.totalAmountDouble -= currentPriceItemDouble;
+            TableBoxFragment.totalAmountDouble = Math
+                    .round(TableBoxFragment.totalAmountDouble * 100d) / 100d;
+
+            dataBase.getDatabaseReference()
+                    .child(userUID)
+                    .child(dataBase.PARENT_TABLES())
+                    .child(currentTablePk)
+                    .child("items_basket")
+                    .child("basket_amount")
+                    .setValue(TableBoxFragment.totalAmountDouble);
+
+            Toast.makeText(getContext(), "Articulo eliminado", Toast.LENGTH_SHORT)
+                    .show();
+            ItemsFragment.currentUnitItemLong = newUnitSub;
+            //unitsTextView.setText(String.valueOf(newUnitSub));
+
+           // totalAmountTextView.setText(String.valueOf(TableBoxFragment.totalAmountDouble));
+        }
+        if (newUnitSub == 0) {
+
+
+            removeItemBasket();
+
+        }
+    }
+
     public void removeItemBasket() {
+        TableBoxFragment.totalAmountDouble -= currentPriceItemDouble;
+        TableBoxFragment.totalAmountDouble = Math
+                .round(TableBoxFragment.totalAmountDouble * 100d) / 100d;
+
         dataBase.getDatabaseReference()
                 .child(userUID)
                 .child(dataBase.PARENT_TABLES())

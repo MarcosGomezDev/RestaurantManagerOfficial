@@ -36,13 +36,13 @@ public class TableItemsSelected extends Fragment {
     private ItemData item;
     public static String currentDescriptionItemString;
     public static double currentPriceItemDouble;
-    private ItemAdapter tableItemAdapter;
+    private ItemAdapter itemAdapter;
     private RecyclerView recyclerView;
     private ArrayList<ItemData> list;
     private String userUID;
     private Context context;
-
-    private final String currentTable = TablesFragment.currentNumTableString;
+    private String currentTable;
+    private long newUnitSub;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -54,23 +54,50 @@ public class TableItemsSelected extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.tableItemListRecyclerView);
+        currentTable = TablesFragment.currentNumTableString;
         dataBase = new DataBase();
         userUID = dataBase.getCurrentUser().getUid();
 
         context = this.getActivity();
         list = new ArrayList<>();
-        tableItemAdapter = new ItemAdapter(context, list);
-        recyclerView.setAdapter(tableItemAdapter);
+        itemAdapter = new ItemAdapter(context, list);
+        recyclerView.setAdapter(itemAdapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-        tableItemAdapter.setOnClickListener(v -> {
+        itemAdapter.setOnClickListener(v -> {
             currentDescriptionItemString = list.get(
                     recyclerView.getChildAdapterPosition(v)).getDescription();
             currentPriceItemDouble = list.get(
                     recyclerView.getChildAdapterPosition(v)).getPrice();
 
-            addItem(currentDescriptionItemString, currentPriceItemDouble);
+            item = new ItemData(currentDescriptionItemString, currentPriceItemDouble,
+                    1, currentPriceItemDouble);
+
+            String userUID = dataBase.getCurrentUser().getUid();
+            String currentItemPK = currentDescriptionItemString
+                    .replace(" ", "_");
+
+            dataBase.getDatabaseReference()
+                    .child(userUID)
+                    .child(dataBase.PARENT_TABLES())
+                    .child(currentTable)
+                    .child("items_basket")
+                    .child(currentItemPK)
+                    .setValue(item);
+
+            TableBoxFragment.totalAmountDouble += currentPriceItemDouble;
+            TableBoxFragment.totalAmountDouble = Math
+                    .round(TableBoxFragment.totalAmountDouble * 100d) / 100d;
+
+            dataBase.getDatabaseReference()
+                    .child(userUID)
+                    .child(dataBase.PARENT_TABLES())
+                    .child(currentTable)
+                    .child("items_basket")
+                    .child("basket_amount")
+                    .setValue(TableBoxFragment.totalAmountDouble);
+            Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_LONG).show();
 
             Navigation.findNavController(v).navigate(R.id.nav_table_box);
         });
@@ -85,45 +112,11 @@ public class TableItemsSelected extends Fragment {
                     ItemData itemData = dataSnapshot.getValue(ItemData.class);
                     list.add(itemData);
                 }
-                tableItemAdapter.notifyDataSetChanged();
+                itemAdapter.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
         });
-    }
-
-    public void addItem(String description, double price) {
-
-        item = new ItemData(description, price, 1);
-        String userUID = dataBase.getCurrentUser().getUid();
-        String currentTablePk = currentTable;
-        String currentItemPK = description
-                .replace(" ", "_");
-
-        if(currentItemPK.isEmpty()) {
-            Toast.makeText(getContext(), "El articulo ya existe", Toast.LENGTH_LONG)
-                    .show();
-        } else {
-            dataBase.getDatabaseReference()
-                    .child(userUID)
-                    .child(dataBase.PARENT_TABLES())
-                    .child(currentTablePk)
-                    .child("items_basket")
-                    .child(currentItemPK)
-                    .setValue(item);
-            TableBoxFragment.totalAmountDouble += currentPriceItemDouble;
-            TableBoxFragment.totalAmountDouble = Math
-                    .round(TableBoxFragment.totalAmountDouble * 100d) / 100d;
-
-            dataBase.getDatabaseReference()
-                    .child(userUID)
-                    .child(dataBase.PARENT_TABLES())
-                    .child(currentTablePk)
-                    .child("items_basket")
-                    .child("basket_amount")
-                    .setValue(TableBoxFragment.totalAmountDouble);
-            Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_LONG).show();
-        }
     }
 
     @Override

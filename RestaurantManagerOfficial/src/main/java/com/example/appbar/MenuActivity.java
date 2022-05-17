@@ -56,6 +56,8 @@ public class MenuActivity extends AppCompatActivity {
                 Intent goSignIn = new Intent(MenuActivity.this, LogInActivity.class);
                 startActivity(goSignIn);
                 return true;
+            case R.id.action_terms:
+
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -1,6 +1,7 @@
 package com.example.appbar.ui.tables;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,11 +39,18 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.MyHolder>
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
         String reserved = "";
         TablesData table = list.get(position);
-        if (String.valueOf(table.isReserved()).equals("false")) reserved = "DISPONIBLE";
-        if (String.valueOf(table.isReserved()).equals("true")) reserved = "RESERVADA";
+        if (String.valueOf(table.isReserved()).equals("false")) {
+            reserved = "DISPONIBLE";
+            holder.reservedTextView.setText(reserved);
+            holder.reservedTextView.setTextColor(0xFF54C242);
+        }
+        if (String.valueOf(table.isReserved()).equals("true")) {
+            reserved = "RESERVADA";
+            holder.reservedTextView.setText(reserved);
+            holder.reservedTextView.setTextColor(Color.RED);
+        }
         holder.tableTextView.setText(table.getNumTable());
         holder.capacityTextView.setText(table.getNumPeople());
-        holder.reservedTextView.setText(reserved);
     }
 
     @Override

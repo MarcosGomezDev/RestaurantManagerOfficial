@@ -40,6 +40,7 @@ public class TableBasketAdapter extends RecyclerView.Adapter<TableBasketAdapter.
         holder.descriptionTextView.setText(item.getDescription());
         holder.priceTextView.setText(String.valueOf(item.getPrice()));
         holder.actualUnitsTextView.setText(String.valueOf(item.getUnits()));
+        holder.amountPriceTextView.setText(String.valueOf(item.getAmountPrice()));
     }
 
     @Override
@@ -57,12 +58,13 @@ public class TableBasketAdapter extends RecyclerView.Adapter<TableBasketAdapter.
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView descriptionTextView, priceTextView, actualUnitsTextView;
+        TextView descriptionTextView, priceTextView, actualUnitsTextView, amountPriceTextView;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             descriptionTextView = itemView.findViewById(R.id.descriptionTextView);
             priceTextView = itemView.findViewById(R.id.priceTextView);
             actualUnitsTextView = itemView.findViewById(R.id.actualUnitsTextView);
+            amountPriceTextView = itemView.findViewById(R.id.amountPriceTextView);
         }
     }
 }
