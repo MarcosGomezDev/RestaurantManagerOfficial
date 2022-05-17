@@ -19,7 +19,7 @@
 
     <Button
         android:id="@+id/noButton"
-        android:layout_width="150dp"
+        android:layout_width="108dp"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
@@ -38,12 +38,24 @@
 
     <Button
         android:id="@+id/modifyButton"
-        android:layout_width="150dp"
+        android:layout_width="108dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="Modif."
+        app:cornerRadius="40dip"
+        app:layout_constraintEnd_toStartOf="@+id/collectButton"
+        app:layout_constraintStart_toEndOf="@+id/noButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/collectButton"
+        android:layout_width="108dp"
         android:layout_height="60dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/teal_200"
-        android:text="Modif."
+        android:backgroundTint="@color/teal_700"
+        android:text="Cobrar"
         app:cornerRadius="40dip"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -82,16 +94,33 @@
 
     <Button
         android:id="@+id/addItemTableButton"
-        android:layout_width="152dp"
+        android:layout_width="108dp"
         android:layout_height="60dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="#4CAF50"
+        android:backgroundTint="@color/AppColorGrey"
         android:contentDescription="TODO"
         android:minHeight="48dp"
         android:text="Añadir Artículo"
         app:cornerRadius="40dip"
         app:layout_constraintBottom_toBottomOf="@+id/totalAmountTextView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView9"
+        app:srcCompat="@drawable/add_add_circle_white_24"
+        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <Button
+        android:id="@+id/reservedButton"
+        android:layout_width="108dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/AppColorGreen"
+        android:contentDescription="TODO"
+        android:minHeight="48dp"
+        android:text="DISP."
+        android:textSize="14sp"
+        app:cornerRadius="40dip"
+        app:layout_constraintBottom_toBottomOf="@+id/totalAmountTextView"
+        app:layout_constraintEnd_toStartOf="@+id/addItemTableButton"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toTopOf="@+id/textView9"
         app:srcCompat="@drawable/add_add_circle_white_24"
         tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck,DuplicateSpeakableTextCheck" />

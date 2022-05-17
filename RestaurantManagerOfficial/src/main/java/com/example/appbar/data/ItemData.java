@@ -6,6 +6,7 @@ public class ItemData {
     private String description;
     private double price;
     private long units;
+    private double amountPrice;
 
     public ItemData() {
     }
@@ -16,9 +17,16 @@ public class ItemData {
         this.units = units;
     }
 
-    public long getUnits() { return units; }
+    public ItemData(String description, double price, long units, double amountPrice) {
+        this.description = description;
+        this.price = price;
+        this.units = units;
+        this.amountPrice = amountPrice;
+    }
 
-    public void setUnits(long units) { this.units = units; }
+    public double getAmountPrice() { return amountPrice; }
+
+    public long getUnits() { return units; }
 
     public String getDescription() {
         return description;
