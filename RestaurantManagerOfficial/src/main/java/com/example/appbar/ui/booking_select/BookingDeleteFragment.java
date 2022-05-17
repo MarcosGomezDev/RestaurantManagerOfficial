@@ -22,7 +22,7 @@ import com.example.appbar.databinding.FragmentBookingDeleteBinding;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class BookingDeleteFragment {
+public class BookingDeleteFragment extends Fragment {
     private FragmentBookingDeleteBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -32,5 +32,15 @@ public class BookingDeleteFragment {
         return root;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 
+    
 }

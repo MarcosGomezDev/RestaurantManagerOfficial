@@ -23,11 +23,11 @@
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_items.xml" value="0.25" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_remove_item_basket.xml" value="0.5" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_staff_signin.xml" value="0.5267210144927537" />
-        <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_table_box.xml" value="0.33" />
+        <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_table_box.xml" value="0.5" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_table_items.xml" value="0.2" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_table_selected.xml" value="0.5" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_tables.xml" value="0.41458333333333336" />
-        <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/item_view.xml" value="0.67" />
+        <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/item_view.xml" value="0.25" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/nav_header_main.xml" value="0.75" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/recycler_view_item.xml" value="0.5" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/table_view.xml" value="0.7" />
@@ -66,6 +66,9 @@
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/Proyecto 11052022/RestaurantManagerOfficial/src/main/res/layout/booking_view.xml" value="0.33" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/Proyecto 11052022/RestaurantManagerOfficial/src/main/res/layout/fragment_bookings.xml" value="0.42028985507246375" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/Proyecto 11052022/RestaurantManagerOfficial/src/main/res/layout/fragment_item_add_update.xml" value="0.12409420289855072" />
+        <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/Proyecto 11052022/RestaurantManagerOfficial/src/main/res/layout/fragment_items.xml" value="0.12409420289855072" />
+        <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/Proyecto 11052022/RestaurantManagerOfficial/src/main/res/layout/fragment_remove_item_basket.xml" value="0.12409420289855072" />
+        <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/Proyecto 11052022/RestaurantManagerOfficial/src/main/res/layout/item_view.xml" value="0.12409420289855072" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/Proyecto 11052022/RestaurantManagerOfficial/src/main/res/layout/nav_booking_delete.xml" value="0.12409420289855072" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/proyecto fin de grado/RestaurantManagerOfficial/RestaurantManagerOfficial/src/main/res/layout/activity_log_in.xml" value="0.21" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/proyecto fin de grado/RestaurantManagerOfficial/RestaurantManagerOfficial/src/main/res/layout/activity_main.xml" value="0.17028985507246377" />
@@ -97,12 +100,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.5" />
-      </ProjectState>
-    </option>
   </component>
 </project>
