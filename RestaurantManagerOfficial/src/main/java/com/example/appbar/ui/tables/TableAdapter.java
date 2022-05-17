@@ -59,7 +59,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.MyHolder>
         }
     }
 
-    public class MyHolder extends RecyclerView.ViewHolder {
+    public static class MyHolder extends RecyclerView.ViewHolder {
 
         TextView tableTextView, capacityTextView, reservedTextView;
 

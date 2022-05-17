@@ -3,7 +3,6 @@ package com.example.appbar.ui.tables;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +26,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 
 @SuppressWarnings("FieldCanBeLocal")
@@ -99,7 +96,7 @@ public class TableItemsSelected extends Fragment {
 
         item = new ItemData(description, price, 1);
         String userUID = dataBase.getCurrentUser().getUid();
-        String currentTablePk = TablesFragment.currentNumTableString;
+        String currentTablePk = currentTable;
         String currentItemPK = description
                 .replace(" ", "_");
 

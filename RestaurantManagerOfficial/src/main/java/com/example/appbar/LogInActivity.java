@@ -93,7 +93,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                             Toast.LENGTH_LONG).show();
                 }
                 break;
-
             case R.id.signInButton:
                 email = emailEditText.getText().toString();
                 pass = passwordEditText.getText().toString();
@@ -104,7 +103,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                             Toast.LENGTH_LONG).show();
                 }
                 break;
-
             case R.id.rellenarButton:
                 emailEditText.setText("sergio@maquina.es");
                 passwordEditText.setText("sergio");
@@ -113,10 +111,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
             case R.id.rellenarButton2:
                 emailEditText.setText("marcos@marcos.es");
                 passwordEditText.setText("marcos");
-
-            default:
-//                Toast.makeText(LogInActivity.this, "Algo salió mal.",
-//                        Toast.LENGTH_LONG).show();
                 break;
         }
     }
@@ -302,79 +296,11 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                         "menos 6 caracteres");
                 passwordEditText.requestFocus();
                 break;
-
         }
-
     }
-
 }
 
 
-
-
-
-//DatabaseReference myRef = DataBase.instance.getReference("msffg");
-//myRef.setValue("Hello, Wosdfrld!");
-
-
-
-
-/* Todo esto va fuera
-        // DatabaseReference databaseReference = DataBase.instance.getReference("message");
-
-        DataBase.DataRef(DataBase.PATH_EMPLOYEES).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                updateTitleText.setText(snapshot.getValue(String.class) + " " + date);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                updateTitleText.setText("Error en la conexión con la base de datos.");
-            }
-        });
-
-        public void lolo() {
-            DataBase dataBase = new DataBase();
-            dataBase.DataRef(dataBase.getPATH_EMPLOYEES()).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    updateTitleText.setText(snapshot.getValue(String.class) + " " + date);
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    updateTitleText.setText("Error en la conexión con la base de datos.");
-                }
-            });
-        }
-*/
-
-
-
-//      awesomeValidation.addValidation(activity,
-//      R.id.edt_tel, RegexTemplate.TELEPHONE, R.string.err_tel);
-
-
-
-
-/*
-    Estos dos metodos dan error
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mFirebaseAuth.addAuthStateListener(mAuthStateListener);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        if(mAuthStateListener != null) {
-            mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
-        }
-    }
-*/
 
 
 

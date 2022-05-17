@@ -31,7 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-@SuppressWarnings("FieldCanBeLocal")
+@SuppressWarnings({"FieldCanBeLocal", "ConstantConditions"})
 public class TableBoxFragment extends Fragment implements View.OnClickListener{
 
     private FragmentTableBoxBinding binding;
@@ -47,7 +47,6 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener{
     private TextView totalAmountTextView;
     private final String currentTable = TablesFragment.currentNumTableString;
     private final String currentTableTitle = "MESA " + currentTable;
-
 
     @Nullable
     @Override
@@ -123,10 +122,10 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    String res = snapshot.getValue().toString().trim();
-                    totalAmountTextView.setText(res + " €");
+                    String res = snapshot.getValue().toString().trim() + " €";
+                    totalAmountTextView.setText(res);
                 } else {
-                    totalAmountTextView.setText("0 €");
+                    totalAmountTextView.setText("0.0 €");
                 }
             }
             @Override

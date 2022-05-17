@@ -18,6 +18,7 @@ import com.example.appbar.data.DataBase;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.databinding.FragmentItemAddBinding;
 
+@SuppressWarnings("FieldCanBeLocal")
 public class ItemNewFragment extends Fragment {
 
     private FragmentItemAddBinding binding;
@@ -29,8 +30,7 @@ public class ItemNewFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentItemAddBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        return root;
+        return binding.getRoot();
     }
 
     @Override
@@ -41,27 +41,24 @@ public class ItemNewFragment extends Fragment {
         priceEditText = view.findViewById(R.id.priceEditText);
         newItemButton = view.findViewById(R.id.addNewItemButton);
 
-        newItemButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String description = descriptionEditText.getText().toString();
-                double price = Double.parseDouble(priceEditText.getText().toString());
-                if (description.isEmpty() || price < 0) {
-                    descriptionEditText.setError("Campo obligatorio");
-                    priceEditText.setError("Campo obligatorio");
-                } else {
-                    item = new ItemData(description, price, 1);
-                    String userUID = dataBase.getCurrentUser().getUid();
-                    String currentPk = description.replace(" ", "_");
-                    dataBase.getDatabaseReference()
-                            .child(userUID)
-                            .child(dataBase.PARENT_ITEMS())
-                            .child(currentPk)
-                            .setValue(item);
-                    Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_LONG)
-                            .show();
-                    Navigation.findNavController(v).navigate(R.id.nav_items);
-                }
+        newItemButton.setOnClickListener(v -> {
+            String description = descriptionEditText.getText().toString();
+            double price = Double.parseDouble(priceEditText.getText().toString());
+            if (description.isEmpty() || price < 0) {
+                descriptionEditText.setError("Campo obligatorio");
+                priceEditText.setError("Campo obligatorio");
+            } else {
+                item = new ItemData(description, price, 1);
+                String userUID = dataBase.getCurrentUser().getUid();
+                String currentPk = description.replace(" ", "_");
+                dataBase.getDatabaseReference()
+                        .child(userUID)
+                        .child(dataBase.PARENT_ITEMS())
+                        .child(currentPk)
+                        .setValue(item);
+                Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_LONG)
+                        .show();
+                Navigation.findNavController(v).navigate(R.id.nav_items);
             }
         });
     }

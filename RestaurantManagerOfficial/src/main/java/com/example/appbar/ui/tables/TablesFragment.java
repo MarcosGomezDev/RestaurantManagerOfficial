@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,7 +19,6 @@ import com.example.appbar.R;
 import com.example.appbar.data.DataBase;
 import com.example.appbar.data.TablesData;
 import com.example.appbar.databinding.FragmentTablesBinding;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,7 +26,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class TablesFragment extends Fragment implements View.OnClickListener{
+@SuppressWarnings("FieldCanBeLocal")
+public class TablesFragment extends Fragment {
 
     private FragmentTablesBinding binding;
     private DataBase dataBase;
@@ -48,8 +46,7 @@ public class TablesFragment extends Fragment implements View.OnClickListener{
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentTablesBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        return root;
+        return binding.getRoot();
     }
 
     @Override
@@ -67,17 +64,14 @@ public class TablesFragment extends Fragment implements View.OnClickListener{
         tableAdapter = new TableAdapter(context, list);
         recyclerView.setAdapter(tableAdapter);
 
-        tableAdapter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                currentNumTableString = list.get(
-                        recyclerView.getChildAdapterPosition(v)).getNumTable();
-                currentCapacityTableString = list.get(
-                        recyclerView.getChildAdapterPosition(v)).getNumPeople();
-                currentReservedTableBool = list.get(
-                        recyclerView.getChildAdapterPosition(v)).isReserved();
-                Navigation.findNavController(v).navigate(R.id.nav_table_box);
-            }
+        tableAdapter.setOnClickListener(v -> {
+            currentNumTableString = list.get(
+                    recyclerView.getChildAdapterPosition(v)).getNumTable();
+            currentCapacityTableString = list.get(
+                    recyclerView.getChildAdapterPosition(v)).getNumPeople();
+            currentReservedTableBool = list.get(
+                    recyclerView.getChildAdapterPosition(v)).isReserved();
+            Navigation.findNavController(v).navigate(R.id.nav_table_box);
         });
 
         myRef.addValueEventListener(new ValueEventListener() {
@@ -99,12 +93,5 @@ public class TablesFragment extends Fragment implements View.OnClickListener{
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-    }
-
-    @Override
-    public void onClick(View v) {
-//        if (v.getId() == R.id.editTebleeButton) {
-//            Navigation.findNavController(v).navigate(R.id.nav_table_selected);
-//        }
     }
 }

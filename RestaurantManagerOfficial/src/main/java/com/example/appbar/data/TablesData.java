@@ -6,10 +6,8 @@ public class TablesData {
     private String numTable;
     private String numPeople;
     private boolean reserved;
-    private double amountBasket;
 
     public TablesData(){
-
     }
 
     public TablesData(String numTable, String numPeople, boolean reserved) {
@@ -38,10 +36,6 @@ public class TablesData {
         addTable("8","4", false);
         addTable("9","4", false);
     }
-
-    public double getAmountBasket() { return amountBasket; }
-
-    public void setAmountBasket(double amountBasket) { this.amountBasket = amountBasket; }
 
     public String getNumTable() {
         return numTable;

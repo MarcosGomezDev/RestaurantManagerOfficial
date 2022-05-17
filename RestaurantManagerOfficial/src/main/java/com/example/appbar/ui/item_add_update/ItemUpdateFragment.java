@@ -24,7 +24,7 @@ import com.example.appbar.ui.items.ItemsFragment;
 public class ItemUpdateFragment extends Fragment {
 
     private FragmentItemAddUpdateBinding binding;
-    private DataBase dataBase = new DataBase();
+    private final DataBase dataBase = new DataBase();
     private ItemData item = new ItemData();
     private String currentDescriptionItemString;
     private double currentPriceItemDouble;
@@ -44,8 +44,7 @@ public class ItemUpdateFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentItemAddUpdateBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        return root;
+        return binding.getRoot();
     }
 
     @Override
@@ -62,50 +61,44 @@ public class ItemUpdateFragment extends Fragment {
         getDescriptionTextView.setText(currentDescriptionItemString);
         getPriceTextView.setText(String.valueOf(currentPriceItemDouble));
 
-        addUpdateOkButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String description = updateDescriptionEditText.getText().toString();
-                double price = Double.parseDouble(updatePriceEditText.getText().toString());
-                if (description.isEmpty() || price < 0) {
-                    updateDescriptionEditText.setError("Campo obligatorio");
-                    updatePriceEditText.setError("Campo obligatorio");
-                } else {
-                    item = new ItemData(description, price, 1);
-                    String userUID = dataBase.getCurrentUser().getUid();
-                    String currentPk = currentDescriptionItemString
-                            .replace(" ", "_");
-                    dataBase.getDatabaseReference()
-                            .child(userUID)
-                            .child(dataBase.PARENT_ITEMS())
-                            .child(currentPk).removeValue();
-                    dataBase.getDatabaseReference()
-                            .child(userUID)
-                            .child(dataBase.PARENT_ITEMS())
-                            .child(description.replace(" ", "_"))
-                            .setValue(item);
-                    Toast.makeText(getContext(), "Articulo modificado", Toast.LENGTH_LONG)
-                            .show();
-                    Navigation.findNavController(v).navigate(R.id.nav_items);
-                }
-            }
-        });
-
-        removeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        addUpdateOkButton.setOnClickListener(v -> {
+            String description = updateDescriptionEditText.getText().toString();
+            double price = Double.parseDouble(updatePriceEditText.getText().toString());
+            if (description.isEmpty() || price < 0) {
+                updateDescriptionEditText.setError("Campo obligatorio");
+                updatePriceEditText.setError("Campo obligatorio");
+            } else {
+                item = new ItemData(description, price, 1);
                 String userUID = dataBase.getCurrentUser().getUid();
                 String currentPk = currentDescriptionItemString
                         .replace(" ", "_");
                 dataBase.getDatabaseReference()
                         .child(userUID)
                         .child(dataBase.PARENT_ITEMS())
-                        .child(currentPk)
-                        .removeValue();
-                Toast.makeText(getContext(), "Articulo eliminado", Toast.LENGTH_LONG)
+                        .child(currentPk).removeValue();
+                dataBase.getDatabaseReference()
+                        .child(userUID)
+                        .child(dataBase.PARENT_ITEMS())
+                        .child(description.replace(" ", "_"))
+                        .setValue(item);
+                Toast.makeText(getContext(), "Articulo modificado", Toast.LENGTH_LONG)
                         .show();
                 Navigation.findNavController(v).navigate(R.id.nav_items);
             }
+        });
+
+        removeButton.setOnClickListener(v -> {
+            String userUID = dataBase.getCurrentUser().getUid();
+            String currentPk = currentDescriptionItemString
+                    .replace(" ", "_");
+            dataBase.getDatabaseReference()
+                    .child(userUID)
+                    .child(dataBase.PARENT_ITEMS())
+                    .child(currentPk)
+                    .removeValue();
+            Toast.makeText(getContext(), "Articulo eliminado", Toast.LENGTH_LONG)
+                    .show();
+            Navigation.findNavController(v).navigate(R.id.nav_items);
         });
     }
 

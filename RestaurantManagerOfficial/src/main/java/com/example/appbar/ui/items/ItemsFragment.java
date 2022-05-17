@@ -46,8 +46,7 @@ public class ItemsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentItemsBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        return root;
+        return binding.getRoot();
     }
 
     @Override
@@ -66,28 +65,20 @@ public class ItemsFragment extends Fragment {
         recyclerView.setAdapter(itemAdapter);
 
 
-        itemAdapter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                currentDescriptionItemString = list.get(
-                        recyclerView.getChildAdapterPosition(v)).getDescription();
-                currentPriceItemDouble = (list.get(
-                        recyclerView.getChildAdapterPosition(v)).getPrice());
-                if (TableBoxFragment.comeFromTableBox) {
-                    Navigation.findNavController(v).navigate(R.id.nav_table_box);
-                } else {
-                    Navigation.findNavController(v).navigate(R.id.nav_item_add_update);
-                }
+        itemAdapter.setOnClickListener(v -> {
+            currentDescriptionItemString = list.get(
+                    recyclerView.getChildAdapterPosition(v)).getDescription();
+            currentPriceItemDouble = (list.get(
+                    recyclerView.getChildAdapterPosition(v)).getPrice());
+            if (TableBoxFragment.comeFromTableBox) {
+                Navigation.findNavController(v).navigate(R.id.nav_table_box);
+            } else {
+                Navigation.findNavController(v).navigate(R.id.nav_item_add_update);
             }
         });
 
-        addItemButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.nav_item_new);
-            }
-        });
-
+        addItemButton.setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(R.id.nav_item_new));
 
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
