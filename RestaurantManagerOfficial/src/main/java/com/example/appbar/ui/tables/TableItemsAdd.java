@@ -34,8 +34,8 @@ public class TableItemsAdd extends Fragment {
     private FragmentTableItemsAddBinding binding;
     private DataBase dataBase;
     private ItemData item;
-    private String currentDescriptionItemString;
-    private double currentPriceItemDouble;
+    private String descriptionItemString;
+    private double priceItemDouble;
     private ItemAdapter itemAdapter;
     private RecyclerView recyclerView;
     private ArrayList<ItemData> list;
@@ -66,16 +66,16 @@ public class TableItemsAdd extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
         itemAdapter.setOnClickListener(v -> {
-            currentDescriptionItemString = list.get(
+            descriptionItemString = list.get(
                     recyclerView.getChildAdapterPosition(v)).getDescription();
-            currentPriceItemDouble = list.get(
+            priceItemDouble = list.get(
                     recyclerView.getChildAdapterPosition(v)).getPrice();
 
-            item = new ItemData(currentDescriptionItemString, currentPriceItemDouble,
-                    1, currentPriceItemDouble);
+            item = new ItemData(descriptionItemString, priceItemDouble,
+                    1, priceItemDouble);
 
             String userUID = dataBase.getCurrentUser().getUid();
-            String currentItemPK = currentDescriptionItemString
+            String currentItemPK = descriptionItemString
                     .replace(" ", "_");
 
             dataBase.getDatabaseReference()
@@ -86,7 +86,7 @@ public class TableItemsAdd extends Fragment {
                     .child(currentItemPK)
                     .setValue(item);
 
-            TableBoxFragment.totalAmountDouble += currentPriceItemDouble;
+            TableBoxFragment.totalAmountDouble += priceItemDouble;
             TableBoxFragment.totalAmountDouble = Math
                     .round(TableBoxFragment.totalAmountDouble * 100d) / 100d;
 
