@@ -19,7 +19,6 @@ import com.example.appbar.data.DataBase;
 import com.example.appbar.data.DataFlow;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.databinding.FragmentItemsBinding;
-import com.example.appbar.ui.table_box.TableBoxFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

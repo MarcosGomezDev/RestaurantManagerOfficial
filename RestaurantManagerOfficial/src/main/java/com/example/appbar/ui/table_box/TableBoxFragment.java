@@ -27,8 +27,6 @@ import com.example.appbar.data.DataBase;
 import com.example.appbar.data.DataFlow;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.databinding.FragmentTableBoxBinding;
-import com.example.appbar.ui.items.ItemsFragment;
-import com.example.appbar.ui.tables.TablesFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -159,6 +157,7 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
                 .child(DataFlow.currentNumTableString)
                 .child("reserved");
         ref_reserved.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
@@ -185,7 +184,7 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
         binding = null;
     }
 
-    @SuppressLint("NonConstantResourceId")
+    @SuppressLint({"NonConstantResourceId", "SetTextI18n"})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

@@ -19,7 +19,6 @@ import com.example.appbar.data.DataBase;
 import com.example.appbar.data.DataFlow;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.databinding.FragmentItemAddUpdateBinding;
-import com.example.appbar.ui.items.ItemsFragment;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class ItemUpdateFragment extends Fragment {

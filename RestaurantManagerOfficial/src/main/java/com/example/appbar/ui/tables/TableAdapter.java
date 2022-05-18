@@ -37,7 +37,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.MyHolder>
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
-        String reserved = "";
+        String reserved;
         TablesData table = list.get(position);
         if (String.valueOf(table.isReserved()).equals("false")) {
             reserved = "DISPONIBLE";

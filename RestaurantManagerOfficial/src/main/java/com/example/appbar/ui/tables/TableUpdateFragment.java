@@ -20,7 +20,6 @@ import com.example.appbar.data.DataBase;
 import com.example.appbar.data.DataFlow;
 import com.example.appbar.data.TablesData;
 import com.example.appbar.databinding.FragmentTableUpdateBinding;
-import com.example.appbar.ui.tables.TablesFragment;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class TableUpdateFragment extends Fragment {

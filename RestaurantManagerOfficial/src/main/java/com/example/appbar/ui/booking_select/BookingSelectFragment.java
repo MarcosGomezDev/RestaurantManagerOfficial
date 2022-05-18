@@ -29,6 +29,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@SuppressWarnings({"SpellCheckingInspection", "FieldCanBeLocal"})
 public class BookingSelectFragment extends Fragment implements View.OnClickListener {
 
     private FragmentBookingSelectBinding binding;
@@ -38,8 +39,7 @@ public class BookingSelectFragment extends Fragment implements View.OnClickListe
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentBookingSelectBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        return root;
+        return binding.getRoot();
     }
 
     @Override
@@ -64,28 +64,24 @@ public class BookingSelectFragment extends Fragment implements View.OnClickListe
     @Override
     public void onClick(View view) {
         BookingsData Datos = new BookingsData();
-        if (Comprobar_fecha(fecha_editText.getText().toString().trim())==false){
+        if (!Comprobar_fecha(fecha_editText.getText().toString().trim())) {
             fecha_editText.setTextColor(Color.RED);
             Toast.makeText(getContext(), "Formato invalido ingrese el siguiente formato dd/mm/YYYY", LENGTH_SHORT).show();
-        }
-        else{
+        } else {
             fecha_editText.setTextColor(Color.BLACK);
-            if (Comprobar_email(email_editText.getText().toString().trim())==false){
+            if (!Comprobar_email(email_editText.getText().toString().trim())) {
                 email_editText.setTextColor(Color.RED);
                 Toast.makeText(getContext(), "Ingrese un formato Valido de email", LENGTH_SHORT).show();
-            }
-            else {
+            } else {
                 email_editText.setTextColor(Color.BLACK);
-                if (Comprobar_Telefono(telefono_editText.getText().toString().trim())==false) {
+                if (!Comprobar_Telefono(telefono_editText.getText().toString().trim())) {
                     telefono_editText.setTextColor(Color.RED);
                     Toast.makeText(getContext(), "Ingrese un numero de telefono correcto", LENGTH_SHORT).show();
-                }
-                else {
-                    if (Comprobar_personas(personas_editText.getText().toString().trim())==false){
+                } else {
+                    if (!Comprobar_personas(personas_editText.getText().toString().trim())) {
                         personas_editText.setTextColor(Color.RED);
                         Toast.makeText(getContext(), "No hay mesas de mas de 6 personas", LENGTH_SHORT).show();
-                    }
-                    else {
+                    } else {
                         Datos.addBookings(nombre_editText.getText().toString().trim(), email_editText.getText().toString().trim(), telefono_editText.getText().toString().trim(), fecha_editText.getText().toString().trim(), personas_editText.getText().toString().trim());
                         nombre_editText.setText("");
                         email_editText.setText("");
@@ -100,44 +96,29 @@ public class BookingSelectFragment extends Fragment implements View.OnClickListe
     }
 
     public boolean Comprobar_fecha(String fecha) {
-
-        DateFormat date = new SimpleDateFormat("dd/MM/yyyy");
+        @SuppressLint("SimpleDateFormat") DateFormat date = new SimpleDateFormat("dd/MM/yyyy");
         Date f = null;
         date.setLenient(false);
-        try{
+        try {
             f = date.parse(fecha);
             return true;
-
         } catch (ParseException e) {
             e.printStackTrace();
             return false;
-
-        }
-
-    }
-    public boolean Comprobar_email(String email){
-        if ( !email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            return true;
-        }
-        else {
-            return false;
         }
     }
-    public boolean Comprobar_Telefono(String Telefono){
-        if (Telefono.length()>8 && Telefono.length()<12){
-            return true;
-        }
-        else
-            return false;
+
+    public boolean Comprobar_email(String email) {
+        return !email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    public boolean Comprobar_Telefono(String Telefono) {
+        return Telefono.length() > 8 && Telefono.length() < 12;
 
     }
-  public boolean Comprobar_personas(String personas){
-        int i = Integer.valueOf(personas);
-        if (0<i && i<7){
-            return true;
-        }
-        else {
-            return false;
-        }
-  }
+
+    public boolean Comprobar_personas(String personas) {
+        int i = Integer.parseInt(personas);
+        return 0 < i && i < 7;
+    }
 }

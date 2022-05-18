@@ -1,7 +1,6 @@
 package com.example.appbar.ui.staff_signin;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,18 +13,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import com.example.appbar.LogInActivity;
 import com.example.appbar.R;
 import com.example.appbar.data.DataBase;
 import com.example.appbar.data.StaffData;
 import com.example.appbar.databinding.FragmentStaffSigninBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
@@ -33,27 +28,26 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.time.*;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class StaffSignInFragment extends Fragment implements View.OnClickListener {
 
     private FragmentStaffSigninBinding binding;
-    private DataBase dataBase = new DataBase();
-    private DatabaseReference myRref;
+    private final DataBase dataBase = new DataBase();
     private String userUID;
     private StaffData data;
-    private boolean control = false;
-    private Button horaini_button,horafin_button,fecha_button,comporbar_button,fichar_button,terminar_button;
-    private TextView horaini_textView,horafin_textView,fecha_textView;
+    private Button horaini_button, horafin_button, fecha_button, comporbar_button, fichar_button, terminar_button;
+    private TextView horaini_textView, horafin_textView, fecha_textView;
     private EditText dni_editText;
-    private String dia= "dd";
-    private String mes ="MM";
+    private String dia = "dd";
+    private String mes = "MM";
     private String anno = "yyyy";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentStaffSigninBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        return root;
+        return binding.getRoot();
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -88,6 +82,7 @@ public class StaffSignInFragment extends Fragment implements View.OnClickListene
         anno = data.fechaanno();
 
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -97,8 +92,7 @@ public class StaffSignInFragment extends Fragment implements View.OnClickListene
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
-        Context context;
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.horaini_button:
                 horaini_textView.setText(hora());
                 break;
@@ -109,10 +103,9 @@ public class StaffSignInFragment extends Fragment implements View.OnClickListene
                 fecha_textView.setText(fecha());
                 break;
             case R.id.comprobar_button:
-                if (dni_editText.getText().length()!=0) {
+                if (dni_editText.getText().length() != 0) {
                     Search();
-                }
-                else {
+                } else {
                     Toast.makeText(getContext(), "Introduzca un empleado valido ", Toast.LENGTH_SHORT).show();
                 }
                 break;
@@ -130,42 +123,39 @@ public class StaffSignInFragment extends Fragment implements View.OnClickListene
         }
     }
 
-    public  String hora(){
+    public String hora() {
         DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("HH:mm:ss");
         return (dtf2.format(LocalTime.now()));
     }
 
-    public String fecha(){
-        String date = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
+    public String fecha() {
+        @SuppressLint("SimpleDateFormat") String date = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
         return date;
     }
 
-    public void Search(){
+    public void Search() {
         userUID = dataBase.getCurrentUser().getUid();
-        dataBase.getDatabaseReference().child(userUID).child("staff").child((dni_editText.getText().toString()+" "+dia+mes+anno)).addValueEventListener(new ValueEventListener() {
+        dataBase.getDatabaseReference().child(userUID).child("staff").child((dni_editText.getText().toString() + " " + dia + mes + anno)).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                   String dni = snapshot.child("dni").getValue().toString().trim();
-                   data = snapshot.getValue(StaffData.class);
-                   if (data.getHorafin().length()==0) {
-                       if (data.getFecha().compareTo(fecha()) == 0) {
-                           horaini_textView.setText(data.getHoraini());
-                           fecha_textView.setText(data.getFecha());
-                           terminar_button.setEnabled(true);
-                           horafin_button.setEnabled(true);
-                       }
-                   }
-                    else {
-                       horaini_textView.setText("");
-                       fecha_textView.setText("");
-                       horafin_textView.setText("");
+                if (snapshot.exists()) {
+                    data = snapshot.getValue(StaffData.class);
+                    assert data != null;
+                    if (data.getHorafin().length() == 0) {
+                        if (data.getFecha().compareTo(fecha()) == 0) {
+                            horaini_textView.setText(data.getHoraini());
+                            fecha_textView.setText(data.getFecha());
+                            terminar_button.setEnabled(true);
+                            horafin_button.setEnabled(true);
+                        }
+                    } else {
+                        horaini_textView.setText("");
+                        fecha_textView.setText("");
+                        horafin_textView.setText("");
                         Toast.makeText(getContext(), "Este empleado ya ha fichado su hora de " +
                                 "salida para la fecha actual ", Toast.LENGTH_SHORT).show();
-
                     }
-                }
-                else{
+                } else {
                     comporbar_button.setEnabled(false);
                     fichar_button.setEnabled(true);
                     horaini_button.setEnabled(true);
@@ -179,9 +169,10 @@ public class StaffSignInFragment extends Fragment implements View.OnClickListene
             }
         });
     }
-    public void Update(){
+
+    public void Update() {
         userUID = dataBase.getCurrentUser().getUid();
-        String Cadena = dni_editText.getText().toString()+" "+dia+mes+anno;
+        String Cadena = dni_editText.getText().toString() + " " + dia + mes + anno;
         String hora = horafin_textView.getText().toString().trim();
         dataBase.getDatabaseReference().child(userUID).child("staff").child(Cadena).child("horafin").setValue(hora);
 

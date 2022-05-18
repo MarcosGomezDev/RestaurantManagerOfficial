@@ -21,7 +21,6 @@ import com.example.appbar.data.DataFlow;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.databinding.FragmentTableItemsAddBinding;
 import com.example.appbar.ui.items.ItemAdapter;
-import com.example.appbar.ui.table_box.TableBoxFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

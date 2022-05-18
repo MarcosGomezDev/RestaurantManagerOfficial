@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment;
 import com.example.appbar.data.DataBase;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.R;
-import com.example.appbar.data.StaffData;
 import com.example.appbar.data.TablesData;
 import com.example.appbar.databinding.FragmentHomeBinding;
 import com.google.firebase.database.DataSnapshot;
@@ -24,24 +23,17 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@SuppressWarnings("FieldCanBeLocal")
+@SuppressWarnings({"FieldCanBeLocal", "SpellCheckingInspection"})
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private final DataBase dataBase = new DataBase();
-    private TextView reserva_textView,item_textView,fechaac_textView,empleados_textView,Mesas_textView;
+    private TextView reserva_textView, item_textView, fechaac_textView, empleados_textView, Mesas_textView;
     private long reservas = 0;
     private long items = 0;
     private long empleados = 0;
-    private long mesas =0;
+    private long mesas = 0;
     private String userUID;
-    private String dia= "dd";
-    private String mes ="MM";
-    private String anno = "yyyy";
-    private int i = 0;
-    TablesData tablesData;
-
-
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -62,7 +54,6 @@ public class HomeFragment extends Fragment {
         Reservas();
         empleados_Activos();
         mesas();
-        tablesData = new TablesData();
     }
 
     @Override
@@ -75,46 +66,51 @@ public class HomeFragment extends Fragment {
         String userUID = dataBase.getCurrentUser().getUid();
         dataBase.getDatabaseReference().child(userUID).child(dataBase.PARENT_ITEMS())
                 .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        ItemData item = new ItemData();
-                        items= snapshot.getChildrenCount();
-                        String numItemsString = "Productos dados de Alta " + items;
-                        item_textView.setText(numItemsString);
-                        if(!snapshot.exists()){
-                            item.addAllSampleItems();
-                        }
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {}
-                }
-        );
+                                           @Override
+                                           public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                               ItemData item = new ItemData();
+                                               items = snapshot.getChildrenCount();
+                                               String numItemsString = "Productos dados de Alta " + items;
+                                               item_textView.setText(numItemsString);
+                                               if (!snapshot.exists()) {
+                                                   item.addAllSampleItems();
+                                               }
+                                           }
+
+                                           @Override
+                                           public void onCancelled(@NonNull DatabaseError error) {
+                                           }
+                                       }
+                );
         dataBase.getDatabaseReference().child(userUID).child(dataBase.PARENT_TABLES())
                 .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        TablesData table = new TablesData();
-                        if(!snapshot.exists()){
-                            table.addInitialTables();
-                        }
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {}
-                }
-        );
+                                           @Override
+                                           public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                               TablesData table = new TablesData();
+                                               if (!snapshot.exists()) {
+                                                   table.addInitialTables();
+                                               }
+                                           }
+
+                                           @Override
+                                           public void onCancelled(@NonNull DatabaseError error) {
+                                           }
+                                       }
+                );
     }
 
-    public void Reservas(){
+    public void Reservas() {
         userUID = dataBase.getCurrentUser().getUid();
         dataBase.getDatabaseReference().child(userUID).child("booking").addValueEventListener(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    reservas= snapshot.getChildrenCount();
+                if (snapshot.exists()) {
+                    reservas = snapshot.getChildrenCount();
                     reserva_textView.setText("Numero total de reservas    " + reservas);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -122,14 +118,14 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    public void mesas(){
-
+    public void mesas() {
         userUID = dataBase.getCurrentUser().getUid();
         dataBase.getDatabaseReference().child(userUID).child("tables").addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 mesas = snapshot.getChildrenCount();
-                Mesas_textView.setText("El numero actual de mesas es "+mesas);
-                }
+                Mesas_textView.setText("El numero actual de mesas es " + mesas);
+            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -137,19 +133,15 @@ public class HomeFragment extends Fragment {
         });
     }
 
-
-    public void empleados_Activos(){
-
+    public void empleados_Activos() {
         userUID = dataBase.getCurrentUser().getUid();
         dataBase.getDatabaseReference().child(userUID).child("staff").addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-
-                empleados = snapshot.getChildrenCount();
-                empleados_textView.setText("El numero de registros de empleados es "+empleados
-                );
+                    empleados = snapshot.getChildrenCount();
+                    empleados_textView.setText("El numero de registros de empleados es " + empleados);
                 }
-
             }
 
             @Override
@@ -158,15 +150,9 @@ public class HomeFragment extends Fragment {
         });
     }
 
-
-    public String fecha(){
+    public String fecha() {
         @SuppressLint("SimpleDateFormat")
         String date = new SimpleDateFormat("dd MMMM yyyy   HH:mm").format(new Date());
         return date;
     }
-    public String fecha1(){
-        String date = new SimpleDateFormat("ddMMyyyy").format(new Date());
-        return date;
-    }
-
 }

@@ -24,8 +24,6 @@ import com.example.appbar.data.BookingsData;
 import com.example.appbar.data.DataBase;
 import com.example.appbar.data.DataFlow;
 import com.example.appbar.databinding.FragmentBookingsBinding;
-import com.example.appbar.ui.items.ItemsFragment;
-import com.example.appbar.ui.table_box.TableBoxFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,6 +35,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+@SuppressWarnings("ALL")
 public class BookingsFragment extends Fragment implements View.OnClickListener {
 
     private FragmentBookingsBinding binding;
@@ -60,15 +59,12 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentBookingsBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        return root;
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
         fa_annadir = view.findViewById(R.id.fa_annadir);
         recyclerView = view.findViewById(R.id.r);
         diatextView = view.findViewById(R.id.diatextView);
@@ -106,17 +102,14 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
 
         reservas();
 
-        bookingsAdapter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DataFlow.getNombre = list.get(recyclerView.getChildAdapterPosition(v)).getNombre();
-                DataFlow.getEmail = list.get(recyclerView.getChildAdapterPosition(v)).getEmail();
-                DataFlow.getFecha = list.get(recyclerView.getChildAdapterPosition(v)).getFecha();
-                DataFlow.getPersonas = list.get(recyclerView.getChildAdapterPosition(v)).getPersonas();
-                DataFlow.getTelefono = list.get(recyclerView.getChildAdapterPosition(v)).getTelefono();
-                Log.println(Log.WARN, "Clic", "Intentando navegar.");
-                Navigation.findNavController(v).navigate(R.id.nav_booking_delete);
-            }
+        bookingsAdapter.setOnClickListener(v -> {
+            DataFlow.getNombre = list.get(recyclerView.getChildAdapterPosition(v)).getNombre();
+            DataFlow.getEmail = list.get(recyclerView.getChildAdapterPosition(v)).getEmail();
+            DataFlow.getFecha = list.get(recyclerView.getChildAdapterPosition(v)).getFecha();
+            DataFlow.getPersonas = list.get(recyclerView.getChildAdapterPosition(v)).getPersonas();
+            DataFlow.getTelefono = list.get(recyclerView.getChildAdapterPosition(v)).getTelefono();
+            Log.println(Log.WARN, "Clic", "Intentando navegar.");
+            Navigation.findNavController(v).navigate(R.id.nav_booking_delete);
         });
 
     }
@@ -141,7 +134,6 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
     }
 
     public void reservas(){
-
         myRef = dataBase.getInstance().getReference(userUID).child(dataBase.PARENT_BOOKING());
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
@@ -211,6 +203,4 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
-
-
 }

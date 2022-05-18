@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,34 +11,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appbar.R;
 import com.example.appbar.data.BookingsData;
-import com.example.appbar.data.DataBase;
-
 import java.util.ArrayList;
 
-public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.MyViewHolder> implements View.OnClickListener{
+public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.MyViewHolder> implements View.OnClickListener {
 
-    private Context context;
-    private ArrayList<BookingsData> list;
+    private final Context context;
+    private final ArrayList<BookingsData> list;
     private View.OnClickListener listener;
-    private DataBase dataBase = new DataBase();
-    private String userUID;
 
     public BookingsAdapter(Context context, ArrayList<BookingsData> list) {
         this.context = context;
         this.list = list;
     }
 
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.booking_view,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.booking_view, parent, false);
         v.setOnClickListener(this);
-
-        return  new MyViewHolder(v);
+        return new MyViewHolder(v);
     }
-
-
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
@@ -49,11 +40,12 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.MyView
         holder.emailTextView.setText((bookingsData.getEmail()));
         holder.fechaTextView.setText((bookingsData.getFecha()));
         holder.personastextView.setText((bookingsData.getPersonas()));
-
     }
 
     @Override
-    public int getItemCount() { return list.size(); }
+    public int getItemCount() {
+        return list.size();
+    }
 
     public void setOnClickListener(View.OnClickListener listener) {
         this.listener = listener;
@@ -61,27 +53,21 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.MyView
 
     @Override
     public void onClick(View v) {
-        if(listener != null) {
+        if (listener != null) {
             listener.onClick(v);
         }
     }
 
-
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-
-        TextView nombreTextView, telefonoTextView, emailTextView, fechaTextView,personastextView;
-        Button deleteButton;
+        TextView nombreTextView, telefonoTextView, emailTextView, fechaTextView, personastextView;
 
         public MyViewHolder(@NonNull View bookView) {
             super(bookView);
             nombreTextView = bookView.findViewById(R.id.nombre_deleteTextView);
             telefonoTextView = bookView.findViewById(R.id.telefono_deleteTextView);
             emailTextView = bookView.findViewById(R.id.email_deleteTextView);
-            fechaTextView  = bookView.findViewById(R.id.fecha_deleteTextView);
+            fechaTextView = bookView.findViewById(R.id.fecha_deleteTextView);
             personastextView = bookView.findViewById(R.id.personas_deletetextView);
-
         }
     }
-
-
 }
