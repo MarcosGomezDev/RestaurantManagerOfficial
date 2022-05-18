@@ -36,7 +36,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth mFirebaseAuth;
     private EditText emailEditText, passwordEditText;
     private CheckBox recUserCheck, conditionsCheck;
-    private Button logInButton, signInButton, rellenarButton, rellenarButton2;
+    private Button logInButton, signInButton;
     private String date;
     private String email;
     private String pass;
@@ -57,16 +57,10 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         logInButton = findViewById(R.id.removeItemBasketButton);
         signInButton = findViewById(R.id.signInButton);
 
-        // Estod dos botones son los de pruebas
-        rellenarButton = findViewById(R.id.rellenarButton);
-        rellenarButton2 = findViewById(R.id.rellenarButton2);
-
         recUserCheck = findViewById(R.id.recUserCheck);
         conditionsCheck = findViewById(R.id.conditionsCheckBox);
         logInButton.setOnClickListener(this);
         signInButton.setOnClickListener(this);
-        rellenarButton.setOnClickListener(this);
-        rellenarButton2.setOnClickListener(this);
         recUserCheck.setChecked(true);
         conditionsCheck.setChecked(false);
 
@@ -76,7 +70,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                 R.id.emailEditText, Patterns.EMAIL_ADDRESS, R.string.invalid_mail);
         awesomeValidation.addValidation(this,
                 R.id.passwordEditText, ".{6,}", R.string.invalid_password);
-
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -103,15 +96,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                             Toast.LENGTH_LONG).show();
                 }
                 break;
-            case R.id.rellenarButton:
-                emailEditText.setText("sergio@maquina.es");
-                passwordEditText.setText("sergio");
-                break;
-
-            case R.id.rellenarButton2:
-                emailEditText.setText("marcos@marcos.es");
-                passwordEditText.setText("marcos");
-                break;
         }
     }
 
@@ -127,9 +111,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                                         Toast.LENGTH_LONG).show();
                                 goHome();
                             } else {
-//                                String errorCode = ((FirebaseAuthException)
-//                                        Objects.requireNonNull(task.getException())).getErrorCode();
-//                                getToastError(errorCode);
                                 Toast.makeText(LogInActivity.this,
                                         "Error",
                                         Toast.LENGTH_LONG).show();
@@ -154,9 +135,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                                         Toast.LENGTH_LONG).show();
                                 setSignIn(email, password);
                             } else {
-//                                String errorCode = ((FirebaseAuthException)
-//                                        Objects.requireNonNull(task.getException())).getErrorCode();
-//                                getToastError(errorCode);
                                 Toast.makeText(LogInActivity.this,
                                         "Error",
                                         Toast.LENGTH_LONG).show();
