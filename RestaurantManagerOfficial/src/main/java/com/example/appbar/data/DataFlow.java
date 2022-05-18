@@ -1,7 +1,6 @@
 package com.example.appbar.data;
 
 public class DataFlow {
-
     /**
      * Datos para los Items
      */
@@ -13,7 +12,7 @@ public class DataFlow {
      * Datos para Table Box
      */
     public static boolean comeFromTableBox;
-    public static double amountItemBasketDouble; //totalAmountDouble
+    public static double amountItemBasketDouble;
     public static double totalItemAmountPrice;
 
     /**
@@ -22,12 +21,4 @@ public class DataFlow {
     public static String currentNumTableString;
     public static String currentCapacityTableString;
     public static boolean currentReservedTableBool;
-
-
-
-
-
-
-
-
 }

@@ -31,7 +31,6 @@ public class TableUpdateFragment extends Fragment {
     private Button updateOkButton;
     private EditText updateNumTableEditText, updateCapacityEditText;
     private TextView getNumTableTextView, getCapacityTextView;
-    private boolean reservedBool;
 
     public View onCreateView (@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -44,14 +43,14 @@ public class TableUpdateFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         dataBase = new DataBase();
-        reservedBool = TablesFragment.currentReservedTableBool;
         updateOkButton = view.findViewById(R.id.updateOkButton);
         updateNumTableEditText  = view.findViewById(R.id.updateNumTableEditText);
         updateCapacityEditText = view.findViewById(R.id.updateCapacityEditText);
         getNumTableTextView = view.findViewById(R.id.getNumTableTextView);
         getCapacityTextView = view.findViewById(R.id.getCapacityTextView);
         getNumTableTextView.setText("Mesa número " + DataFlow.currentNumTableString);
-        getCapacityTextView.setText("Capacidad de la mesa: " + DataFlow.currentCapacityTableString + " personas");
+        getCapacityTextView.setText("Capacidad de la mesa: " +
+                DataFlow.currentCapacityTableString + " personas");
 
         updateOkButton.setOnClickListener(v -> {
 
@@ -62,7 +61,7 @@ public class TableUpdateFragment extends Fragment {
                 updateNumTableEditText.setError("Campo obligatorio");
                 updateCapacityEditText.setError("Campo obligatorio");
             } else {
-                table = new TablesData(numTable, capacity, reservedBool);
+                table = new TablesData(numTable, capacity, DataFlow.currentReservedTableBool);
                 String userUID = dataBase.getCurrentUser().getUid();
                 dataBase.getDatabaseReference()
                         .child(userUID)

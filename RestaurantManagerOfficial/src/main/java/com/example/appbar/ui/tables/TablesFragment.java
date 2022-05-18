@@ -39,9 +39,6 @@ public class TablesFragment extends Fragment {
     private Context context;
     private String userUID;
 
-    //public static String currentCapacityTableString;
-    public static boolean currentReservedTableBool;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentTablesBinding.inflate(inflater, container, false);
@@ -68,7 +65,7 @@ public class TablesFragment extends Fragment {
                     recyclerView.getChildAdapterPosition(v)).getNumTable();
             DataFlow.currentCapacityTableString = list.get(
                     recyclerView.getChildAdapterPosition(v)).getNumPeople();
-            currentReservedTableBool = list.get(
+            DataFlow.currentReservedTableBool = list.get(
                     recyclerView.getChildAdapterPosition(v)).isReserved();
             Navigation.findNavController(v).navigate(R.id.nav_table_box);
         });
