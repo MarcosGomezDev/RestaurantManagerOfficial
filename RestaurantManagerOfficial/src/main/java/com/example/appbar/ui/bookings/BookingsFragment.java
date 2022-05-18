@@ -110,10 +110,10 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 DataFlow.getNombre = list.get(recyclerView.getChildAdapterPosition(v)).getNombre();
-                list.get(recyclerView.getChildAdapterPosition(v)).getFecha();
-                list.get(recyclerView.getChildAdapterPosition(v)).getEmail();
-                list.get(recyclerView.getChildAdapterPosition(v)).getTelefono();
-                list.get(recyclerView.getChildAdapterPosition(v)).getPersonas();
+                DataFlow.getEmail = list.get(recyclerView.getChildAdapterPosition(v)).getEmail();
+                DataFlow.getFecha = list.get(recyclerView.getChildAdapterPosition(v)).getFecha();
+                DataFlow.getPersonas = list.get(recyclerView.getChildAdapterPosition(v)).getPersonas();
+                DataFlow.getTelefono = list.get(recyclerView.getChildAdapterPosition(v)).getTelefono();
                 Log.println(Log.WARN, "Clic", "Intentando navegar.");
                 Navigation.findNavController(v).navigate(R.id.nav_booking_delete);
             }
@@ -143,11 +143,6 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
     public void reservas(){
 
         myRef = dataBase.getInstance().getReference(userUID).child(dataBase.PARENT_BOOKING());
-
-
-
-
-
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
