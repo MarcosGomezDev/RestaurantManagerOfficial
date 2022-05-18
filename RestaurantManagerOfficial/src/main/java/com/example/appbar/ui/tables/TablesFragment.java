@@ -41,7 +41,6 @@ public class TablesFragment extends Fragment {
     public static String currentNumTableString;
     public static String currentCapacityTableString;
     public static boolean currentReservedTableBool;
-    public static int countTable;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

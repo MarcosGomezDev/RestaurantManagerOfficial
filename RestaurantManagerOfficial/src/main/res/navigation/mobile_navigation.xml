@@ -17,9 +17,9 @@
 
     <fragment
         android:id="@+id/nav_table_selected"
-        android:name="com.example.appbar.ui.table_selected.TableSelectedFragment"
+        android:name="com.example.appbar.ui.table_selected.TableUpdateFragment"
         android:label="@string/table_select"
-        tools:layout="@layout/fragment_table_selected" >
+        tools:layout="@layout/fragment_table_update" >
         <action
             android:id="@+id/action_nav_table_selected_to_cashFragment"
             app:destination="@id/nav_cash_fragment" />
@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/nav_table_items"
-        android:name="com.example.appbar.ui.tables.TableItemsSelected"
+        android:name="com.example.appbar.ui.tables.TableItemsAdd"
         android:label="Añadir articulo a mesa"
         tools:layout="@layout/fragment_items">
         <action

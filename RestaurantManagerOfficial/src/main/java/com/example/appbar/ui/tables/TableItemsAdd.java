@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.appbar.R;
 import com.example.appbar.data.DataBase;
 import com.example.appbar.data.ItemData;
-import com.example.appbar.databinding.FragmentTableItemsBinding;
+import com.example.appbar.databinding.FragmentTableItemsAddBinding;
 import com.example.appbar.ui.items.ItemAdapter;
 import com.example.appbar.ui.table_box.TableBoxFragment;
 import com.google.firebase.database.DataSnapshot;
@@ -29,13 +29,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 @SuppressWarnings("FieldCanBeLocal")
-public class TableItemsSelected extends Fragment {
+public class TableItemsAdd extends Fragment {
 
-    private FragmentTableItemsBinding binding;
+    private FragmentTableItemsAddBinding binding;
     private DataBase dataBase;
     private ItemData item;
-    public static String currentDescriptionItemString;
-    public static double currentPriceItemDouble;
+    private String currentDescriptionItemString;
+    private double currentPriceItemDouble;
     private ItemAdapter itemAdapter;
     private RecyclerView recyclerView;
     private ArrayList<ItemData> list;
@@ -46,7 +46,7 @@ public class TableItemsSelected extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentTableItemsBinding.inflate(inflater, container, false);
+        binding = FragmentTableItemsAddBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 

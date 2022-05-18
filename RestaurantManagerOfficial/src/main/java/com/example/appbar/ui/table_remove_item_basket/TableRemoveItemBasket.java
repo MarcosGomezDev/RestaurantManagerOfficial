@@ -53,7 +53,7 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
 
         currentDescriptionItemString = ItemsFragment.currentDescriptionItemString;
         currentPriceItemDouble = ItemsFragment.currentPriceItemDouble;
-        totalItemAmount = TableBoxFragment.totalItemAmount;
+        totalItemAmount = TableBoxFragment.totalItemAmountPrice;
         currentUnits = ItemsFragment.currentUnitItemLong;
         currentTablePk = TablesFragment.currentNumTableString;
         currentItemPk = currentDescriptionItemString

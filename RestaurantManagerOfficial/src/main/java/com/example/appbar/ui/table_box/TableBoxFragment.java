@@ -15,7 +15,6 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -48,7 +47,7 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
     private Context context;
     public static boolean comeFromTableBox;
     public static double totalAmountDouble;
-    public static double totalItemAmount;
+    public static double totalItemAmountPrice;
     private Button noButton, modifyButton, addItemTableButton, collectButton, reservedButton;
     private TextView totalAmountTextView;
     private final String currentTable = TablesFragment.currentNumTableString;
@@ -104,7 +103,7 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
                     recyclerView.getChildAdapterPosition(v)).getPrice();
             ItemsFragment.currentUnitItemLong = list.get(
                     recyclerView.getChildAdapterPosition(v)).getUnits();
-            totalItemAmount = list.get(
+            totalItemAmountPrice = list.get(
                     recyclerView.getChildAdapterPosition(v)).getAmountPrice();
             Navigation.findNavController(v).navigate(R.id.nav_remove_items_basket);
         });

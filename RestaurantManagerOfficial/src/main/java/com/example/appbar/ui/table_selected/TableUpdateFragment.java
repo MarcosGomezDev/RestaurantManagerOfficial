@@ -1,7 +1,6 @@
 package com.example.appbar.ui.table_selected;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,21 +18,15 @@ import androidx.navigation.Navigation;
 import com.example.appbar.R;
 import com.example.appbar.data.DataBase;
 import com.example.appbar.data.TablesData;
-import com.example.appbar.databinding.FragmentTableSelectedBinding;
-import com.example.appbar.ui.tables.TableAdapter;
+import com.example.appbar.databinding.FragmentTableUpdateBinding;
 import com.example.appbar.ui.tables.TablesFragment;
 
-import java.util.ArrayList;
-
 @SuppressWarnings("FieldCanBeLocal")
-public class TableSelectedFragment extends Fragment {
+public class TableUpdateFragment extends Fragment {
 
-    private FragmentTableSelectedBinding binding;
+    private FragmentTableUpdateBinding binding;
     private DataBase dataBase;
     private TablesData table;
-    private TableAdapter tableAdapter;
-    private ArrayList<TablesData> list;
-    private Context context;
     private String currentNumTableString;
     private String currentCapacityTableString;
     private Button updateOkButton;
@@ -43,7 +36,7 @@ public class TableSelectedFragment extends Fragment {
 
     public View onCreateView (@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentTableSelectedBinding.inflate(inflater, container, false);
+        binding = FragmentTableUpdateBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -52,11 +45,6 @@ public class TableSelectedFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         dataBase = new DataBase();
-        context = this.getActivity();
-        list = new ArrayList<>();
-        tableAdapter = new TableAdapter(context, list);
-        table = new TablesData();
-
         currentNumTableString = TablesFragment.currentNumTableString;
         currentCapacityTableString = TablesFragment.currentCapacityTableString;
         reservedBool = TablesFragment.currentReservedTableBool;
@@ -67,8 +55,6 @@ public class TableSelectedFragment extends Fragment {
         getCapacityTextView = view.findViewById(R.id.getCapacityTextView);
         getNumTableTextView.setText("Mesa número " + currentNumTableString);
         getCapacityTextView.setText("Capacidad de la mesa: " + currentCapacityTableString + " personas");
-
-        TablesFragment.countTable = tableAdapter.getItemCount();
 
         updateOkButton.setOnClickListener(v -> {
 
