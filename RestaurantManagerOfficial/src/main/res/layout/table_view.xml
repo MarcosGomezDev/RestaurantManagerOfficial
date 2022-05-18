@@ -64,25 +64,6 @@
                     android:textColor="@color/AppColorGrey"
                     android:textSize="20sp" />
 
-                <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/todo"
-                    app:srcCompat="@drawable/cust_shopping_basket_24" />
-
-                <TextView
-                    android:id="@+id/cuantityTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/x2"
-                    android:textColor="@color/AppColorGrey"
-                    android:textSize="20sp" />
-
             </LinearLayout>
 
             <LinearLayout
