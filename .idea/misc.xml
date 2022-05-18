@@ -23,18 +23,19 @@
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_items.xml" value="0.25" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_remove_item_basket.xml" value="0.5" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_staff_signin.xml" value="0.5267210144927537" />
-        <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_table_box.xml" value="0.5" />
+        <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_table_box.xml" value="0.33" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_table_items.xml" value="0.2" />
-        <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_table_selected.xml" value="0.33" />
+        <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_table_selected.xml" value="0.5" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/fragment_tables.xml" value="0.41458333333333336" />
-        <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/item_view.xml" value="0.25" />
-        <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/nav_header_main.xml" value="0.75" />
+        <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/item_view.xml" value="0.67" />
+        <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/nav_header_main.xml" value="0.35924932975871315" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/recycler_view_item.xml" value="0.5" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/table_view.xml" value="0.7" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/table_view_grid.xml" value="0.26358695652173914" />
-        <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/table_view_items.xml" value="0.5" />
+        <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/layout/table_view_items.xml" value="0.67" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/menu/activity_main_drawer.xml" value="0.4479166666666667" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/menu/main.xml" value="0.4479166666666667" />
+        <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/mipmap-anydpi-v26/cust_launcher.xml" value="0.343" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/mipmap-anydpi-v26/cust_moon.xml" value="0.1955" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/mipmap-anydpi-v26/cust_ms.xml" value="0.3115" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/RestaurantManagerOfficial/src/main/res/mipmap-anydpi-v26/cust_ms_round.xml" value="0.3115" />
@@ -63,15 +64,12 @@
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/app/src/main/res/menu/activity_main_drawer.xml" value="0.5473958333333333" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/app/src/main/res/menu/main.xml" value="0.5473958333333333" />
         <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBar/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.294" />
+        <entry key="..\:/Users/MarcosGM/AndroidStudioProjects/AppBarSave/AppBar/RestaurantManagerOfficial/src/main/res/layout/table_view_items.xml" value="0.17249240121580547" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/Proyecto 11052022/RestaurantManagerOfficial/src/main/res/layout/booking_view.xml" value="0.33" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/Proyecto 11052022/RestaurantManagerOfficial/src/main/res/layout/fragment_booking_delete.xml" value="0.18" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/Proyecto 11052022/RestaurantManagerOfficial/src/main/res/layout/fragment_booking_select.xml" value="0.12409420289855072" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/Proyecto 11052022/RestaurantManagerOfficial/src/main/res/layout/fragment_bookings.xml" value="0.42028985507246375" />
-        <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/Proyecto 11052022/RestaurantManagerOfficial/src/main/res/layout/fragment_home.xml" value="0.19635416666666666" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/Proyecto 11052022/RestaurantManagerOfficial/src/main/res/layout/fragment_item_add_update.xml" value="0.12409420289855072" />
-        <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/Proyecto 11052022/RestaurantManagerOfficial/src/main/res/layout/fragment_items.xml" value="0.12409420289855072" />
-        <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/Proyecto 11052022/RestaurantManagerOfficial/src/main/res/layout/fragment_remove_item_basket.xml" value="0.12409420289855072" />
-        <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/Proyecto 11052022/RestaurantManagerOfficial/src/main/res/layout/item_view.xml" value="0.12409420289855072" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/Proyecto 11052022/RestaurantManagerOfficial/src/main/res/layout/nav_booking_delete.xml" value="0.12409420289855072" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/Proyecto 11052022/RestaurantManagerOfficial/src/main/res/layout/nav_header_main.xml" value="0.12409420289855072" />
         <entry key="..\:/Users/SERGIO_3/Documents/DAM/SEGUNDO CURSO/proyecto fin de grado/RestaurantManagerOfficial/RestaurantManagerOfficial/src/main/res/layout/activity_log_in.xml" value="0.21" />
@@ -104,5 +102,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.5" />
+      </ProjectState>
+    </option>
   </component>
 </project>
