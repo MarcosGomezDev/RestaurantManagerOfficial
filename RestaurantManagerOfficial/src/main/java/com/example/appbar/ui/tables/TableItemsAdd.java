@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appbar.R;
 import com.example.appbar.data.DataBase;
+import com.example.appbar.data.DataFlow;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.databinding.FragmentTableItemsAddBinding;
 import com.example.appbar.ui.items.ItemAdapter;
@@ -34,14 +35,11 @@ public class TableItemsAdd extends Fragment {
     private FragmentTableItemsAddBinding binding;
     private DataBase dataBase;
     private ItemData item;
-    private String descriptionItemString;
-    private double priceItemDouble;
     private ItemAdapter itemAdapter;
     private RecyclerView recyclerView;
     private ArrayList<ItemData> list;
     private String userUID;
     private Context context;
-    private String currentTable;
     private long newUnitSub;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -54,7 +52,6 @@ public class TableItemsAdd extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.tableItemListRecyclerView);
-        currentTable = TablesFragment.currentNumTableString;
         dataBase = new DataBase();
         userUID = dataBase.getCurrentUser().getUid();
 
@@ -66,9 +63,9 @@ public class TableItemsAdd extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
         itemAdapter.setOnClickListener(v -> {
-            descriptionItemString = list.get(
+            String descriptionItemString = list.get(
                     recyclerView.getChildAdapterPosition(v)).getDescription();
-            priceItemDouble = list.get(
+            double priceItemDouble = list.get(
                     recyclerView.getChildAdapterPosition(v)).getPrice();
 
             item = new ItemData(descriptionItemString, priceItemDouble,
@@ -81,22 +78,22 @@ public class TableItemsAdd extends Fragment {
             dataBase.getDatabaseReference()
                     .child(userUID)
                     .child(dataBase.PARENT_TABLES())
-                    .child(currentTable)
+                    .child(DataFlow.currentNumTableString)
                     .child("items_basket")
                     .child(currentItemPK)
                     .setValue(item);
 
-            TableBoxFragment.totalAmountDouble += priceItemDouble;
-            TableBoxFragment.totalAmountDouble = Math
-                    .round(TableBoxFragment.totalAmountDouble * 100d) / 100d;
+            DataFlow.amountItemBasketDouble += priceItemDouble;
+            DataFlow.amountItemBasketDouble = Math
+                    .round(DataFlow.amountItemBasketDouble * 100d) / 100d;
 
             dataBase.getDatabaseReference()
                     .child(userUID)
                     .child(dataBase.PARENT_TABLES())
-                    .child(currentTable)
+                    .child(DataFlow.currentNumTableString)
                     .child("items_basket")
                     .child("basket_amount")
-                    .setValue(TableBoxFragment.totalAmountDouble);
+                    .setValue(DataFlow.amountItemBasketDouble);
             Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_LONG).show();
 
             Navigation.findNavController(v).navigate(R.id.nav_table_box);

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appbar.R;
 import com.example.appbar.data.DataBase;
+import com.example.appbar.data.DataFlow;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.databinding.FragmentItemsBinding;
 import com.example.appbar.ui.table_box.TableBoxFragment;
@@ -33,9 +34,6 @@ public class ItemsFragment extends Fragment {
     private FragmentItemsBinding binding;
     private DataBase dataBase;
     private DatabaseReference myRef;
-    public static String currentDescriptionItemString;
-    public static double currentPriceItemDouble;
-    public static long currentUnitItemLong;
     private ItemAdapter itemAdapter;
     private RecyclerView recyclerView;
     private ArrayList<ItemData> list;
@@ -64,13 +62,12 @@ public class ItemsFragment extends Fragment {
         itemAdapter = new ItemAdapter(context, list);
         recyclerView.setAdapter(itemAdapter);
 
-
         itemAdapter.setOnClickListener(v -> {
-            currentDescriptionItemString = list.get(
+            DataFlow.currentDescriptionItemString = list.get(
                     recyclerView.getChildAdapterPosition(v)).getDescription();
-            currentPriceItemDouble = (list.get(
+            DataFlow.currentPriceItemDouble = (list.get(
                     recyclerView.getChildAdapterPosition(v)).getPrice());
-            if (TableBoxFragment.comeFromTableBox) {
+            if (DataFlow.comeFromTableBox) {
                 Navigation.findNavController(v).navigate(R.id.nav_table_box);
             } else {
                 Navigation.findNavController(v).navigate(R.id.nav_item_add_update);
@@ -79,7 +76,6 @@ public class ItemsFragment extends Fragment {
 
         addItemButton.setOnClickListener(v ->
                 Navigation.findNavController(v).navigate(R.id.nav_item_new));
-
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
