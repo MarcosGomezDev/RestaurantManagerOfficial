@@ -1,7 +1,7 @@
 package com.example.appbar.data;
 
 public class BookingsData {
-    private DataBase dataBase = new DataBase();
+    private final DataBase dataBase = new DataBase();
     private String nombre;
     private String email;
     private String telefono;
@@ -23,40 +23,20 @@ public class BookingsData {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
     public String getNombre() {
         return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
     public String getPersonas() {
         return personas;
-    }
-
-    public void setPersonas(String personas) {
-        this.personas = personas;
     }
 
     public void addBookings(String nombre, String email, String telefono, String fecha, String personas){

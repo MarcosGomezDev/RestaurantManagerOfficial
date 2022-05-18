@@ -41,23 +41,11 @@ public class TablesData {
         return numTable;
     }
 
-    public void setNumTable(String numTable) {
-        this.numTable = numTable;
-    }
-
     public String getNumPeople() {
         return numPeople;
     }
 
-    public void setNumPeople(String numPeople) {
-        this.numPeople = numPeople;
-    }
-
     public boolean isReserved() {
         return reserved;
-    }
-
-    public void setReserved(boolean reserved) {
-        this.reserved = reserved;
     }
 }
