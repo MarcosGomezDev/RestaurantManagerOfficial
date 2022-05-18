@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appbar.R;
 import com.example.appbar.data.DataBase;
+import com.example.appbar.data.DataFlow;
 import com.example.appbar.data.TablesData;
 import com.example.appbar.databinding.FragmentTablesBinding;
 import com.google.firebase.database.DataSnapshot;
@@ -38,8 +39,7 @@ public class TablesFragment extends Fragment {
     private Context context;
     private String userUID;
 
-    public static String currentNumTableString;
-    public static String currentCapacityTableString;
+    //public static String currentCapacityTableString;
     public static boolean currentReservedTableBool;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -64,9 +64,9 @@ public class TablesFragment extends Fragment {
         recyclerView.setAdapter(tableAdapter);
 
         tableAdapter.setOnClickListener(v -> {
-            currentNumTableString = list.get(
+            DataFlow.currentNumTableString = list.get(
                     recyclerView.getChildAdapterPosition(v)).getNumTable();
-            currentCapacityTableString = list.get(
+            DataFlow.currentCapacityTableString = list.get(
                     recyclerView.getChildAdapterPosition(v)).getNumPeople();
             currentReservedTableBool = list.get(
                     recyclerView.getChildAdapterPosition(v)).isReserved();

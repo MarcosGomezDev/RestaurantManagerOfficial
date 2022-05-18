@@ -34,7 +34,6 @@ public class ItemsFragment extends Fragment {
     private FragmentItemsBinding binding;
     private DataBase dataBase;
     private DatabaseReference myRef;
-    public static long currentUnitItemLong;
     private ItemAdapter itemAdapter;
     private RecyclerView recyclerView;
     private ArrayList<ItemData> list;
@@ -63,13 +62,12 @@ public class ItemsFragment extends Fragment {
         itemAdapter = new ItemAdapter(context, list);
         recyclerView.setAdapter(itemAdapter);
 
-
         itemAdapter.setOnClickListener(v -> {
             DataFlow.currentDescriptionItemString = list.get(
                     recyclerView.getChildAdapterPosition(v)).getDescription();
             DataFlow.currentPriceItemDouble = (list.get(
                     recyclerView.getChildAdapterPosition(v)).getPrice());
-            if (TableBoxFragment.comeFromTableBox) {
+            if (DataFlow.comeFromTableBox) {
                 Navigation.findNavController(v).navigate(R.id.nav_table_box);
             } else {
                 Navigation.findNavController(v).navigate(R.id.nav_item_add_update);
@@ -78,7 +76,6 @@ public class ItemsFragment extends Fragment {
 
         addItemButton.setOnClickListener(v ->
                 Navigation.findNavController(v).navigate(R.id.nav_item_new));
-
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override

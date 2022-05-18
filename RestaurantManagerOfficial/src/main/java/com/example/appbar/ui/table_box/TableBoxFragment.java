@@ -46,13 +46,13 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
     public static ArrayList<ItemData> list;
     private String userUID;
     private Context context;
-    public static boolean comeFromTableBox;
-    public static double totalAmountDouble;
+    //public static boolean comeFromTableBox;
+    //public static double totalAmountDouble;
     public static double totalItemAmountPrice;
     private Button noButton, modifyButton, addItemTableButton, collectButton, reservedButton;
     private TextView totalAmountTextView;
-    private final String currentTable = TablesFragment.currentNumTableString;
-    private final String currentTableTitle = "MESA " + currentTable;
+    //private final String currentTable = TablesFragment.currentNumTableString;
+    private final String currentTableTitle = "MESA " + DataFlow.currentNumTableString;
 
     @Nullable
     @Override
@@ -72,7 +72,7 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        comeFromTableBox = false;
+        DataFlow.comeFromTableBox = false;
         addItemTableButton = view.findViewById(R.id.addItemTableButton);
         noButton = view.findViewById(R.id.noButton);
         modifyButton = view.findViewById(R.id.modifyButton);
@@ -102,7 +102,7 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
                     recyclerView.getChildAdapterPosition(v)).getDescription();
             DataFlow.currentPriceItemDouble = list.get(
                     recyclerView.getChildAdapterPosition(v)).getPrice();
-            ItemsFragment.currentUnitItemLong = list.get(
+            DataFlow.currentUnitItemLong = list.get(
                     recyclerView.getChildAdapterPosition(v)).getUnits();
             totalItemAmountPrice = list.get(
                     recyclerView.getChildAdapterPosition(v)).getAmountPrice();
@@ -111,7 +111,7 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
 
         DatabaseReference ref_items_basket = dataBase.getInstance().getReference(userUID)
                 .child(dataBase.PARENT_TABLES())
-                .child(currentTable)
+                .child(DataFlow.currentNumTableString)
                 .child("items_basket");
         ref_items_basket.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
@@ -138,7 +138,7 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
 
         DatabaseReference ref_basket_amount = dataBase.getInstance().getReference(userUID)
                 .child(dataBase.PARENT_TABLES())
-                .child(currentTable)
+                .child(DataFlow.currentNumTableString)
                 .child("items_basket")
                 .child("basket_amount");
         ref_basket_amount.addValueEventListener(new ValueEventListener() {
@@ -166,7 +166,7 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
 
         DatabaseReference ref_reserved = dataBase.getInstance().getReference(userUID)
                 .child(dataBase.PARENT_TABLES())
-                .child(currentTable)
+                .child(DataFlow.currentNumTableString)
                 .child("reserved");
         ref_reserved.addValueEventListener(new ValueEventListener() {
             @Override
@@ -200,7 +200,7 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.addItemTableButton:
-                comeFromTableBox = true;
+                DataFlow.comeFromTableBox = true;
                 Navigation.findNavController(v).navigate(R.id.nav_table_items);
                 break;
             case R.id.modifyButton:
@@ -210,15 +210,15 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
                 dataBase.getDatabaseReference()
                         .child(userUID)
                         .child(dataBase.PARENT_TABLES())
-                        .child(currentTable)
+                        .child(DataFlow.currentNumTableString)
                         .child("reserved").setValue(false);
                 dataBase.getDatabaseReference()
                         .child(userUID)
                         .child(dataBase.PARENT_TABLES())
-                        .child(currentTable)
+                        .child(DataFlow.currentNumTableString)
                         .child("items_basket").removeValue();
                 list.clear();
-                totalAmountDouble = 0.0;
+                DataFlow.amountItemBasketDouble = 0.0;
                 Toast.makeText(getContext(), "Mesa cobrada", Toast.LENGTH_SHORT)
                         .show();
                 break;
@@ -227,7 +227,7 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
                     dataBase.getDatabaseReference()
                             .child(userUID)
                             .child(dataBase.PARENT_TABLES())
-                            .child(currentTable)
+                            .child(DataFlow.currentNumTableString)
                             .child("reserved").setValue(true);
                     reservedButton.setBackgroundColor(Color.RED);
                     reservedButton.setText("RESERV.");
@@ -235,7 +235,7 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
                     dataBase.getDatabaseReference()
                             .child(userUID)
                             .child(dataBase.PARENT_TABLES())
-                            .child(currentTable)
+                            .child(DataFlow.currentNumTableString)
                             .child("reserved").setValue(false);
                     reservedButton.setBackgroundColor(0xFF54C242);
                     reservedButton.setText("DISP.");

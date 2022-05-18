@@ -17,6 +17,7 @@ import androidx.navigation.Navigation;
 
 import com.example.appbar.R;
 import com.example.appbar.data.DataBase;
+import com.example.appbar.data.DataFlow;
 import com.example.appbar.data.TablesData;
 import com.example.appbar.databinding.FragmentTableUpdateBinding;
 import com.example.appbar.ui.tables.TablesFragment;
@@ -27,8 +28,6 @@ public class TableUpdateFragment extends Fragment {
     private FragmentTableUpdateBinding binding;
     private DataBase dataBase;
     private TablesData table;
-    private String currentNumTableString;
-    private String currentCapacityTableString;
     private Button updateOkButton;
     private EditText updateNumTableEditText, updateCapacityEditText;
     private TextView getNumTableTextView, getCapacityTextView;
@@ -45,16 +44,14 @@ public class TableUpdateFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         dataBase = new DataBase();
-        currentNumTableString = TablesFragment.currentNumTableString;
-        currentCapacityTableString = TablesFragment.currentCapacityTableString;
         reservedBool = TablesFragment.currentReservedTableBool;
         updateOkButton = view.findViewById(R.id.updateOkButton);
         updateNumTableEditText  = view.findViewById(R.id.updateNumTableEditText);
         updateCapacityEditText = view.findViewById(R.id.updateCapacityEditText);
         getNumTableTextView = view.findViewById(R.id.getNumTableTextView);
         getCapacityTextView = view.findViewById(R.id.getCapacityTextView);
-        getNumTableTextView.setText("Mesa número " + currentNumTableString);
-        getCapacityTextView.setText("Capacidad de la mesa: " + currentCapacityTableString + " personas");
+        getNumTableTextView.setText("Mesa número " + DataFlow.currentNumTableString);
+        getCapacityTextView.setText("Capacidad de la mesa: " + DataFlow.currentCapacityTableString + " personas");
 
         updateOkButton.setOnClickListener(v -> {
 
@@ -67,11 +64,11 @@ public class TableUpdateFragment extends Fragment {
             } else {
                 table = new TablesData(numTable, capacity, reservedBool);
                 String userUID = dataBase.getCurrentUser().getUid();
-                String currentPk = TablesFragment.currentNumTableString;
                 dataBase.getDatabaseReference()
                         .child(userUID)
                         .child(dataBase.PARENT_TABLES())
-                        .child(currentPk).removeValue();
+                        .child(DataFlow.currentNumTableString)
+                        .removeValue();
                 dataBase.getDatabaseReference()
                         .child(userUID)
                         .child(dataBase.PARENT_TABLES())
