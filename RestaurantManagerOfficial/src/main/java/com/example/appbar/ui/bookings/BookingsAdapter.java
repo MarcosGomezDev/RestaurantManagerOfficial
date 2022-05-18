@@ -49,25 +49,22 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.MyView
         holder.emailTextView.setText((bookingsData.getEmail()));
         holder.fechaTextView.setText((bookingsData.getFecha()));
         holder.personastextView.setText((bookingsData.getPersonas()));
-        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
 
     }
 
     @Override
     public int getItemCount() { return list.size(); }
 
-    @Override
-    public void onClick(View view) {
-
+    public void setOnClickListener(View.OnClickListener listener) {
+        this.listener = listener;
     }
 
-
-
+    @Override
+    public void onClick(View v) {
+        if(listener != null) {
+            listener.onClick(v);
+        }
+    }
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -82,8 +79,6 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.MyView
             emailTextView = bookView.findViewById(R.id.emailTextView);
             fechaTextView  = bookView.findViewById(R.id.TextView);
             personastextView = bookView.findViewById(R.id.personastextView);
-            deleteButton = bookView.findViewById(R.id.Deletebutton);
-
 
         }
     }

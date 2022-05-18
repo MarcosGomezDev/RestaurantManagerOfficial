@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.example.appbar.data.DataBase;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.R;
+import com.example.appbar.data.StaffData;
 import com.example.appbar.data.TablesData;
 import com.example.appbar.databinding.FragmentHomeBinding;
 import com.google.firebase.database.DataSnapshot;
@@ -33,6 +34,13 @@ public class HomeFragment extends Fragment {
     private long items = 0;
     private long empleados = 0;
     private String userUID;
+    private String dia= "dd";
+    private String mes ="MM";
+    private String anno = "yyyy";
+    private int i = 0;
+    StaffData data ;
+    TablesData tablesData;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -51,6 +59,7 @@ public class HomeFragment extends Fragment {
         fechaac_textView.setText(fecha());
         Reservas();
         empleados_Activos();
+        tablesData = new TablesData();
     }
 
     @Override
@@ -100,7 +109,7 @@ public class HomeFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     reservas= snapshot.getChildrenCount();
-                    reserva_textView.setText("Reservas Activas  " + reservas);
+                    reserva_textView.setText("Contador Total de Reservas   " + reservas);
                 }
             }
             @Override
@@ -110,27 +119,53 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    public void empleados_Activos(){
+    public void mesas(){
+
         userUID = dataBase.getCurrentUser().getUid();
-        dataBase.getDatabaseReference().child(userUID).child("staff").addValueEventListener(new ValueEventListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
+        dataBase.getDatabaseReference().child(userUID).child("tables").child("numTable").addValueEventListener(new ValueEventListener() {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                if (snapshot.exists()) {
-                    empleados = snapshot.getChildrenCount();
-                    empleados_textView.setText("Empleados activos " + empleados);
+                  Boolean a = Boolean.valueOf(snapshot.child("reserved").getValue(TablesData.class).toString().trim());
+
+                   }
 
                 }
-            }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
     }
+
+
+    public void empleados_Activos(){
+
+        userUID = dataBase.getCurrentUser().getUid();
+        dataBase.getDatabaseReference().child(userUID).child("staff").child(("dni"+" "+fecha1())).addValueEventListener(new ValueEventListener() {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String x = snapshot.getKey();
+                    empleados_textView.setText(x);
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
 
     public String fecha(){
         @SuppressLint("SimpleDateFormat")
         String date = new SimpleDateFormat("dd MMMM yyyy   HH:mm").format(new Date());
         return date;
     }
+    public String fecha1(){
+        String date = new SimpleDateFormat("ddMMyyyy").format(new Date());
+        return date;
+    }
+
 }

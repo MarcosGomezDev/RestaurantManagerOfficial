@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ import com.example.appbar.data.BookingsData;
 import com.example.appbar.data.DataBase;
 import com.example.appbar.databinding.FragmentBookingsBinding;
 import com.example.appbar.ui.items.ItemsFragment;
+import com.example.appbar.ui.table_box.TableBoxFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,14 +42,15 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
     private DatabaseReference myRef;
     private BookingsAdapter bookingsAdapter;
     private RecyclerView recyclerView;
+    public static String currentDescriptionItemString;
     private ArrayList<BookingsData> list;
     private String userUID;
     private Context context;
     private FloatingActionButton fa_fecha,fa_annadir;
+    private Button Delete;
     private TextView fecha2Textview,diatextView,mestextView,annotextView;
     private ImageButton diaimagenButtom,mesimagenButton,annoimagenButton,ldiaimagenButtom, lmesimagenButton,lannoimagenButton,calendarioimageButton;
     private int i;
-
     private String dia= "dd";
     private String mes ="MM";
     private String anno = "yyyy";
@@ -63,7 +66,6 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         fa_annadir = view.findViewById(R.id.fa_annadir);
-        //fecha2Textview = view.findViewById(R.id.fecha2textView);
         recyclerView = view.findViewById(R.id.r);
         diatextView = view.findViewById(R.id.diatextView);
         mestextView = view.findViewById(R.id.mestextView);
@@ -75,6 +77,7 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
         lmesimagenButton = view.findViewById(R.id.lmesimageButton);
         lannoimagenButton = view.findViewById(R.id.lannoimageButton);
         calendarioimageButton = view.findViewById(R.id.calendarioimageButton);
+         Delete= view.findViewById((R.id.Deletebutton));
         diatextView.setText(fechadia());
         mestextView.setText(fechames());
         annotextView.setText(fechaanno());
@@ -89,6 +92,17 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
 
         dataBase = new DataBase();
         reservas();
+        context = this.getActivity();
+        /*bookingsAdapter = new BookingsAdapter(context,list);
+
+        bookingsAdapter.setOnClickListener(view1 -> {
+            list.get(recyclerView.getChildAdapterPosition(view1)).getNombre();
+            list.get(recyclerView.getChildAdapterPosition(view1)).getFecha();
+            list.get(recyclerView.getChildAdapterPosition(view1)).getEmail();
+            list.get(recyclerView.getChildAdapterPosition(view1)).getTelefono();
+            list.get(recyclerView.getChildAdapterPosition(view1)).getPersonas();
+            Navigation.findNavController(view1).navigate(R.id.nav_booking_delete);
+        });*/
 
     }
 
@@ -190,7 +204,6 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
                 annotextView.setText(String.valueOf(i));
                 reservas();
                 break;
-
         }
     }
 
