@@ -29,17 +29,18 @@ public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private final DataBase dataBase = new DataBase();
-    private TextView reserva_textView,item_textView,fechaac_textView,empleados_textView;
+    private TextView reserva_textView,item_textView,fechaac_textView,empleados_textView,Mesas_textView;
     private long reservas = 0;
     private long items = 0;
     private long empleados = 0;
+    private long mesas =0;
     private String userUID;
     private String dia= "dd";
     private String mes ="MM";
     private String anno = "yyyy";
     private int i = 0;
-    StaffData data ;
     TablesData tablesData;
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -56,9 +57,11 @@ public class HomeFragment extends Fragment {
         item_textView = view.findViewById(R.id.item_textView);
         fechaac_textView = view.findViewById(R.id.fechaact_textView);
         empleados_textView = view.findViewById(R.id.empleados_textView);
+        Mesas_textView = view.findViewById(R.id.Mesas_textView);
         fechaac_textView.setText(fecha());
         Reservas();
         empleados_Activos();
+        mesas();
         tablesData = new TablesData();
     }
 
@@ -109,7 +112,7 @@ public class HomeFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     reservas= snapshot.getChildrenCount();
-                    reserva_textView.setText("Contador Total de Reservas   " + reservas);
+                    reserva_textView.setText("Numero total de reservas    " + reservas);
                 }
             }
             @Override
@@ -122,13 +125,10 @@ public class HomeFragment extends Fragment {
     public void mesas(){
 
         userUID = dataBase.getCurrentUser().getUid();
-        dataBase.getDatabaseReference().child(userUID).child("tables").child("numTable").addValueEventListener(new ValueEventListener() {
+        dataBase.getDatabaseReference().child(userUID).child("tables").addValueEventListener(new ValueEventListener() {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-               if (snapshot.exists()) {
-                  Boolean a = Boolean.valueOf(snapshot.child("reserved").getValue(TablesData.class).toString().trim());
-
-                   }
-
+                mesas = snapshot.getChildrenCount();
+                Mesas_textView.setText("El numero actual de mesas es "+mesas);
                 }
 
             @Override
@@ -141,12 +141,13 @@ public class HomeFragment extends Fragment {
     public void empleados_Activos(){
 
         userUID = dataBase.getCurrentUser().getUid();
-        dataBase.getDatabaseReference().child(userUID).child("staff").child(("dni"+" "+fecha1())).addValueEventListener(new ValueEventListener() {
+        dataBase.getDatabaseReference().child(userUID).child("staff").addValueEventListener(new ValueEventListener() {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    String x = snapshot.getKey();
-                    empleados_textView.setText(x);
 
+                empleados = snapshot.getChildrenCount();
+                empleados_textView.setText("El numero de registros de empleados es "+empleados
+                );
                 }
 
             }
