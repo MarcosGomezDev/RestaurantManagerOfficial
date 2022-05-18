@@ -34,7 +34,6 @@ public class ItemsFragment extends Fragment {
     private FragmentItemsBinding binding;
     private DataBase dataBase;
     private DatabaseReference myRef;
-    public static double currentPriceItemDouble;
     public static long currentUnitItemLong;
     private ItemAdapter itemAdapter;
     private RecyclerView recyclerView;
@@ -68,7 +67,7 @@ public class ItemsFragment extends Fragment {
         itemAdapter.setOnClickListener(v -> {
             DataFlow.currentDescriptionItemString = list.get(
                     recyclerView.getChildAdapterPosition(v)).getDescription();
-            currentPriceItemDouble = (list.get(
+            DataFlow.currentPriceItemDouble = (list.get(
                     recyclerView.getChildAdapterPosition(v)).getPrice());
             if (TableBoxFragment.comeFromTableBox) {
                 Navigation.findNavController(v).navigate(R.id.nav_table_box);

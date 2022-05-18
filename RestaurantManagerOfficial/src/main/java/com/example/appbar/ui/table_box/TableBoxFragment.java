@@ -100,7 +100,7 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
         tableBasketAdapter.setOnClickListener(v -> {
             DataFlow.currentDescriptionItemString = list.get(
                     recyclerView.getChildAdapterPosition(v)).getDescription();
-            ItemsFragment.currentPriceItemDouble = list.get(
+            DataFlow.currentPriceItemDouble = list.get(
                     recyclerView.getChildAdapterPosition(v)).getPrice();
             ItemsFragment.currentUnitItemLong = list.get(
                     recyclerView.getChildAdapterPosition(v)).getUnits();

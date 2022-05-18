@@ -28,7 +28,7 @@ public class ItemUpdateFragment extends Fragment {
     private final DataBase dataBase = new DataBase();
     private ItemData item = new ItemData();
     //private String currentDescriptionItemString;
-    private double currentPriceItemDouble;
+    //private double currentPriceItemDouble;
     private Button addUpdateOkButton, removeButton;
     private EditText updateDescriptionEditText, updatePriceEditText;
     private TextView getDescriptionTextView, getPriceTextView;
@@ -56,11 +56,11 @@ public class ItemUpdateFragment extends Fragment {
         getDescriptionTextView = view.findViewById(R.id.getDescriptionTextView);
         getPriceTextView = view.findViewById(R.id.getPriceTextView);
         //currentDescriptionItemString = ItemsFragment.currentDescriptionItemString;
-        currentPriceItemDouble = ItemsFragment.currentPriceItemDouble;
+        //currentPriceItemDouble = ItemsFragment.currentPriceItemDouble;
         addUpdateOkButton = view.findViewById(R.id.addUpdateOkButton);
         removeButton = view.findViewById(R.id.removeButton);
         getDescriptionTextView.setText(DataFlow.currentDescriptionItemString);
-        getPriceTextView.setText(String.valueOf(currentPriceItemDouble));
+        getPriceTextView.setText(String.valueOf(DataFlow.currentPriceItemDouble));
 
         addUpdateOkButton.setOnClickListener(v -> {
             String description = updateDescriptionEditText.getText().toString();

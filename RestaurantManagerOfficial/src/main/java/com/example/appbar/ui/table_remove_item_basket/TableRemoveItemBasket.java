@@ -37,7 +37,7 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
     private String currentItemPk;
     private long currentUnits;
     private long newUnitSub;
-    private double currentPriceItemDouble;
+    //private double currentPriceItemDouble;
     private double totalItemAmount;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -53,7 +53,7 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
         userUID = dataBase.getCurrentUser().getUid();
 
         //currentDescriptionItemString = ItemsFragment.currentDescriptionItemString;
-        currentPriceItemDouble = ItemsFragment.currentPriceItemDouble;
+        //currentPriceItemDouble = ItemsFragment.currentPriceItemDouble;
         totalItemAmount = TableBoxFragment.totalItemAmountPrice;
         currentUnits = ItemsFragment.currentUnitItemLong;
         currentTablePk = TablesFragment.currentNumTableString;
@@ -104,7 +104,7 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
         ItemsFragment.currentUnitItemLong = newUnitSub;
         unitsTextView.setText(String.valueOf(newUnitSub));
 
-        totalItemAmount = totalItemAmount + currentPriceItemDouble;
+        totalItemAmount = totalItemAmount + DataFlow.currentPriceItemDouble;
         totalItemAmount = Math.round(totalItemAmount * 100d) / 100d;
         dataBase.getDatabaseReference()
                 .child(userUID)
@@ -114,7 +114,7 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
                 .child(currentItemPk)
                 .child("amountPrice")
                 .setValue(totalItemAmount);
-        TableBoxFragment.totalAmountDouble += currentPriceItemDouble;
+        TableBoxFragment.totalAmountDouble += DataFlow.currentPriceItemDouble;
         TableBoxFragment.totalAmountDouble = Math
                 .round(TableBoxFragment.totalAmountDouble * 100d) / 100d;
 
@@ -142,7 +142,7 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
                     .child("units")
                     .setValue(newUnitSub);
 
-            totalItemAmount = totalItemAmount - currentPriceItemDouble;
+            totalItemAmount = totalItemAmount - DataFlow.currentPriceItemDouble;
             totalItemAmount = Math.round(totalItemAmount * 100d) / 100d;
             dataBase.getDatabaseReference()
                     .child(userUID)
@@ -153,7 +153,7 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
                     .child("amountPrice")
                     .setValue(totalItemAmount);
 
-            TableBoxFragment.totalAmountDouble -= currentPriceItemDouble;
+            TableBoxFragment.totalAmountDouble -= DataFlow.currentPriceItemDouble;
             TableBoxFragment.totalAmountDouble = Math
                     .round(TableBoxFragment.totalAmountDouble * 100d) / 100d;
 
@@ -181,7 +181,7 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
     }
 
     public void removeItemBasket() {
-        TableBoxFragment.totalAmountDouble -= currentPriceItemDouble;
+        TableBoxFragment.totalAmountDouble -= DataFlow.currentPriceItemDouble;
         TableBoxFragment.totalAmountDouble = Math
                 .round(TableBoxFragment.totalAmountDouble * 100d) / 100d;
 
