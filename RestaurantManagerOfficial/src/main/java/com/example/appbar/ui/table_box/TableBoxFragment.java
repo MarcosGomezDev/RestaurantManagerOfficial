@@ -57,10 +57,12 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                NavHostFragment.findNavController(TableBoxFragment.this).navigate(R.id.nav_tables);
+                NavHostFragment.findNavController(TableBoxFragment.this)
+                        .navigate(R.id.nav_tables);
             }
         };
-        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
+        requireActivity().getOnBackPressedDispatcher()
+                .addCallback(getViewLifecycleOwner(), callback);
         binding = FragmentTableBoxBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -126,10 +128,8 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
                 }
                 tableBasketAdapter.notifyDataSetChanged();
             }
-
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
+            public void onCancelled(@NonNull DatabaseError error) {}
         });
 
         DatabaseReference ref_basket_amount = dataBase.getInstance().getReference(userUID)
@@ -141,17 +141,11 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists() /*&& !list.isEmpty()*/) {
-                    String res = snapshot.getValue().toString().trim();
-                    totalAmountTextView.setText(res+ " €");
+                if (snapshot.exists() && !list.isEmpty()) {
+                    String result = snapshot.getValue().toString().trim();
+                    totalAmountTextView.setText(result + " €");
                 } else {
-                    /*dataBase.getDatabaseReference()
-                            .child(userUID)
-                            .child(dataBase.PARENT_TABLES())
-                            .child(currentTable)
-                            .child("items_basket").removeValue();
-                    totalAmountDouble = 0.0;*/
-                    totalAmountTextView.setText("0 €");
+                    totalAmountTextView.setText("0.0 €");
                 }
             }
 

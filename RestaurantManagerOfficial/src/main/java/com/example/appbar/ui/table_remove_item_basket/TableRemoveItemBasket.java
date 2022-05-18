@@ -54,7 +54,6 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
         removeItemBasketButton = view.findViewById(R.id.removeItemBasketButton);
         descriptionItemBasketTextView = view.findViewById(R.id.descriptionItemBasketTextView);
         descriptionItemBasketTextView.setText(DataFlow.currentDescriptionItemString);
-        totalAmountTextView = view.findViewById(R.id.totalAmountTextView);
         unitsTextView = view.findViewById(R.id.unitsTextView);
 
         unitsTextView.setText(String.valueOf(DataFlow.currentUnitItemLong));
@@ -97,6 +96,7 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
 
         DataFlow.totalItemAmountPrice = DataFlow.totalItemAmountPrice + DataFlow.currentPriceItemDouble;
         DataFlow.totalItemAmountPrice = Math.round(DataFlow.totalItemAmountPrice * 100d) / 100d;
+        if(DataFlow.totalItemAmountPrice < 0) DataFlow.totalItemAmountPrice = 0.0;
         dataBase.getDatabaseReference()
                 .child(userUID)
                 .child(dataBase.PARENT_TABLES())
@@ -105,10 +105,11 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
                 .child(currentItemPk)
                 .child("amountPrice")
                 .setValue(DataFlow.totalItemAmountPrice);
+
         DataFlow.amountItemBasketDouble += DataFlow.currentPriceItemDouble;
         DataFlow.amountItemBasketDouble = Math
                 .round(DataFlow.amountItemBasketDouble * 100d) / 100d;
-
+        if(DataFlow.amountItemBasketDouble < 0) DataFlow.amountItemBasketDouble = 0.0;
         dataBase.getDatabaseReference()
                 .child(userUID)
                 .child(dataBase.PARENT_TABLES())
@@ -122,7 +123,7 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
 
     public void subtractItemBasket() {
         long oldUnitSub = DataFlow.currentUnitItemLong;
-        if (oldUnitSub >= 1) {
+        if (oldUnitSub > 1) {
             newUnitSub = oldUnitSub - 1;
             dataBase.getDatabaseReference()
                     .child(userUID)
@@ -135,6 +136,7 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
 
             DataFlow.totalItemAmountPrice = DataFlow.totalItemAmountPrice - DataFlow.currentPriceItemDouble;
             DataFlow.totalItemAmountPrice = Math.round(DataFlow.totalItemAmountPrice * 100d) / 100d;
+            if(DataFlow.totalItemAmountPrice < 0) DataFlow.totalItemAmountPrice = 0.0;
             dataBase.getDatabaseReference()
                     .child(userUID)
                     .child(dataBase.PARENT_TABLES())
@@ -147,7 +149,7 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
             DataFlow.amountItemBasketDouble = DataFlow.amountItemBasketDouble - DataFlow.currentPriceItemDouble;
             DataFlow.amountItemBasketDouble = Math
                     .round(DataFlow.amountItemBasketDouble * 100d) / 100d;
-
+            if(DataFlow.amountItemBasketDouble < 0) DataFlow.amountItemBasketDouble = 0.0;
             dataBase.getDatabaseReference()
                     .child(userUID)
                     .child(dataBase.PARENT_TABLES())
@@ -155,16 +157,11 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
                     .child("items_basket")
                     .child("basket_amount")
                     .setValue(DataFlow.amountItemBasketDouble);
-
             Toast.makeText(getContext(), "Articulo eliminado", Toast.LENGTH_SHORT)
                     .show();
             DataFlow.currentUnitItemLong = newUnitSub;
-        }
-        if (newUnitSub == 0) {
-
-
+        } else {
             removeItemBasket();
-
         }
     }
 
@@ -172,6 +169,15 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
         DataFlow.amountItemBasketDouble -= DataFlow.currentPriceItemDouble;
         DataFlow.amountItemBasketDouble = Math
                 .round(DataFlow.amountItemBasketDouble * 100d) / 100d;
+        if(DataFlow.amountItemBasketDouble < 0) DataFlow.amountItemBasketDouble = 0.0;
+        dataBase.getDatabaseReference()
+                .child(userUID)
+                .child(dataBase.PARENT_TABLES())
+                .child(DataFlow.currentNumTableString)
+                .child("items_basket")
+                .child("basket_amount")
+                .setValue(DataFlow.amountItemBasketDouble);
+
         dataBase.getDatabaseReference()
                 .child(userUID)
                 .child(dataBase.PARENT_TABLES())
