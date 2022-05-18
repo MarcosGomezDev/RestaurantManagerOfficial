@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_tables" >
         <action
             android:id="@+id/action_nav_tables_to_nav_table_box"
-            app:destination="@id/nav_table_box" />
+            app:destination="@id/nav_home" />
     </fragment>
 
     <fragment
@@ -32,11 +32,7 @@
         tools:layout="@layout/fragment_table_box">
         <action
             android:id="@+id/action_nav_tables_to_nav_table_selected"
-            app:destination="@id/nav_table_selected" />
-        <action
-            android:id="@+id/action_nav_table_box_pop2"
-            app:popUpTo="@id/nav_table_box"
-            app:popUpToInclusive="true" />
+            app:destination="@id/nav_tables" />
     </fragment>
 
     <fragment
@@ -46,7 +42,7 @@
         tools:layout="@layout/fragment_items">
         <action
             android:id="@+id/action_nav_tables_to_nav_table_selected"
-            app:destination="@id/nav_table_selected" />
+            app:destination="@id/nav_table_box" />
     </fragment>
 
     <fragment

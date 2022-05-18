@@ -43,6 +43,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        userUID = dataBase.getCurrentUser().getUid();
         reserva_textView = view.findViewById(R.id.reserva_textView);
         item_textView = view.findViewById(R.id.item_textView);
         fechaac_textView = view.findViewById(R.id.fechaact_textView);
