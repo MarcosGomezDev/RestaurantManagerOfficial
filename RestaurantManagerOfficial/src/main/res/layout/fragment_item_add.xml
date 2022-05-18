@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/AppColorSecundario"
-    tools:context=".ui.item_new.ItemNewFragment">
+    tools:context=".ui.items.ItemNewFragment">
 
     <TextView
         android:id="@+id/titleNewItem"

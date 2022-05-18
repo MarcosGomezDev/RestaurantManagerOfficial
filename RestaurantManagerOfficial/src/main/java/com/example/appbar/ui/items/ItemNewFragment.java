@@ -1,4 +1,4 @@
-package com.example.appbar.ui.item_new;
+package com.example.appbar.ui.items;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

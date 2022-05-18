@@ -1,4 +1,4 @@
-package com.example.appbar.ui.table_remove_item_basket;
+package com.example.appbar.ui.tables;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -24,7 +24,7 @@ import com.example.appbar.ui.table_box.TableBoxFragment;
 import com.example.appbar.ui.tables.TablesFragment;
 
 @SuppressWarnings("FieldCanBeLocal")
-public class TableRemoveItemBasket extends Fragment implements View.OnClickListener {
+public class TableRemoveItemBasketFragment extends Fragment implements View.OnClickListener {
 
     private FragmentRemoveItemBasketBinding binding;
     private DataBase dataBase;

@@ -17,12 +17,9 @@
 
     <fragment
         android:id="@+id/nav_table_selected"
-        android:name="com.example.appbar.ui.table_selected.TableUpdateFragment"
+        android:name="com.example.appbar.ui.tables.TableUpdateFragment"
         android:label="@string/table_select"
         tools:layout="@layout/fragment_table_update" >
-        <action
-            android:id="@+id/action_nav_table_selected_to_cashFragment"
-            app:destination="@id/nav_cash_fragment" />
     </fragment>
 
     <fragment
@@ -37,7 +34,7 @@
 
     <fragment
         android:id="@+id/nav_table_items"
-        android:name="com.example.appbar.ui.tables.TableItemsAdd"
+        android:name="com.example.appbar.ui.tables.TableItemsAddFragment"
         android:label="Añadir articulo a mesa"
         tools:layout="@layout/fragment_items">
         <action
@@ -47,7 +44,7 @@
 
     <fragment
         android:id="@+id/nav_remove_items_basket"
-        android:name="com.example.appbar.ui.table_remove_item_basket.TableRemoveItemBasket"
+        android:name="com.example.appbar.ui.tables.TableRemoveItemBasketFragment"
         android:label="Modificación de cesta"
         tools:layout="@layout/fragment_remove_item_basket">
         <action
@@ -76,13 +73,13 @@
 
     <fragment
         android:id="@+id/nav_item_new"
-        android:name="com.example.appbar.ui.item_new.ItemNewFragment"
+        android:name="com.example.appbar.ui.items.ItemNewFragment"
         android:label="Nuevo articulo"
         tools:layout="@layout/fragment_item_add" />
 
     <fragment
         android:id="@+id/nav_item_add_update"
-        android:name="com.example.appbar.ui.item_add_update.ItemUpdateFragment"
+        android:name="com.example.appbar.ui.items.ItemUpdateFragment"
         android:label="@string/update"
         tools:layout="@layout/fragment_item_add_update" />
 
@@ -91,12 +88,6 @@
         android:name="com.example.appbar.ui.staff_signin.StaffSignInFragment"
         android:label="@string/staff_sign_in"
         tools:layout="@layout/fragment_staff_signin" />
-
-    <fragment
-        android:id="@+id/nav_cash_history"
-        android:name="com.example.appbar.ui.cash_history.CashHistoryFragment"
-        android:label="@string/cash_history"
-        tools:layout="@layout/fragment_cash_history" />
 
     <fragment
         android:id="@+id/nav_bookings"
@@ -122,15 +113,5 @@
         android:name="com.example.appbar.ui.booking_select.BookingDeleteFragment"
         android:label="Eliminiar reserva"
         tools:layout="@layout/fragment_booking_delete" />
-
-    <fragment
-        android:id="@+id/nav_cash_fragment"
-        android:name="com.example.appbar.ui.cash.CashFragment"
-        android:label="CashFragment"
-        tools:layout="@layout/fragment_cash">
-        <action
-            android:id="@+id/action_nav_cash_fragment_to_nav_tables"
-            app:destination="@id/nav_tables" />
-    </fragment>
 
 </navigation>

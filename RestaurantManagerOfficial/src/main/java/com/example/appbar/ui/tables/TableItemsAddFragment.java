@@ -30,7 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 @SuppressWarnings("FieldCanBeLocal")
-public class TableItemsAdd extends Fragment {
+public class TableItemsAddFragment extends Fragment {
 
     private FragmentTableItemsAddBinding binding;
     private DataBase dataBase;

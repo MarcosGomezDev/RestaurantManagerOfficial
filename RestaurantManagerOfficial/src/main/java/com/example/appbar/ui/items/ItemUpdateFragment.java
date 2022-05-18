@@ -1,4 +1,4 @@
-package com.example.appbar.ui.item_add_update;
+package com.example.appbar.ui.items;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -30,15 +30,6 @@ public class ItemUpdateFragment extends Fragment {
     private Button addUpdateOkButton, removeButton;
     private EditText updateDescriptionEditText, updatePriceEditText;
     private TextView getDescriptionTextView, getPriceTextView;
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-//        if (ItemsFragment.navItem) {
-//            ((AppCompatActivity)getActivity()).getSupportActionBar()
-//                    .setTitle("Modificación de producto");
-//        }
-    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

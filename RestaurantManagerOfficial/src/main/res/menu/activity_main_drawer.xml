@@ -20,10 +20,6 @@
             android:id="@+id/nav_staff_signin"
             android:icon="@drawable/cust_user_circle_24"
             android:title="@string/staff_sign_in" />
-        <item
-            android:id="@+id/nav_cash_history"
-            android:icon="@drawable/cust_monetization_on_24"
-            android:title="@string/cash_history" />
 
         <item
             android:id="@+id/nav_bookings"

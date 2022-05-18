@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/AppColorSecundario"
-    tools:context=".ui.tables.TableItemsAdd">
+    tools:context=".ui.tables.TableItemsAddFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tableItemListRecyclerView"

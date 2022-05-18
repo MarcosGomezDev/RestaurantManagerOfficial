@@ -1,4 +1,4 @@
-package com.example.appbar.ui.table_selected;
+package com.example.appbar.ui.tables;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
