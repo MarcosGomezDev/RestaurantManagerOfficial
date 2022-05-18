@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.appbar.R;
 import com.example.appbar.data.BookingsData;
 import com.example.appbar.data.DataBase;
+import com.example.appbar.data.DataFlow;
 import com.example.appbar.databinding.FragmentBookingsBinding;
 import com.example.appbar.ui.items.ItemsFragment;
 import com.example.appbar.ui.table_box.TableBoxFragment;
@@ -108,11 +109,11 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
         bookingsAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*list.get(recyclerView.getChildAdapterPosition(view1)).getNombre();
-            list.get(recyclerView.getChildAdapterPosition(view1)).getFecha();
-            list.get(recyclerView.getChildAdapterPosition(view1)).getEmail();
-            list.get(recyclerView.getChildAdapterPosition(view1)).getTelefono();
-            list.get(recyclerView.getChildAdapterPosition(view1)).getPersonas();*/
+                DataFlow.getNombre = list.get(recyclerView.getChildAdapterPosition(v)).getNombre();
+                list.get(recyclerView.getChildAdapterPosition(v)).getFecha();
+                list.get(recyclerView.getChildAdapterPosition(v)).getEmail();
+                list.get(recyclerView.getChildAdapterPosition(v)).getTelefono();
+                list.get(recyclerView.getChildAdapterPosition(v)).getPersonas();
                 Log.println(Log.WARN, "Clic", "Intentando navegar.");
                 Navigation.findNavController(v).navigate(R.id.nav_booking_delete);
             }

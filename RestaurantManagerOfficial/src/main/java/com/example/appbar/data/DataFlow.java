@@ -21,4 +21,13 @@ public class DataFlow {
     public static String currentNumTableString;
     public static String currentCapacityTableString;
     public static boolean currentReservedTableBool;
+
+    /**
+     * Datos para reservas
+     */
+    public static String getNombre;
+    public static String getFecha;
+    public static String getEmail;
+    public static String getTelefono;
+    public static String getPersonas;
 }
