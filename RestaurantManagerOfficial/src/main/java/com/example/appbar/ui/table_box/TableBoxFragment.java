@@ -43,15 +43,11 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
     private DataBase dataBase;
     private TableBasketAdapter tableBasketAdapter;
     private RecyclerView recyclerView;
-    public static ArrayList<ItemData> list;
+    private ArrayList<ItemData> list;
     private String userUID;
     private Context context;
-    //public static boolean comeFromTableBox;
-    //public static double totalAmountDouble;
-    public static double totalItemAmountPrice;
     private Button noButton, modifyButton, addItemTableButton, collectButton, reservedButton;
     private TextView totalAmountTextView;
-    //private final String currentTable = TablesFragment.currentNumTableString;
     private final String currentTableTitle = "MESA " + DataFlow.currentNumTableString;
 
     @Nullable
@@ -104,7 +100,7 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
                     recyclerView.getChildAdapterPosition(v)).getPrice();
             DataFlow.currentUnitItemLong = list.get(
                     recyclerView.getChildAdapterPosition(v)).getUnits();
-            totalItemAmountPrice = list.get(
+            DataFlow.totalItemAmountPrice = list.get(
                     recyclerView.getChildAdapterPosition(v)).getAmountPrice();
             Navigation.findNavController(v).navigate(R.id.nav_remove_items_basket);
         });

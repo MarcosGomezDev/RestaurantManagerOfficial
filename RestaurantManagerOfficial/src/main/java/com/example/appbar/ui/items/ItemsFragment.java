@@ -76,6 +76,7 @@ public class ItemsFragment extends Fragment {
 
         addItemButton.setOnClickListener(v ->
                 Navigation.findNavController(v).navigate(R.id.nav_item_new));
+
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override

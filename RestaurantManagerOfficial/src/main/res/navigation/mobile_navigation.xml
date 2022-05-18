@@ -116,10 +116,11 @@
         android:name="com.example.appbar.ui.booking_select.BookingSelectFragment"
         android:label="Reservas"
         tools:layout="@layout/fragment_booking_select" />
+
     <fragment
         android:id="@+id/nav_booking_delete"
-        android:name="com.example.appbar.ui.booking_select.BookingSelectFragment"
-        android:label="Reservas"
+        android:name="com.example.appbar.ui.booking_select.BookingDeleteFragment"
+        android:label="Eliminiar reserva"
         tools:layout="@layout/fragment_booking_delete" />
 
     <fragment

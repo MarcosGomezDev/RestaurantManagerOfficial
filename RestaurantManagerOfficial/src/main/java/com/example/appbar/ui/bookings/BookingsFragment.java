@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,8 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
         fa_annadir = view.findViewById(R.id.fa_annadir);
         recyclerView = view.findViewById(R.id.r);
         diatextView = view.findViewById(R.id.diatextView);
@@ -78,6 +81,7 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
         lannoimagenButton = view.findViewById(R.id.lannoimageButton);
         calendarioimageButton = view.findViewById(R.id.calendarioimageButton);
          Delete= view.findViewById((R.id.Deletebutton));
+
         diatextView.setText(fechadia());
         mestextView.setText(fechames());
         annotextView.setText(fechaanno());
@@ -91,18 +95,28 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
         calendarioimageButton.setOnClickListener(this);
 
         dataBase = new DataBase();
-        reservas();
+        userUID = dataBase.getCurrentUser().getUid();
         context = this.getActivity();
-        /*bookingsAdapter = new BookingsAdapter(context,list);
+        list = new ArrayList<>();
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        bookingsAdapter = new BookingsAdapter(context, list);
+        recyclerView.setAdapter(bookingsAdapter);
 
-        bookingsAdapter.setOnClickListener(view1 -> {
-            list.get(recyclerView.getChildAdapterPosition(view1)).getNombre();
+        reservas();
+
+        bookingsAdapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*list.get(recyclerView.getChildAdapterPosition(view1)).getNombre();
             list.get(recyclerView.getChildAdapterPosition(view1)).getFecha();
             list.get(recyclerView.getChildAdapterPosition(view1)).getEmail();
             list.get(recyclerView.getChildAdapterPosition(view1)).getTelefono();
-            list.get(recyclerView.getChildAdapterPosition(view1)).getPersonas();
-            Navigation.findNavController(view1).navigate(R.id.nav_booking_delete);
-        });*/
+            list.get(recyclerView.getChildAdapterPosition(view1)).getPersonas();*/
+                Log.println(Log.WARN, "Clic", "Intentando navegar.");
+                Navigation.findNavController(v).navigate(R.id.nav_booking_delete);
+            }
+        });
 
     }
 
@@ -126,16 +140,11 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
     }
 
     public void reservas(){
-        userUID = dataBase.getCurrentUser().getUid();
+
         myRef = dataBase.getInstance().getReference(userUID).child(dataBase.PARENT_BOOKING());
-        context = this.getActivity();
-        list = new ArrayList<>();
 
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-        bookingsAdapter = new BookingsAdapter(context, list);
-        recyclerView.setAdapter(bookingsAdapter);
+
 
 
         myRef.addValueEventListener(new ValueEventListener() {

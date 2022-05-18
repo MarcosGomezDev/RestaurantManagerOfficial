@@ -32,10 +32,8 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
     private Button removeItemBasketButton;
     private TextView descriptionItemBasketTextView, unitsTextView, totalAmountTextView;
     private String userUID;
-    //private String currentTablePk;
     private String currentItemPk;
     private long newUnitSub;
-    //private double totalItemAmount;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -48,8 +46,6 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
         super.onViewCreated(view, savedInstanceState);
         dataBase = new DataBase();
         userUID = dataBase.getCurrentUser().getUid();
-
-        //currentTablePk = TablesFragment.currentNumTableString;
         currentItemPk = DataFlow.currentDescriptionItemString
                 .replace(" ", "_");
 
@@ -60,7 +56,9 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
         descriptionItemBasketTextView.setText(DataFlow.currentDescriptionItemString);
         totalAmountTextView = view.findViewById(R.id.totalAmountTextView);
         unitsTextView = view.findViewById(R.id.unitsTextView);
+
         unitsTextView.setText(String.valueOf(DataFlow.currentUnitItemLong));
+
         removeItemBasketButton.setOnClickListener(this);
         subtractItemBasketButton.setOnClickListener(this);
         addItemBasketButton.setOnClickListener(this);
@@ -146,7 +144,7 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
                     .child("amountPrice")
                     .setValue(DataFlow.totalItemAmountPrice);
 
-            DataFlow.amountItemBasketDouble -= DataFlow.currentPriceItemDouble;
+            DataFlow.amountItemBasketDouble = DataFlow.amountItemBasketDouble - DataFlow.currentPriceItemDouble;
             DataFlow.amountItemBasketDouble = Math
                     .round(DataFlow.amountItemBasketDouble * 100d) / 100d;
 
@@ -161,9 +159,6 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
             Toast.makeText(getContext(), "Articulo eliminado", Toast.LENGTH_SHORT)
                     .show();
             DataFlow.currentUnitItemLong = newUnitSub;
-            //unitsTextView.setText(String.valueOf(newUnitSub));
-
-           // totalAmountTextView.setText(String.valueOf(TableBoxFragment.totalAmountDouble));
         }
         if (newUnitSub == 0) {
 
@@ -177,7 +172,6 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
         DataFlow.amountItemBasketDouble -= DataFlow.currentPriceItemDouble;
         DataFlow.amountItemBasketDouble = Math
                 .round(DataFlow.amountItemBasketDouble * 100d) / 100d;
-
         dataBase.getDatabaseReference()
                 .child(userUID)
                 .child(dataBase.PARENT_TABLES())

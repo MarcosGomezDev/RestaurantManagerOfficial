@@ -40,7 +40,6 @@ public class TableItemsAdd extends Fragment {
     private ArrayList<ItemData> list;
     private String userUID;
     private Context context;
-    private long newUnitSub;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -54,7 +53,6 @@ public class TableItemsAdd extends Fragment {
         recyclerView = view.findViewById(R.id.tableItemListRecyclerView);
         dataBase = new DataBase();
         userUID = dataBase.getCurrentUser().getUid();
-
         context = this.getActivity();
         list = new ArrayList<>();
         itemAdapter = new ItemAdapter(context, list);
@@ -71,10 +69,8 @@ public class TableItemsAdd extends Fragment {
             item = new ItemData(descriptionItemString, priceItemDouble,
                     1, priceItemDouble);
 
-            String userUID = dataBase.getCurrentUser().getUid();
             String currentItemPK = descriptionItemString
                     .replace(" ", "_");
-
             dataBase.getDatabaseReference()
                     .child(userUID)
                     .child(dataBase.PARENT_TABLES())
@@ -86,7 +82,6 @@ public class TableItemsAdd extends Fragment {
             DataFlow.amountItemBasketDouble += priceItemDouble;
             DataFlow.amountItemBasketDouble = Math
                     .round(DataFlow.amountItemBasketDouble * 100d) / 100d;
-
             dataBase.getDatabaseReference()
                     .child(userUID)
                     .child(dataBase.PARENT_TABLES())
@@ -95,7 +90,6 @@ public class TableItemsAdd extends Fragment {
                     .child("basket_amount")
                     .setValue(DataFlow.amountItemBasketDouble);
             Toast.makeText(getContext(), "Articulo añadido", Toast.LENGTH_LONG).show();
-
             Navigation.findNavController(v).navigate(R.id.nav_table_box);
         });
 
