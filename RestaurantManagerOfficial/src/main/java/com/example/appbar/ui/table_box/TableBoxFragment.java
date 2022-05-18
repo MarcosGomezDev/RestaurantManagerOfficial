@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appbar.R;
 import com.example.appbar.data.DataBase;
+import com.example.appbar.data.DataFlow;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.databinding.FragmentTableBoxBinding;
 import com.example.appbar.ui.items.ItemsFragment;
@@ -97,7 +98,7 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
         recyclerView.setAdapter(tableBasketAdapter);
 
         tableBasketAdapter.setOnClickListener(v -> {
-            ItemsFragment.currentDescriptionItemString = list.get(
+            DataFlow.currentDescriptionItemString = list.get(
                     recyclerView.getChildAdapterPosition(v)).getDescription();
             ItemsFragment.currentPriceItemDouble = list.get(
                     recyclerView.getChildAdapterPosition(v)).getPrice();

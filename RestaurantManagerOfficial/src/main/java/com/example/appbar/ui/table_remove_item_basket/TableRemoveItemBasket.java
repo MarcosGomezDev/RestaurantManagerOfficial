@@ -17,6 +17,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.appbar.R;
 import com.example.appbar.data.DataBase;
+import com.example.appbar.data.DataFlow;
 import com.example.appbar.databinding.FragmentRemoveItemBasketBinding;
 import com.example.appbar.ui.items.ItemsFragment;
 import com.example.appbar.ui.table_box.TableBoxFragment;
@@ -30,7 +31,7 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
     private ImageButton addItemBasketButton, subtractItemBasketButton;
     private Button removeItemBasketButton;
     private TextView descriptionItemBasketTextView, unitsTextView, totalAmountTextView;
-    private String currentDescriptionItemString;
+    //private String currentDescriptionItemString;
     private String userUID;
     private String currentTablePk;
     private String currentItemPk;
@@ -51,19 +52,19 @@ public class TableRemoveItemBasket extends Fragment implements View.OnClickListe
         dataBase = new DataBase();
         userUID = dataBase.getCurrentUser().getUid();
 
-        currentDescriptionItemString = ItemsFragment.currentDescriptionItemString;
+        //currentDescriptionItemString = ItemsFragment.currentDescriptionItemString;
         currentPriceItemDouble = ItemsFragment.currentPriceItemDouble;
         totalItemAmount = TableBoxFragment.totalItemAmountPrice;
         currentUnits = ItemsFragment.currentUnitItemLong;
         currentTablePk = TablesFragment.currentNumTableString;
-        currentItemPk = currentDescriptionItemString
+        currentItemPk = DataFlow.currentDescriptionItemString
                 .replace(" ", "_");
 
         addItemBasketButton = view.findViewById(R.id.addItemBasketButton);
         subtractItemBasketButton = view.findViewById(R.id.subtractItemBasketButton);
         removeItemBasketButton = view.findViewById(R.id.removeItemBasketButton);
         descriptionItemBasketTextView = view.findViewById(R.id.descriptionItemBasketTextView);
-        descriptionItemBasketTextView.setText(ItemsFragment.currentDescriptionItemString);
+        descriptionItemBasketTextView.setText(DataFlow.currentDescriptionItemString);
         totalAmountTextView = view.findViewById(R.id.totalAmountTextView);
         unitsTextView = view.findViewById(R.id.unitsTextView);
         unitsTextView.setText(String.valueOf(currentUnits));

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appbar.R;
 import com.example.appbar.data.DataBase;
+import com.example.appbar.data.DataFlow;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.databinding.FragmentItemsBinding;
 import com.example.appbar.ui.table_box.TableBoxFragment;
@@ -33,7 +34,6 @@ public class ItemsFragment extends Fragment {
     private FragmentItemsBinding binding;
     private DataBase dataBase;
     private DatabaseReference myRef;
-    public static String currentDescriptionItemString;
     public static double currentPriceItemDouble;
     public static long currentUnitItemLong;
     private ItemAdapter itemAdapter;
@@ -66,7 +66,7 @@ public class ItemsFragment extends Fragment {
 
 
         itemAdapter.setOnClickListener(v -> {
-            currentDescriptionItemString = list.get(
+            DataFlow.currentDescriptionItemString = list.get(
                     recyclerView.getChildAdapterPosition(v)).getDescription();
             currentPriceItemDouble = (list.get(
                     recyclerView.getChildAdapterPosition(v)).getPrice());

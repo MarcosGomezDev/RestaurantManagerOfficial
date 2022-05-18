@@ -16,6 +16,7 @@ import androidx.navigation.Navigation;
 
 import com.example.appbar.R;
 import com.example.appbar.data.DataBase;
+import com.example.appbar.data.DataFlow;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.databinding.FragmentItemAddUpdateBinding;
 import com.example.appbar.ui.items.ItemsFragment;
@@ -26,7 +27,7 @@ public class ItemUpdateFragment extends Fragment {
     private FragmentItemAddUpdateBinding binding;
     private final DataBase dataBase = new DataBase();
     private ItemData item = new ItemData();
-    private String currentDescriptionItemString;
+    //private String currentDescriptionItemString;
     private double currentPriceItemDouble;
     private Button addUpdateOkButton, removeButton;
     private EditText updateDescriptionEditText, updatePriceEditText;
@@ -54,11 +55,11 @@ public class ItemUpdateFragment extends Fragment {
         updatePriceEditText = view.findViewById(R.id.updateDescriptionEditText);
         getDescriptionTextView = view.findViewById(R.id.getDescriptionTextView);
         getPriceTextView = view.findViewById(R.id.getPriceTextView);
-        currentDescriptionItemString = ItemsFragment.currentDescriptionItemString;
+        //currentDescriptionItemString = ItemsFragment.currentDescriptionItemString;
         currentPriceItemDouble = ItemsFragment.currentPriceItemDouble;
         addUpdateOkButton = view.findViewById(R.id.addUpdateOkButton);
         removeButton = view.findViewById(R.id.removeButton);
-        getDescriptionTextView.setText(currentDescriptionItemString);
+        getDescriptionTextView.setText(DataFlow.currentDescriptionItemString);
         getPriceTextView.setText(String.valueOf(currentPriceItemDouble));
 
         addUpdateOkButton.setOnClickListener(v -> {
@@ -70,7 +71,7 @@ public class ItemUpdateFragment extends Fragment {
             } else {
                 item = new ItemData(description, price, 1);
                 String userUID = dataBase.getCurrentUser().getUid();
-                String currentPk = currentDescriptionItemString
+                String currentPk = DataFlow.currentDescriptionItemString
                         .replace(" ", "_");
                 dataBase.getDatabaseReference()
                         .child(userUID)
@@ -89,7 +90,7 @@ public class ItemUpdateFragment extends Fragment {
 
         removeButton.setOnClickListener(v -> {
             String userUID = dataBase.getCurrentUser().getUid();
-            String currentPk = currentDescriptionItemString
+            String currentPk = DataFlow.currentDescriptionItemString
                     .replace(" ", "_");
             dataBase.getDatabaseReference()
                     .child(userUID)
