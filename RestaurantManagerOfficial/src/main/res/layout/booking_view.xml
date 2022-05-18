@@ -23,7 +23,7 @@
             app:srcCompat="@drawable/piezas_de_cubiertos" />
 
         <LinearLayout
-            android:layout_width="165dp"
+            android:layout_width="252dp"
             android:layout_height="108dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="16dp"
@@ -44,7 +44,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/nombreTextView"
+                    android:id="@+id/nombre_deleteTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -68,7 +68,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/telefonoTextView"
+                    android:id="@+id/telefono_deleteTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -92,7 +92,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/emailTextView"
+                    android:id="@+id/email_deleteTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -116,7 +116,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/TextView"
+                    android:id="@+id/fecha_deleteTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -140,7 +140,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/personastextView"
+                    android:id="@+id/personas_deletetextView"
                     android:layout_width="124dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -149,34 +149,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="85dp"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/Deletebutton"
-                android:layout_width="60dp"
-                android:layout_height="75dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="17dp"
-                android:layout_marginEnd="25dp"
-                android:layout_marginBottom="16dp"
-                android:backgroundTint="@color/white"
-                android:backgroundTintMode="src_in"
-                android:shadowColor="@color/black"
-                android:text="Button"
-                android:textAlignment="center"
-                app:icon="@drawable/delete"
-                app:iconPadding="0dp"
-                app:iconTint="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:rippleColor="@color/black"
-                app:strokeColor="@color/black" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 

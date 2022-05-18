@@ -74,11 +74,11 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.MyView
 
         public MyViewHolder(@NonNull View bookView) {
             super(bookView);
-            nombreTextView = bookView.findViewById(R.id.nombreTextView);
-            telefonoTextView = bookView.findViewById(R.id.telefonoTextView);
-            emailTextView = bookView.findViewById(R.id.emailTextView);
-            fechaTextView  = bookView.findViewById(R.id.TextView);
-            personastextView = bookView.findViewById(R.id.personastextView);
+            nombreTextView = bookView.findViewById(R.id.nombre_deleteTextView);
+            telefonoTextView = bookView.findViewById(R.id.telefono_deleteTextView);
+            emailTextView = bookView.findViewById(R.id.email_deleteTextView);
+            fechaTextView  = bookView.findViewById(R.id.fecha_deleteTextView);
+            personastextView = bookView.findViewById(R.id.personas_deletetextView);
 
         }
     }

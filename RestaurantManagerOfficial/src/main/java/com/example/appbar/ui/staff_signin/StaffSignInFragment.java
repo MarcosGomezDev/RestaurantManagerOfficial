@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.appbar.LogInActivity;
 import com.example.appbar.R;
@@ -124,6 +125,7 @@ public class StaffSignInFragment extends Fragment implements View.OnClickListene
                 break;
             case R.id.terminar_button:
                 Update();
+                Navigation.findNavController(view).navigate(R.id.nav_home);
                 break;
         }
     }
@@ -155,11 +157,12 @@ public class StaffSignInFragment extends Fragment implements View.OnClickListene
                        }
                    }
                     else {
-                       horaini_textView.setText(data.getHoraini());
-                       fecha_textView.setText(data.getFecha());
-                       horafin_textView.setText(data.getHorafin());
+                       horaini_textView.setText("");
+                       fecha_textView.setText("");
+                       horafin_textView.setText("");
                         Toast.makeText(getContext(), "Este empleado ya ha fichado su hora de " +
                                 "salida para la fecha actual ", Toast.LENGTH_SHORT).show();
+
                     }
                 }
                 else{
@@ -178,7 +181,10 @@ public class StaffSignInFragment extends Fragment implements View.OnClickListene
     }
     public void Update(){
         userUID = dataBase.getCurrentUser().getUid();
-        dataBase.getDatabaseReference().child(userUID).child("staff").child((dni_editText.getText().toString()+" "+dia+mes+anno)).child("horafin").setValue(horafin_textView.getText());
+        String Cadena = dni_editText.getText().toString()+" "+dia+mes+anno;
+        String hora = horafin_textView.getText().toString().trim();
+        dataBase.getDatabaseReference().child(userUID).child("staff").child(Cadena).child("horafin").setValue(hora);
+
     }
 
 }
