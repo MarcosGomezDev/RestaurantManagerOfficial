@@ -62,14 +62,18 @@
             android:layout_height="wrap_content"
             android:minHeight="48dp"
             android:text="@string/remember_user"
+            android:visibility="invisible"
             tools:layout_conversion_absoluteHeight="48dp"
-            tools:layout_conversion_absoluteWidth="143dp" />
+            tools:layout_conversion_absoluteWidth="143dp"
+            tools:visibility="invisible" />
 
         <CheckBox
             android:id="@+id/conditionsCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/terms_conditions" />
+            android:text="@string/terms_conditions"
+            android:visibility="invisible"
+            tools:visibility="invisible" />
 
         <TextView
             android:id="@+id/conditionsTextView"
@@ -78,7 +82,9 @@
             android:clickable="true"
             android:minHeight="48dp"
             android:text="@string/src_conditions"
-            android:textIsSelectable="false" />
+            android:textIsSelectable="false"
+            android:visibility="invisible"
+            tools:visibility="invisible" />
 
         <Button
             android:id="@+id/removeItemBasketButton"

@@ -35,7 +35,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     private AwesomeValidation awesomeValidation;
     private FirebaseAuth mFirebaseAuth;
     private EditText emailEditText, passwordEditText;
-    private CheckBox recUserCheck, conditionsCheck;
+//    private CheckBox recUserCheck, conditionsCheck;
     private Button logInButton, signInButton;
     private String date;
     private String email;
@@ -53,16 +53,16 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
-        recUserCheck = findViewById(R.id.recUserCheck);
+//        recUserCheck = findViewById(R.id.recUserCheck);
         logInButton = findViewById(R.id.removeItemBasketButton);
         signInButton = findViewById(R.id.signInButton);
 
-        recUserCheck = findViewById(R.id.recUserCheck);
-        conditionsCheck = findViewById(R.id.conditionsCheckBox);
+//        recUserCheck = findViewById(R.id.recUserCheck);
+//        conditionsCheck = findViewById(R.id.conditionsCheckBox);
         logInButton.setOnClickListener(this);
         signInButton.setOnClickListener(this);
-        recUserCheck.setChecked(true);
-        conditionsCheck.setChecked(false);
+//        recUserCheck.setChecked(true);
+//        conditionsCheck.setChecked(false);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
@@ -100,7 +100,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void setSignIn(String email, String password) {
-        if(conditionsCheck.isChecked()) {
+//        if(conditionsCheck.isChecked()) {
             mFirebaseAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -117,14 +117,14 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                             }
                         }
                     });
-        } else {
-            showAlert("Debe aceptar los Términos y condiciones de la aplicación.",
-                    "Términos y condiciones");
-        }
+//        } else {
+//            showAlert("Debe aceptar los Términos y condiciones de la aplicación.",
+//                    "Términos y condiciones");
+//        }
     }
 
     private void createAccount(String email, String password) {
-        if(conditionsCheck.isChecked()) {
+//        if(conditionsCheck.isChecked()) {
             mFirebaseAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener((new OnCompleteListener<AuthResult>() {
                         @Override
@@ -141,7 +141,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                             }
                         }
             }));
-        }
+//        }
     }
 
     private void goHome() {

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
-    android:backgroundTint="@color/white"
+    android:background="@color/white"
     android:nestedScrollingEnabled="true"
     android:orientation="vertical"
     android:textAlignment="center"
@@ -16,6 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right|top"
+        android:layout_marginRight="35dp"
         android:layout_marginBottom="8dp"
         android:textAlignment="textEnd"
         android:textSize="14sp"
@@ -27,14 +27,23 @@
         android:layout_height="wrap_content"
         android:text="Restaurant Manager"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textColor="@color/AppColorPrincipal"
+        android:textSize="34sp"
         android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/imageView5"
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="111dp"
-        android:src="@drawable/moon_sin_gris" />
+        android:layout_height="30dp" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="match_parent"
+        android:layout_height="129dp"
+        android:src="@mipmap/cust_launcher" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,10 +52,12 @@
 
         <ImageView
             android:id="@+id/imageView12"
-            android:layout_width="256dp"
+            android:layout_width="395dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/icons8_directorio_64" />
+            android:contentDescription="TODO"
+            android:src="@drawable/icons8_directorio_64"
+            app:tint="@color/black" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -55,13 +66,14 @@
 
             <TextView
                 android:id="@+id/reserva_textView"
-                android:layout_width="172dp"
+                android:layout_width="150dp"
                 android:layout_height="49dp"
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="35dp"
                 android:layout_marginBottom="29dp"
                 android:text="No hay reservas activas"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -79,10 +91,12 @@
 
         <ImageView
             android:id="@+id/imageView13"
-            android:layout_width="256dp"
+            android:layout_width="397dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/icons8_tarjeta_de_empleado_64" />
+            android:contentDescription="TODO"
+            android:src="@drawable/icons8_tarjeta_de_empleado_64"
+            app:tint="@color/black" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -91,13 +105,14 @@
 
             <TextView
                 android:id="@+id/empleados_textView"
-                android:layout_width="172dp"
+                android:layout_width="150dp"
                 android:layout_height="49dp"
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="35dp"
                 android:layout_marginBottom="29dp"
                 android:text="No hay empleados activos"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -114,10 +129,11 @@
 
         <ImageView
             android:id="@+id/imageView14"
-            android:layout_width="256dp"
+            android:layout_width="397dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/icons8_baguette_64" />
+            android:src="@drawable/icons8_baguette_64"
+            app:tint="@color/black" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -126,13 +142,14 @@
 
             <TextView
                 android:id="@+id/item_textView"
-                android:layout_width="172dp"
+                android:layout_width="150dp"
                 android:layout_height="49dp"
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="35dp"
                 android:layout_marginBottom="23dp"
                 android:text="No hay productos de alta"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -150,25 +167,25 @@
 
         <ImageView
             android:id="@+id/imageView6"
-            android:layout_width="180dp"
+            android:layout_width="272dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/servicio" />
+            android:src="@drawable/servicio"
+            app:tint="@color/black" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="287dp"
-            android:layout_height="91dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1">
 
             <TextView
                 android:id="@+id/Mesas_textView"
-                android:layout_width="172dp"
+                android:layout_width="150dp"
                 android:layout_height="49dp"
-                android:layout_marginStart="28dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="35dp"
                 android:layout_marginBottom="23dp"
                 android:text="No hay mesas ocupadas"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
