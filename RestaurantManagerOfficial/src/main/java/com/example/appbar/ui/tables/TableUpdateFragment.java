@@ -60,21 +60,26 @@ public class TableUpdateFragment extends Fragment {
                 updateNumTableEditText.setError("Campo obligatorio");
                 updateCapacityEditText.setError("Campo obligatorio");
             } else {
-                table = new TablesData(numTable, capacity, DataFlow.currentReservedTableBool);
-                String userUID = dataBase.getCurrentUser().getUid();
-                dataBase.getDatabaseReference()
-                        .child(userUID)
-                        .child(dataBase.PARENT_TABLES())
-                        .child(DataFlow.currentNumTableString)
-                        .removeValue();
-                dataBase.getDatabaseReference()
-                        .child(userUID)
-                        .child(dataBase.PARENT_TABLES())
-                        .child(numTable)
-                        .setValue(table);
-                Toast.makeText(getContext(), "Mesa modificada", Toast.LENGTH_LONG)
-                        .show();
-                Navigation.findNavController(v).navigate(R.id.nav_tables);
+                if (numTable.length() > 2 || capacity.length() > 2) {
+                    updateNumTableEditText.setError("2 caracteres como máximo");
+                    updateCapacityEditText.setError("2 caracteres como máximo");
+                } else {
+                    table = new TablesData(numTable, capacity, DataFlow.currentReservedTableBool);
+                    String userUID = dataBase.getCurrentUser().getUid();
+                    dataBase.getDatabaseReference()
+                            .child(userUID)
+                            .child(dataBase.PARENT_TABLES())
+                            .child(DataFlow.currentNumTableString)
+                            .removeValue();
+                    dataBase.getDatabaseReference()
+                            .child(userUID)
+                            .child(dataBase.PARENT_TABLES())
+                            .child(numTable)
+                            .setValue(table);
+                    Toast.makeText(getContext(), "Mesa modificada", Toast.LENGTH_LONG)
+                            .show();
+                    Navigation.findNavController(v).navigate(R.id.nav_tables);
+                }
             }
         });
     }
