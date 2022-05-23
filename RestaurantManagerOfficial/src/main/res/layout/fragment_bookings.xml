@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/calendario"
@@ -8,221 +8,227 @@
     android:backgroundTint="@color/white"
     tools:context=".MenuActivity">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fa_annadir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:clickable="true"
-        app:backgroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-        app:srcCompat="@drawable/plus" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fa_annadir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:backgroundTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+            app:srcCompat="@drawable/plus" />
 
         <LinearLayout
-            android:layout_width="380dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:id="@+id/linearLayout"
+            android:layout_width="372dp"
+            android:layout_height="683dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
-                android:layout_width="349dp"
-                android:layout_height="59dp"
-                android:layout_weight="0.2"
-                android:orientation="horizontal">
+                android:layout_width="380dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-                <ImageButton
-                    android:id="@+id/calendarioimageButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/white"
-                    app:srcCompat="@drawable/calendario__2_" />
+                <LinearLayout
+                    android:layout_width="349dp"
+                    android:layout_height="59dp"
+                    android:layout_weight="0.2"
+                    android:orientation="horizontal">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="46dp"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/diatextView"
-                        android:layout_width="45dp"
+                    <ImageButton
+                        android:id="@+id/calendarioimageButton"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="35dp"
-                        android:layout_weight="1"
-                        android:text="Dia"
-                        android:textAlignment="center"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="40dp"
-                    android:layout_height="match_parent">
-
-                    <ImageButton
-                        android:id="@+id/ldiaimageButton"
-                        android:layout_width="29dp"
-                        android:layout_height="27dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="29dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_weight="1"
                         android:backgroundTint="@color/white"
-                        app:layout_constraintBottom_toTopOf="@+id/pdiaimageButton"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/less" />
+                        app:srcCompat="@drawable/calendario__2_" />
 
-                    <ImageButton
-                        android:id="@+id/pdiaimageButton"
-                        android:layout_width="29dp"
-                        android:layout_height="27dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginBottom="29dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/white"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/ldiaimageButton"
-                        app:srcCompat="@drawable/plus__3_" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="46dp"
+                        android:layout_height="match_parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="46dp"
-                    android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/diatextView"
+                            android:layout_width="45dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="35dp"
+                            android:layout_weight="1"
+                            android:text="Dia"
+                            android:textAlignment="center"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/mestextView"
-                        android:layout_width="47dp"
-                        android:layout_height="70dp"
-                        android:layout_marginTop="35dp"
-                        android:layout_weight="1"
-                        android:text="mes"
-                        android:textAlignment="center"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="38dp"
-                    android:layout_height="match_parent">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent">
 
-                    <ImageButton
-                        android:id="@+id/pmesimageButton"
-                        android:layout_width="29dp"
-                        android:layout_height="27dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginBottom="29dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/white"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/lmesimageButton"
-                        app:srcCompat="@drawable/plus__3_" />
+                        <ImageButton
+                            android:id="@+id/ldiaimageButton"
+                            android:layout_width="29dp"
+                            android:layout_height="27dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="29dp"
+                            android:layout_marginEnd="6dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/white"
+                            app:layout_constraintBottom_toTopOf="@+id/pdiaimageButton"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/less" />
 
-                    <ImageButton
-                        android:id="@+id/lmesimageButton"
-                        android:layout_width="29dp"
-                        android:layout_height="27dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="29dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/white"
-                        app:layout_constraintBottom_toTopOf="@+id/pmesimageButton"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/less" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <ImageButton
+                            android:id="@+id/pdiaimageButton"
+                            android:layout_width="29dp"
+                            android:layout_height="27dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="6dp"
+                            android:layout_marginBottom="29dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/ldiaimageButton"
+                            app:srcCompat="@drawable/plus__3_" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="51dp"
-                    android:layout_height="match_parent">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="46dp"
+                        android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/annotextView"
+                        <TextView
+                            android:id="@+id/mestextView"
+                            android:layout_width="47dp"
+                            android:layout_height="70dp"
+                            android:layout_marginTop="35dp"
+                            android:layout_weight="1"
+                            android:text="mes"
+                            android:textAlignment="center"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="38dp"
+                        android:layout_height="match_parent">
+
+                        <ImageButton
+                            android:id="@+id/pmesimageButton"
+                            android:layout_width="29dp"
+                            android:layout_height="27dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="6dp"
+                            android:layout_marginBottom="29dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/lmesimageButton"
+                            app:srcCompat="@drawable/plus__3_" />
+
+                        <ImageButton
+                            android:id="@+id/lmesimageButton"
+                            android:layout_width="29dp"
+                            android:layout_height="27dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="29dp"
+                            android:layout_marginEnd="6dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/white"
+                            app:layout_constraintBottom_toTopOf="@+id/pmesimageButton"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/less" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="51dp"
-                        android:layout_height="72dp"
-                        android:layout_marginTop="35dp"
-                        android:layout_weight="1"
-                        android:text="año"
-                        android:textAlignment="center"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        android:layout_height="match_parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                        <TextView
+                            android:id="@+id/annotextView"
+                            android:layout_width="51dp"
+                            android:layout_height="72dp"
+                            android:layout_marginTop="35dp"
+                            android:layout_weight="1"
+                            android:text="año"
+                            android:textAlignment="center"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageButton
+                            android:id="@+id/pannoimageButton"
+                            android:layout_width="29dp"
+                            android:layout_height="27dp"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginBottom="29dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/lannoimageButton"
+                            app:srcCompat="@drawable/plus__3_" />
+
+                        <ImageButton
+                            android:id="@+id/lannoimageButton"
+                            android:layout_width="29dp"
+                            android:layout_height="27dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="29dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/white"
+                            app:layout_constraintBottom_toTopOf="@+id/pannoimageButton"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/less" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/r"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageButton
-                        android:id="@+id/pannoimageButton"
-                        android:layout_width="29dp"
-                        android:layout_height="27dp"
-                        android:layout_marginStart="6dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginBottom="29dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/white"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/lannoimageButton"
-                        app:srcCompat="@drawable/plus__3_" />
-
-                    <ImageButton
-                        android:id="@+id/lannoimageButton"
-                        android:layout_width="29dp"
-                        android:layout_height="27dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="29dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/white"
-                        app:layout_constraintBottom_toTopOf="@+id/pannoimageButton"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/less" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_height="302dp"
+                    android:layout_weight="1" />
 
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/r"
-                android:layout_width="match_parent"
-                android:layout_height="302dp"
-                android:layout_weight="1" />
-
         </LinearLayout>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
