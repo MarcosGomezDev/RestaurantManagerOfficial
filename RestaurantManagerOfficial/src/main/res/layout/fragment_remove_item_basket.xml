@@ -22,7 +22,7 @@
                 android:id="@+id/addTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Añadir"
+                android:text="@string/add"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/addItemBasketButton"
@@ -36,18 +36,19 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="#887F7F"
+                android:contentDescription="TODO"
                 android:minWidth="48dp"
                 android:minHeight="48dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/addTextView"
                 app:srcCompat="@drawable/add_add_circle_white_24"
-                tools:ignore="SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
 
             <TextView
                 android:id="@+id/substactTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Quitar"
+                android:text="@string/remove"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/subtractItemBasketButton"
@@ -59,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="x"
+                android:text="@string/x"
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="@+id/unitsTextView"
@@ -71,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
-                android:text="2"
+                android:text="@string/_2"
                 android:textColor="@color/black"
                 android:textSize="34sp"
                 app:layout_constraintBottom_toBottomOf="@+id/subtractItemBasketButton"
@@ -90,7 +91,8 @@
                 app:layout_constraintStart_toEndOf="@+id/addItemBasketButton"
                 app:layout_constraintTop_toBottomOf="@+id/substactTextView"
                 app:srcCompat="@drawable/cust_remove_circle_outline_24"
-                tools:ignore="SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck"
+                android:contentDescription="TODO" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
@@ -113,7 +115,7 @@
             android:clickable="false"
             android:insetLeft="20dp"
             android:insetRight="20dp"
-            android:text="Eliminar Artículo"
+            android:text="@string/removeItem"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textColorLink="#FFFFFF"

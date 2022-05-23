@@ -62,9 +62,10 @@
                 android:layout_marginTop="10dp"
                 android:autofillHints=""
                 android:ems="10"
-                android:hint="Número de mesa"
+                android:hint="@string/num_table"
                 android:inputType="textPersonName"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:textColorHint="#757575" />
 
             <EditText
                 android:id="@+id/updateCapacityEditText"
@@ -73,9 +74,10 @@
                 android:layout_marginTop="10dp"
                 android:autofillHints=""
                 android:ems="10"
-                android:hint="Número de personas"
+                android:hint="@string/num_persons"
                 android:inputType="textPersonName"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:textColorHint="#757575" />
 
             <Button
                 android:id="@+id/updateOkButton"

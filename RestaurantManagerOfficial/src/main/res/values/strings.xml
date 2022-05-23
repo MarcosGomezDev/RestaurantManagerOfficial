@@ -40,5 +40,12 @@
     <string name="x2">x2</string>
     <string name="todo">TODO</string>
     <string name="terms">Términos y condiciones</string>
+    <string name="num_table">Número de mesa</string>
+    <string name="num_persons">Número de personas</string>
+    <string name="add">Añadir</string>
+    <string name="remove">Quitar</string>
+    <string name="x">x</string>
+    <string name="_2">2</string>
+    <string name="removeItem">Eliminar Artículo</string>
 
 </resources>
