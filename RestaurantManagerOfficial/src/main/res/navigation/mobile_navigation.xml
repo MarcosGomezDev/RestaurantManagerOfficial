@@ -12,7 +12,10 @@
         tools:layout="@layout/fragment_tables" >
         <action
             android:id="@+id/action_nav_tables_to_nav_table_box"
-            app:destination="@id/nav_home" />
+            app:destination="@id/nav_table_box" />
+        <action
+            android:id="@+id/action_nav_tables_to_nav_remove_items_basket"
+            app:destination="@id/nav_remove_items_basket" />
     </fragment>
 
     <fragment
@@ -28,8 +31,8 @@
         android:label="Gestion Mesa"
         tools:layout="@layout/fragment_table_box">
         <action
-            android:id="@+id/action_nav_tables_to_nav_table_selected"
-            app:destination="@id/nav_tables" />
+            android:id="@+id/action_nav_table_box_to_nav_table_selected"
+            app:destination="@id/nav_table_selected" />
     </fragment>
 
     <fragment
@@ -46,17 +49,26 @@
         android:id="@+id/nav_remove_items_basket"
         android:name="com.example.appbar.ui.tables.TableRemoveItemBasketFragment"
         android:label="Modificación de cesta"
-        tools:layout="@layout/fragment_remove_item_basket">
-        <action
-            android:id="@+id/action_nav_remove_basket_to_nav_table_selected"
-            app:destination="@id/nav_table_selected" />
-    </fragment>
+        tools:layout="@layout/fragment_remove_item_basket"/>
 
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.appbar.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_staff_signin"
+            app:destination="@id/nav_staff_signin" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_tables2"
+            app:destination="@id/nav_tables" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_bookings"
+            app:destination="@id/nav_bookings" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_items"
+            app:destination="@id/nav_items" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_items"
