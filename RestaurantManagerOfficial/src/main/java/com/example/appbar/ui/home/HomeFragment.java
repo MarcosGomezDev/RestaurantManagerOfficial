@@ -140,7 +140,7 @@ public class HomeFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     empleados = snapshot.getChildrenCount();
-                    empleados_textView.setText("El numero de registros de empleados es " + empleados);
+                    empleados_textView.setText("El Registros de empleados es " + empleados);
                 }
             }
 

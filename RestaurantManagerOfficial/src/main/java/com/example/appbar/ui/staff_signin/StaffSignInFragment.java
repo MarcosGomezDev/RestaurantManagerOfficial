@@ -1,6 +1,7 @@
 package com.example.appbar.ui.staff_signin;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +42,7 @@ public class StaffSignInFragment extends Fragment implements View.OnClickListene
     private String dia = "dd";
     private String mes = "MM";
     private String anno = "yyyy";
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -115,8 +117,10 @@ public class StaffSignInFragment extends Fragment implements View.OnClickListene
                         horaini_textView.getText().toString().trim(),
                         horafin_textView.getText().toString(),
                         fecha_textView.getText().toString().trim());
+                Navigation.findNavController(view).navigate(R.id.nav_home);
                 break;
             case R.id.terminar_button:
+
                 Update();
                 Navigation.findNavController(view).navigate(R.id.nav_home);
                 break;
@@ -147,13 +151,16 @@ public class StaffSignInFragment extends Fragment implements View.OnClickListene
                             fecha_textView.setText(data.getFecha());
                             terminar_button.setEnabled(true);
                             horafin_button.setEnabled(true);
+
                         }
-                    } else {
+                    }
+                    else {
+                        dni_editText.setTextColor(Color.RED);
+                        dni_editText.setText("TURNO YA ACABADO");
                         horaini_textView.setText("");
                         fecha_textView.setText("");
                         horafin_textView.setText("");
-                        Toast.makeText(getContext(), "Este empleado ya ha fichado su hora de " +
-                                "salida para la fecha actual ", Toast.LENGTH_SHORT).show();
+
                     }
                 } else {
                     comporbar_button.setEnabled(false);
@@ -171,10 +178,13 @@ public class StaffSignInFragment extends Fragment implements View.OnClickListene
     }
 
     public void Update() {
+
         userUID = dataBase.getCurrentUser().getUid();
-        String Cadena = dni_editText.getText().toString() + " " + dia + mes + anno;
-        String hora = horafin_textView.getText().toString().trim();
-        dataBase.getDatabaseReference().child(userUID).child("staff").child(Cadena).child("horafin").setValue(hora);
+        String Cadena = dni_editText.getText().toString() + " " +dia+mes+anno;
+        String hora = horafin_textView.getText().toString();
+
+       dataBase.getDatabaseReference().child(userUID).child(dataBase.PARENT_STAFF()).child(Cadena).child("horafin").setValue(hora());
+
 
     }
 

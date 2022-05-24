@@ -12,17 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fa_annadir"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:clickable="true"
-            app:backgroundTint="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-            app:srcCompat="@drawable/plus" />
-
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="372dp"
@@ -224,6 +213,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="302dp"
                     android:layout_weight="1" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fa_annadir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    app:backgroundTint="@color/white"
+                    app:srcCompat="@drawable/plus" />
 
             </LinearLayout>
 
