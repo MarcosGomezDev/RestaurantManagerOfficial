@@ -103,7 +103,7 @@ public class StaffSignInFragment extends Fragment implements View.OnClickListene
                 fecha_textView.setText(fecha());
                 break;
             case R.id.comprobar_button:
-                if (dni_editText.getText().length() != 0) {
+                if (dni_editText.getText().length()==9) {
                     Search();
                 } else {
                     Toast.makeText(getContext(), "Introduzca un empleado valido ", Toast.LENGTH_SHORT).show();

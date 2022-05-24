@@ -131,13 +131,21 @@ public class BookingSelectFragment extends Fragment implements View.OnClickListe
             return false;
 
     }
-    public boolean Comprobar_personas(String personas){
-        int i = Integer.valueOf(personas);
-        if (0<i && i<7){
-            return true;
+    public boolean Comprobar_personas(String personas) {
+
+        if (personas.length() != 0) {
+            int i = Integer.valueOf(personas);
+
+            if (0 < i && i < 7) {
+                return true;
+            } else {
+                return false;
+            }
         }
-        else {
+        else
+        {
             return false;
         }
     }
+
 }
