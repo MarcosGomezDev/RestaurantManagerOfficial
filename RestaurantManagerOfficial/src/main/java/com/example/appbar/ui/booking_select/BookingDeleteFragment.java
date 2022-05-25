@@ -28,6 +28,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+/*
+    Clase BookingDeleteFragment
+    Esta clase elimina la reserva seleccionada en la pantalla principal.
+*/
 
 public class BookingDeleteFragment extends Fragment implements View.OnClickListener{
     private FragmentBookingDeleteBinding binding;
@@ -45,14 +49,16 @@ public class BookingDeleteFragment extends Fragment implements View.OnClickListe
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        //Asociacion de los elementos  layaout
         nombre_deleteTextView = view.findViewById(R.id.nombre_deleteTextView);
         telefono_deleteTextView = view.findViewById(R.id.telefono_deleteTextView);
         fecha_deleteTextView = view.findViewById(R.id.fecha_deleteTextView);
         personas_deletetextView = view.findViewById(R.id.personas_deletetextView);
         email_deleteTextView = view.findViewById(R.id.email_deleteTextView);
         Deletebutton = view.findViewById(R.id.Deletebutton);
+        //listener para el envento OnClick en el boton Delete
         Deletebutton.setOnClickListener(this);
-
+        //Escritura de datos en los TextView del Layaout
         nombre_deleteTextView.setText(DataFlow.getNombre);
         telefono_deleteTextView.setText(DataFlow.getTelefono);
         fecha_deleteTextView.setText(DataFlow.getFecha);
@@ -65,7 +71,12 @@ public class BookingDeleteFragment extends Fragment implements View.OnClickListe
         binding = null;
     }
 
-
+    /*
+    @param View view
+      Este metodo elimina la reserva al hacer click en el boton eliminar
+      una vez apretado el boton eliminar se elimina de la base de datos
+      y se vuelve a la pantalla principal
+    */
     @Override
     public void onClick(View view) {
         String userUID = dataBase.getCurrentUser().getUid();

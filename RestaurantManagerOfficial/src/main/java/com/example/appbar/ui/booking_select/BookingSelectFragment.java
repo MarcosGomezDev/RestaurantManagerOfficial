@@ -28,7 +28,11 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+/*
+    Clase BookingSeletFragment
+    Esta clase añade hace una carga de datos de una reserva a la base de datos
+    Estos datos son introducidos mediante los EditText del layaout frament_booking_select
+ */
 public class BookingSelectFragment extends Fragment implements View.OnClickListener {
 
     private FragmentBookingSelectBinding binding;
@@ -45,12 +49,14 @@ public class BookingSelectFragment extends Fragment implements View.OnClickListe
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        //Asignacion de los elementos del layaout
         nombre_editText = view.findViewById(R.id.nombre_editText);
         email_editText = view.findViewById(R.id.email_editText);
         telefono_editText = view.findViewById(R.id.telefono_editText);
         fecha_editText = view.findViewById(R.id.fecha_editText);
         personas_editText = view.findViewById(R.id.personas_editText);
         alta_button = view.findViewById(R.id.alta_button);
+        //listener para el evento Onclick asiciado al boton de alta
         alta_button.setOnClickListener(this);
     }
 
@@ -62,6 +68,14 @@ public class BookingSelectFragment extends Fragment implements View.OnClickListe
 
     @SuppressLint("ResourceAsColor")
     @Override
+    /*
+        @param View view
+        Este metodo gestiona el boton alta_button
+        Antes de introducir y dar de alta en la base de datos una reserva tiene que pasar una serie
+        de filtros para comprobar que los datos introducidos son correctos .
+        En caso de no pasar lo filtros establecidos se mostrara un mensaje de error ,
+        no se daran los datos de alta hasta que esten todos bien introducidos.
+     */
     public void onClick(View view) {
         BookingsData Datos = new BookingsData();
         if (Comprobar_fecha(fecha_editText.getText().toString().trim())==false){
@@ -98,7 +112,12 @@ public class BookingSelectFragment extends Fragment implements View.OnClickListe
             }
         }
     }
-
+    /*
+     @param String fecha
+     Este metodo comprueba que una entrada de tipo String cumpla un patron de fecha
+     en caso de que este patron se cumpla se devuelve true y en caso contrario false
+     @return bolean
+     */
     public boolean Comprobar_fecha(String fecha) {
 
         DateFormat date = new SimpleDateFormat("dd/MM/yyyy");
@@ -115,6 +134,12 @@ public class BookingSelectFragment extends Fragment implements View.OnClickListe
         }
 
     }
+    /*
+     @param String email
+     Este metodo comprueba que una direccion de email cumple los estandares de una direccion de correo
+     en caso afirmativo se devuelve true en caso negativo false
+     @return bolean
+     */
     public boolean Comprobar_email(String email){
         if ( !email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             return true;
@@ -123,6 +148,12 @@ public class BookingSelectFragment extends Fragment implements View.OnClickListe
             return false;
         }
     }
+    /*
+        @param String Telefono
+        Este metodo comprueba que el campo telefono tenga una longitud determinada en caso
+        afrimativo devuelve true y caso que no se encuentre dentro del rango devuelve false
+        @return
+     */
     public boolean Comprobar_Telefono(String Telefono){
         if (Telefono.length()>8 && Telefono.length()<12){
             return true;
@@ -131,6 +162,12 @@ public class BookingSelectFragment extends Fragment implements View.OnClickListe
             return false;
 
     }
+    /*
+     @param String personas
+     Este metodo comprueba que las personas introducidas esten dentro del rago establecido
+     en caso que este dentro del rango devuelve true , en caso negativo devuelve false
+     @retunr boolean
+     */
     public boolean Comprobar_personas(String personas) {
 
         if (personas.length() != 0) {

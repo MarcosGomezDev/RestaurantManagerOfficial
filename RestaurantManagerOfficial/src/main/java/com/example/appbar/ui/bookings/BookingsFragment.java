@@ -33,7 +33,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+/*
+   Clase BookingsFragment
+   Esta clase lista las reservas de la fecha selecionda , atraves de esta clase se accede a dar
+   de altas nuevas reservas y a eliminar las reservas .
 
+ */
 public class BookingsFragment extends Fragment implements View.OnClickListener {
 
     private FragmentBookingsBinding binding;
@@ -64,7 +69,7 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        // Asignacion de los elementos del layaout
         fa_annadir = view.findViewById(R.id.fa_annadir);
         recyclerView = view.findViewById(R.id.r);
         diatextView = view.findViewById(R.id.diatextView);
@@ -78,10 +83,11 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
         lannoimagenButton = view.findViewById(R.id.lannoimageButton);
         calendarioimageButton = view.findViewById(R.id.calendarioimageButton);
         Delete= view.findViewById((R.id.Deletebutton));
-
+        //Escribimos en los Textview la fecha actual
         diatextView.setText(fechadia());
         mestextView.setText(fechames());
         annotextView.setText(fechaanno());
+        //listener de evento Onclick a los botones
         diaimagenButtom.setOnClickListener(this);
         mesimagenButton.setOnClickListener(this);
         annoimagenButton.setOnClickListener(this);
@@ -100,20 +106,34 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
         super.onDestroyView();
         binding = null;
     }
-
+    /*
+        Este metodo delvuele el dia Actual
+        @return date
+     */
     public String fechadia(){
         String date = new SimpleDateFormat(dia).format(new Date());
         return date;
     }
+    /*
+        Este metodo devuelve el mes actual
+        @return date
+     */
     public String fechames(){
         String date = new SimpleDateFormat(mes).format(new Date());
         return date;
     }
+    /*
+    Este metodo devuelve el año actual
+   @return date
+    */
     public String fechaanno(){
         String date = new SimpleDateFormat(anno).format(new Date());
         return date;
     }
-
+    /*
+        Este metodo lista las Reservas del dia selecionado , y en caso de hacer click sobre la
+        reserva se accedera nav_booking_delete y podra eliminar la reserva seleccionada
+     */
     public void reservas(){
         userUID = dataBase.getCurrentUser().getUid();
         context = this.getActivity();
@@ -153,7 +173,11 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
             }
         });
     }
-
+    /*
+        @param View view
+        Este metodo controla los botones para poder listar las reservas por fecha , con este metodo
+        se puede aumentar el dia , el mes y el año para poder ver las reservas de la fecha seleccionada
+     */
     @Override
     public void onClick(View view) {
         switch (view.getId()) {

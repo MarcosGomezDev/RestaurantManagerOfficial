@@ -1,5 +1,7 @@
 package com.example.appbar.data;
-
+/*
+ Clase para el manejo de las reservas dentro de la app
+ */
 public class BookingsData {
     private final DataBase dataBase = new DataBase();
     private String nombre;

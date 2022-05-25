@@ -4,6 +4,9 @@ import android.annotation.SuppressLint;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+/*
+Clase para el majero de las Reservas
+ */
 
 @SuppressWarnings({"FieldCanBeLocal", "SpellCheckingInspection", "UnnecessaryLocalVariable", "SimpleDateFormat"})
 public class StaffData {
@@ -15,7 +18,7 @@ public class StaffData {
     private final String dia= "dd";
     private final String mes ="MM";
     private final String anno = "yyyy";
-
+    //Constructores
     public StaffData() {
     }
 

@@ -22,6 +22,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+/*
+    Clase HomeFragment
+    Esta clase gestiona la pantalla principal de la aplicacion mostrando contenidos de la base de datos
+    en la pantalla principal y llevando acabo una precarga de datos
+ */
 
 @SuppressWarnings({"FieldCanBeLocal", "SpellCheckingInspection"})
 public class HomeFragment extends Fragment {
@@ -45,11 +50,13 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         userUID = dataBase.getCurrentUser().getUid();
+        //Asignacion de los elemtos del layaout
         reserva_textView = view.findViewById(R.id.reserva_textView);
         item_textView = view.findViewById(R.id.item_textView);
         fechaac_textView = view.findViewById(R.id.fechaact_textView);
         empleados_textView = view.findViewById(R.id.empleados_textView);
         Mesas_textView = view.findViewById(R.id.Mesas_textView);
+        //Escritura de fecha en el TextView
         fechaac_textView.setText(fecha());
         Reservas();
         empleados_Activos();
@@ -61,7 +68,9 @@ public class HomeFragment extends Fragment {
         super.onStart();
         starDataBase();
     }
-
+    /*
+        Este metodo añade una carga de productos en la base de datos
+     */
     public void starDataBase() {
         String userUID = dataBase.getCurrentUser().getUid();
         dataBase.getDatabaseReference().child(userUID).child(dataBase.PARENT_ITEMS())
@@ -98,6 +107,10 @@ public class HomeFragment extends Fragment {
                                        }
                 );
     }
+    /*
+     Este metodo muestra en la pantalla principal le numero de registros de reservas dadas de altas
+     en la base de datos .
+     */
 
     public void Reservas() {
         userUID = dataBase.getCurrentUser().getUid();
@@ -117,7 +130,9 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-
+    /*
+        Este metodo muestra el total de mesas que tenemos en nuestra base de datos dadas de alta
+     */
     public void mesas() {
         userUID = dataBase.getCurrentUser().getUid();
         dataBase.getDatabaseReference().child(userUID).child("tables").addValueEventListener(new ValueEventListener() {
@@ -132,7 +147,10 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-
+    /*
+     Este metodo muestra en la pantalla principal el numero de registros total de empleados que tenemos
+     en nuestra base de datos
+     */
     public void empleados_Activos() {
         userUID = dataBase.getCurrentUser().getUid();
         dataBase.getDatabaseReference().child(userUID).child("staff").addValueEventListener(new ValueEventListener() {
@@ -149,7 +167,10 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-
+    /*
+     Este metodo devuelve la fecha y la hora actual
+     @return date
+     */
     public String fecha() {
         @SuppressLint("SimpleDateFormat")
         String date = new SimpleDateFormat("dd MMMM yyyy   HH:mm").format(new Date());

@@ -28,7 +28,10 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.time.*;
-
+/*
+   Clase StaffSingInFragment
+   Esta clase se encarga de la gestion de fichajes de los empleados
+ */
 @SuppressWarnings("SpellCheckingInspection")
 public class StaffSignInFragment extends Fragment implements View.OnClickListener {
 
@@ -53,7 +56,7 @@ public class StaffSignInFragment extends Fragment implements View.OnClickListene
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        //Asignacion de elementos de layaout
         horafin_button = view.findViewById(R.id.horafin_button);
         horaini_button = view.findViewById(R.id.horaini_button);
         fecha_button = view.findViewById(R.id.fecha_button);
@@ -64,14 +67,14 @@ public class StaffSignInFragment extends Fragment implements View.OnClickListene
         horafin_textView = view.findViewById(R.id.horafin_textView);
         fecha_textView = view.findViewById(R.id.fecha_textView);
         dni_editText = view.findViewById(R.id.dni_editText);
-
+        // listener asignado al evento OnClick
         horafin_button.setOnClickListener(this);
         horaini_button.setOnClickListener(this);
         fecha_button.setOnClickListener(this);
         comporbar_button.setOnClickListener(this);
         fichar_button.setOnClickListener(this);
         terminar_button.setOnClickListener(this);
-
+        // Deshabilitacion de botones
         horaini_button.setEnabled(false);
         horafin_button.setEnabled(false);
         fichar_button.setEnabled(false);
@@ -79,6 +82,7 @@ public class StaffSignInFragment extends Fragment implements View.OnClickListene
         fecha_button.setEnabled(false);
 
         StaffData data = new StaffData();
+        //Obtenemos dia , mes ,año
         dia = data.fechadia();
         mes = data.fechames();
         anno = data.fechaanno();
@@ -90,7 +94,10 @@ public class StaffSignInFragment extends Fragment implements View.OnClickListene
         super.onDestroyView();
         binding = null;
     }
-
+    /*
+        @param View view
+        Este metodo Gestiona el click de los botones
+     */
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
@@ -126,17 +133,28 @@ public class StaffSignInFragment extends Fragment implements View.OnClickListene
                 break;
         }
     }
-
+    /*
+     Este metodo devuelve la hora los minutos y los segundos
+     @retunr Datetime
+     */
     public String hora() {
         DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("HH:mm:ss");
         return (dtf2.format(LocalTime.now()));
     }
-
+    /*
+     Este metodo devuelve la fecha actual con un formato determinado
+     @return date
+     */
     public String fecha() {
         @SuppressLint("SimpleDateFormat") String date = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
         return date;
     }
-
+    /*
+        Este metodo busca dentro de la base de datos el campo introducido en dni_editText , si este campo
+        no se encuentra en la base de datos se activan unos determinados botones como son los de la fecha
+         la hora de entrada y fichar , en caso de que este campo si se encuentre en la base de datos se recupean
+         los datos y se activa en terminar turno en caso que ya halla terminado el turno aparacera un mesage de error
+     */
     public void Search() {
         userUID = dataBase.getCurrentUser().getUid();
         dataBase.getDatabaseReference().child(userUID).child("staff").child((dni_editText.getText().toString() + " " + dia + mes + anno)).addValueEventListener(new ValueEventListener() {
@@ -176,7 +194,9 @@ public class StaffSignInFragment extends Fragment implements View.OnClickListene
             }
         });
     }
-
+/*
+    Este metodo Actualiza el campo horafin perteneciente al registro del dni correspondiente
+ */
     public void Update() {
 
         userUID = dataBase.getCurrentUser().getUid();
