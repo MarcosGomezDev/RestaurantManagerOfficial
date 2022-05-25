@@ -18,6 +18,9 @@ import com.example.appbar.data.DataBase;
 import com.example.appbar.data.ItemData;
 import com.example.appbar.databinding.FragmentItemAddBinding;
 
+/**
+ * Clase que maneja la creación de un nuevo articulo.
+ */
 @SuppressWarnings("FieldCanBeLocal")
 public class ItemNewFragment extends Fragment {
 
@@ -41,6 +44,9 @@ public class ItemNewFragment extends Fragment {
         priceEditText = view.findViewById(R.id.priceEditText);
         newItemButton = view.findViewById(R.id.addNewItemButton);
 
+        /**
+         * Botón que recupera los datos introducidos por pantalla y crea un articulo con ellos.
+         */
         newItemButton.setOnClickListener(v -> {
             String description = descriptionEditText.getText().toString();
             double price = Double.parseDouble(priceEditText.getText().toString());

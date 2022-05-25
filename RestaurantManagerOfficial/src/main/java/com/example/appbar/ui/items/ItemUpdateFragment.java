@@ -48,6 +48,10 @@ public class ItemUpdateFragment extends Fragment {
         getDescriptionTextView.setText(DataFlow.currentDescriptionItemString);
         getPriceTextView.setText(String.valueOf(DataFlow.currentPriceItemDouble));
 
+        /**
+         * Botón que recupera los datos introducidos por pantalla y modifica un
+         * articulo seleccionado.
+         */
         addUpdateOkButton.setOnClickListener(v -> {
             String description = updateDescriptionEditText.getText().toString();
             double price = Double.parseDouble(updatePriceEditText.getText().toString());
@@ -74,6 +78,9 @@ public class ItemUpdateFragment extends Fragment {
             }
         });
 
+        /**
+         * Botón que recupera los datos del articulo seleccionado y lo elimina.
+         */
         removeButton.setOnClickListener(v -> {
             String userUID = dataBase.getCurrentUser().getUid();
             String currentPk = DataFlow.currentDescriptionItemString

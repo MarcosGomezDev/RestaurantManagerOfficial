@@ -34,6 +34,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+/**
+ * Clase para el manejo de datos dentro de una mesa.
+ */
 @SuppressWarnings({"FieldCanBeLocal", "ConstantConditions"})
 public class TableBoxFragment extends Fragment implements View.OnClickListener {
 
@@ -93,6 +96,10 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
                 recyclerView.getContext(), DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(tableBasketAdapter);
 
+        /**
+         * Botón que captura los datos del articulo seleccionado y nos dirige a la vista que nos
+         * permitirá añadir mas unidades de un articulo, quitar unidades o eliminar el articulo.
+         */
         tableBasketAdapter.setOnClickListener(v -> {
             DataFlow.currentDescriptionItemString = list.get(
                     recyclerView.getChildAdapterPosition(v)).getDescription();
@@ -109,6 +116,11 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
                 .child(dataBase.PARENT_TABLES())
                 .child(DataFlow.currentNumTableString)
                 .child("items_basket");
+
+        /**
+         * Listener que controla los cambios en la base de datos y los envia al adapter para
+         * ajustar los datos mostrados por pantalla.
+         */
         ref_items_basket.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -135,6 +147,11 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
                 .child(DataFlow.currentNumTableString)
                 .child("items_basket")
                 .child("basket_amount");
+
+        /**
+         * Listener que controla los cambios en la base de datos y actualiza los componentes de la
+         * vista.
+         */
         ref_basket_amount.addValueEventListener(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -156,6 +173,11 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
                 .child(dataBase.PARENT_TABLES())
                 .child(DataFlow.currentNumTableString)
                 .child("reserved");
+
+        /**
+         * Listener que controla los cambios en la base de datos y actualiza los componentes de la
+         * vista.
+         */
         ref_reserved.addValueEventListener(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -188,13 +210,24 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            /**
+             * Botón que envia al usuario a la vista correspondiente para añadir un articulo a
+             * la cesta.
+             */
             case R.id.addItemTableButton:
                 DataFlow.comeFromTableBox = true;
                 Navigation.findNavController(v).navigate(R.id.nav_table_items);
                 break;
+            /**
+             * Botón que envia al usuario a la vista correspondiente para la modificación de la
+             * mesa seleccionada.
+             */
             case R.id.modifyButton:
                 Navigation.findNavController(v).navigate(R.id.nav_table_selected);
                 break;
+            /**
+             * Botón que resetea todos los datos de la mesa.
+             */
             case R.id.collectButton:
                 dataBase.getDatabaseReference()
                         .child(userUID)
@@ -211,6 +244,9 @@ public class TableBoxFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(getContext(), "Mesa cobrada", Toast.LENGTH_SHORT)
                         .show();
                 break;
+            /**
+             * Botón que permite reservas una mesa.
+             */
             case R.id.reservedButton:
                 if (reservedButton.getText() == "DISP.") {
                     dataBase.getDatabaseReference()

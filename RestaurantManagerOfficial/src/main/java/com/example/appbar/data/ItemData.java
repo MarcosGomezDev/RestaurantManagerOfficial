@@ -1,5 +1,8 @@
 package com.example.appbar.data;
 
+/**
+ * Clase para el manejo de articulos dentro de la app.
+ */
 public class ItemData {
 
     private final DataBase dataBase = new DataBase();
@@ -11,6 +14,12 @@ public class ItemData {
     public ItemData() {
     }
 
+    /**
+     * Constructor de la clase ItemData
+     * @param description Descripcion del articulo.
+     * @param price Precio del articulo.
+     * @param units Unidades del articulo dentro de la cesta.
+     */
     public ItemData(String description, double price, long units) {
         this.description = description;
         this.price = price;
@@ -36,6 +45,11 @@ public class ItemData {
         return price;
     }
 
+    /**
+     * Método para añadir articulos a la base de datos.
+     * @param description
+     * @param price
+     */
     public void addItem(String description, double price) {
         ItemData addItem = new ItemData(description, price, 1);
         String userUID = dataBase.getCurrentUser().getUid();
@@ -46,6 +60,9 @@ public class ItemData {
                 .setValue(addItem);
     }
 
+    /**
+     * Método que hace uso de addItem() para añadir ejemplos iniciales por cada usuario registrado.
+     */
     public void addAllSampleItems() {
         addItem("Café", 1.4);
         addItem("Café con leche", 1.6);

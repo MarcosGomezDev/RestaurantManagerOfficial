@@ -28,6 +28,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+/**
+ * Clase para añadir nuevos articulos a la cesta de la mesa.
+ */
 @SuppressWarnings("FieldCanBeLocal")
 public class TableItemsAddFragment extends Fragment {
 
@@ -59,6 +62,10 @@ public class TableItemsAddFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
+        /**
+         * Captura los datos del articulo seleccionado y realiza la insercion en la base de datos
+         * y actualiza los datos de la vista.
+         */
         itemAdapter.setOnClickListener(v -> {
             String descriptionItemString = list.get(
                     recyclerView.getChildAdapterPosition(v)).getDescription();
@@ -94,6 +101,11 @@ public class TableItemsAddFragment extends Fragment {
 
         DatabaseReference myRef = dataBase.getInstance().getReference(userUID)
                 .child(dataBase.PARENT_ITEMS());
+
+        /**
+         * Listener que constrola los cambios en la base de datos y actualiza la vista del
+         * RecyclerView.
+         */
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override

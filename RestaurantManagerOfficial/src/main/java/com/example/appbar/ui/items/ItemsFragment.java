@@ -27,6 +27,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+/**
+ * Clase que maneja la vista de Items.
+ */
 @SuppressWarnings("FieldCanBeLocal")
 public class ItemsFragment extends Fragment {
 
@@ -61,6 +64,10 @@ public class ItemsFragment extends Fragment {
         itemAdapter = new ItemAdapter(context, list);
         recyclerView.setAdapter(itemAdapter);
 
+        /**
+         * ClickListener que captura los ID's del item al que estamos seleccionando
+         * en el RecyclerView.
+         */
         itemAdapter.setOnClickListener(v -> {
             DataFlow.currentDescriptionItemString = list.get(
                     recyclerView.getChildAdapterPosition(v)).getDescription();
@@ -76,6 +83,9 @@ public class ItemsFragment extends Fragment {
         addItemButton.setOnClickListener(v ->
                 Navigation.findNavController(v).navigate(R.id.nav_item_new));
 
+        /**
+         * Listener que actualiza el RecyvlerView en funcion de los cambion en la base de datos.
+         */
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override

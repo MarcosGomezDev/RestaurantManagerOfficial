@@ -20,6 +20,9 @@ import com.example.appbar.data.DataBase;
 import com.example.appbar.data.DataFlow;
 import com.example.appbar.databinding.FragmentRemoveItemBasketBinding;
 
+/**
+ * Clase para el control de añadir y eliminar articulos de la cesta de la mesa.
+ */
 @SuppressWarnings("FieldCanBeLocal")
 public class TableRemoveItemBasketFragment extends Fragment implements View.OnClickListener {
 
@@ -77,6 +80,9 @@ public class TableRemoveItemBasketFragment extends Fragment implements View.OnCl
         }
     }
 
+    /**
+     * Método encargado de añadir unidades al monto del artículo seleccionado.
+     */
     public void addItemBasket() {
         newUnitSub = DataFlow.currentUnitItemLong + 1;
         dataBase.getDatabaseReference()
@@ -117,6 +123,9 @@ public class TableRemoveItemBasketFragment extends Fragment implements View.OnCl
                 .show();
     }
 
+    /**
+     * Método encargado de restar unidades al monto del artículo seleccionado.
+     */
     public void subtractItemBasket() {
         long oldUnitSub = DataFlow.currentUnitItemLong;
         if (oldUnitSub > 1) {
@@ -161,6 +170,9 @@ public class TableRemoveItemBasketFragment extends Fragment implements View.OnCl
         }
     }
 
+    /**
+     * Método encargado de eliminar el articulo seleccionado.
+     */
     public void removeItemBasket() {
         DataFlow.amountItemBasketDouble -= DataFlow.currentPriceItemDouble;
         DataFlow.amountItemBasketDouble = Math

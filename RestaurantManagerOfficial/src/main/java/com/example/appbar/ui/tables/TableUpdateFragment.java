@@ -21,6 +21,9 @@ import com.example.appbar.data.DataFlow;
 import com.example.appbar.data.TablesData;
 import com.example.appbar.databinding.FragmentTableUpdateBinding;
 
+/**
+ * Clase para la actualización de una mesa en contreto.
+ */
 @SuppressWarnings("FieldCanBeLocal")
 public class TableUpdateFragment extends Fragment {
 
@@ -51,8 +54,11 @@ public class TableUpdateFragment extends Fragment {
         getCapacityTextView.setText("Capacidad de la mesa: " +
                 DataFlow.currentCapacityTableString + " personas");
 
+        /**
+         * Botón que captura los datos introducidos por el usuario, modifica la mesa en la
+         * base de datos y actualiza los datos en la vista.
+         */
         updateOkButton.setOnClickListener(v -> {
-
             String numTable = updateNumTableEditText.getText().toString();
             String capacity = updateCapacityEditText.getText().toString();
 
