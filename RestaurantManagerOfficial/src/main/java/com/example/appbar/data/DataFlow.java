@@ -1,5 +1,8 @@
 package com.example.appbar.data;
 
+/**
+ * Clase con variables estaticas accesibles desde todas las clases.
+ */
 public class DataFlow {
     /**
      * Datos para los Items

@@ -5,6 +5,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+/**
+ * Clase para el manejo de la base de datos.
+ */
 @SuppressWarnings({"FieldCanBeLocal"})
 public class DataBase {
 

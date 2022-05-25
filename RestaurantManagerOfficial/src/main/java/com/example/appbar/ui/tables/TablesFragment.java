@@ -27,6 +27,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+/**
+ * Clase para el manejo de las mesas.
+ */
 @SuppressWarnings("FieldCanBeLocal")
 public class TablesFragment extends Fragment {
 
@@ -60,6 +63,10 @@ public class TablesFragment extends Fragment {
         tableAdapter = new TableAdapter(context, list);
         recyclerView.setAdapter(tableAdapter);
 
+        /**
+         * Listener que captura los datos de la mesa seleccionada y envia al usuario a la vista
+         * correspondiente para la gestion de dicha mesa.
+         */
         tableAdapter.setOnClickListener(v -> {
             DataFlow.currentNumTableString = list.get(
                     recyclerView.getChildAdapterPosition(v)).getNumTable();
@@ -70,6 +77,9 @@ public class TablesFragment extends Fragment {
             Navigation.findNavController(v).navigate(R.id.nav_table_box);
         });
 
+        /**
+         * Listener que controla los cambios en la base de datos y actualiza el RecyclerView.
+         */
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override

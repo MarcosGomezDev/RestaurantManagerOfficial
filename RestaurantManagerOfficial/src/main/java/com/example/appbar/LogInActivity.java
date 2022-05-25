@@ -27,6 +27,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Clase inicial donde el usuario de registrarse o iniciar sesion en la aplicación.
+ */
 @SuppressWarnings("ALL") // Esto hay que quitarlo
 public class LogInActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -35,7 +38,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     private AwesomeValidation awesomeValidation;
     private FirebaseAuth mFirebaseAuth;
     private EditText emailEditText, passwordEditText;
-//    private CheckBox recUserCheck, conditionsCheck;
+//    private CheckBox recUserCheck, conditionsCheck; Para implementar en la próxima actualización.
     private Button logInButton, signInButton;
     private String date;
     private String email;
@@ -53,16 +56,16 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
-//        recUserCheck = findViewById(R.id.recUserCheck);
+//        recUserCheck = findViewById(R.id.recUserCheck); Para implementar en la próxima actualización.
         logInButton = findViewById(R.id.removeItemBasketButton);
         signInButton = findViewById(R.id.signInButton);
 
-//        recUserCheck = findViewById(R.id.recUserCheck);
-//        conditionsCheck = findViewById(R.id.conditionsCheckBox);
+//        recUserCheck = findViewById(R.id.recUserCheck); Para implementar en la próxima actualización.
+//        conditionsCheck = findViewById(R.id.conditionsCheckBox); Para implementar en la próxima actualización.
         logInButton.setOnClickListener(this);
         signInButton.setOnClickListener(this);
-//        recUserCheck.setChecked(true);
-//        conditionsCheck.setChecked(false);
+//        recUserCheck.setChecked(true); Para implementar en la próxima actualización.
+//        conditionsCheck.setChecked(false); Para implementar en la próxima actualización.
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
@@ -76,7 +79,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.removeItemBasketButton:
+            case R.id.loginButton:
                 email = emailEditText.getText().toString();
                 pass = passwordEditText.getText().toString();
                 if(awesomeValidation.validate()) {
@@ -99,6 +102,11 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    /**
+     * Método para iniciar sesion en la aplicación.
+     * @param email Email del usuario.
+     * @param password Contraseña del usuario.
+     */
     private void setSignIn(String email, String password) {
 //        if(conditionsCheck.isChecked()) {
             mFirebaseAuth.signInWithEmailAndPassword(email, password)
@@ -120,11 +128,16 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 //        } else {
 //            showAlert("Debe aceptar los Términos y condiciones de la aplicación.",
 //                    "Términos y condiciones");
-//        }
+//        }  Para implementar en la próxima actualización.
     }
 
+    /**
+     * Método para crear una cuenta nueva.
+     * @param email Email del usuario.
+     * @param password Contraseña del usuario.
+     */
     private void createAccount(String email, String password) {
-//        if(conditionsCheck.isChecked()) {
+//        if(conditionsCheck.isChecked()) {  Para implementar en la próxima actualización.
             mFirebaseAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener((new OnCompleteListener<AuthResult>() {
                         @Override
@@ -141,9 +154,12 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                             }
                         }
             }));
-//        }
+//        }  Para implementar en la próxima actualización.
     }
 
+    /**
+     * Metodo para dirigir al usuario a la vista Home.
+     */
     private void goHome() {
         Intent logIn = new Intent(LogInActivity.this,
                 MenuActivity.class);
@@ -153,6 +169,11 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         startActivity(logIn);
     }
 
+    /**
+     * Metodo para mostrar una alerta.
+     * @param errorMessage Mensaje de error.
+     * @param errorTitleString Titulo del error.
+     */
     private void showAlert(String errorMessage, String errorTitleString) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(errorMessage);
@@ -173,6 +194,10 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    /**
+     * Método encargado de mostrar el toast correcto.
+     * @param error Error que se pasa al método.
+     */
     private void getToastError(String error) {
         switch (error) {
 
