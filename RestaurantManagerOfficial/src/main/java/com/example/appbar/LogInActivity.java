@@ -57,7 +57,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
 //        recUserCheck = findViewById(R.id.recUserCheck); Para implementar en la próxima actualización.
-        logInButton = findViewById(R.id.removeItemBasketButton);
+        logInButton = findViewById(R.id.loginButton);
         signInButton = findViewById(R.id.signInButton);
 
 //        recUserCheck = findViewById(R.id.recUserCheck); Para implementar en la próxima actualización.
