@@ -15,7 +15,7 @@ import com.example.appbar.data.BookingsData;
 import com.example.appbar.data.DataBase;
 
 import java.util.ArrayList;
-/*
+/**
     adaptador es un mecanismo de Android que hace de puente entre nuestros datos y las vistas contenidas
     en un ListView o Recicler. Dado que es muy frecuente usar bases de datos e nuestras
      aplicaciones, existen adaptadores específicos para este caso usaremos un ReciclerView.

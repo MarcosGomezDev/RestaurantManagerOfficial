@@ -33,7 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-/*
+/**
    Clase BookingsFragment
    Esta clase lista las reservas de la fecha selecionda , atraves de esta clase se accede a dar
    de altas nuevas reservas y a eliminar las reservas .
@@ -106,7 +106,7 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
         super.onDestroyView();
         binding = null;
     }
-    /*
+    /**
         Este metodo delvuele el dia Actual
         @return date
      */
@@ -114,7 +114,7 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
         String date = new SimpleDateFormat(dia).format(new Date());
         return date;
     }
-    /*
+    /**
         Este metodo devuelve el mes actual
         @return date
      */
@@ -122,7 +122,7 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
         String date = new SimpleDateFormat(mes).format(new Date());
         return date;
     }
-    /*
+    /**
     Este metodo devuelve el año actual
    @return date
     */
@@ -130,7 +130,7 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
         String date = new SimpleDateFormat(anno).format(new Date());
         return date;
     }
-    /*
+    /**
         Este metodo lista las Reservas del dia selecionado , y en caso de hacer click sobre la
         reserva se accedera nav_booking_delete y podra eliminar la reserva seleccionada
      */
@@ -173,7 +173,7 @@ public class BookingsFragment extends Fragment implements View.OnClickListener {
             }
         });
     }
-    /*
+    /**
         @param View view
         Este metodo controla los botones para poder listar las reservas por fecha , con este metodo
         se puede aumentar el dia , el mes y el año para poder ver las reservas de la fecha seleccionada

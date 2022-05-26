@@ -28,7 +28,7 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.time.*;
-/*
+/**
    Clase StaffSingInFragment
    Esta clase se encarga de la gestion de fichajes de los empleados
  */

@@ -28,7 +28,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-/*
+/**
     Clase BookingDeleteFragment
     Esta clase elimina la reserva seleccionada en la pantalla principal.
 */
@@ -71,8 +71,8 @@ public class BookingDeleteFragment extends Fragment implements View.OnClickListe
         binding = null;
     }
 
-    /*
-    @param View view
+    /**
+    @param  view
       Este metodo elimina la reserva al hacer click en el boton eliminar
       una vez apretado el boton eliminar se elimina de la base de datos
       y se vuelve a la pantalla principal

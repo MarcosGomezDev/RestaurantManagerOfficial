@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-/*
+/**
     Clase HomeFragment
     Esta clase gestiona la pantalla principal de la aplicacion mostrando contenidos de la base de datos
     en la pantalla principal y llevando acabo una precarga de datos
@@ -68,7 +68,7 @@ public class HomeFragment extends Fragment {
         super.onStart();
         starDataBase();
     }
-    /*
+    /**
         Este metodo añade una carga de productos en la base de datos
      */
     public void starDataBase() {
@@ -107,7 +107,7 @@ public class HomeFragment extends Fragment {
                                        }
                 );
     }
-    /*
+    /**
      Este metodo muestra en la pantalla principal le numero de registros de reservas dadas de altas
      en la base de datos .
      */
@@ -130,7 +130,7 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-    /*
+    /**
         Este metodo muestra el total de mesas que tenemos en nuestra base de datos dadas de alta
      */
     public void mesas() {
@@ -147,7 +147,7 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-    /*
+    /**
      Este metodo muestra en la pantalla principal el numero de registros total de empleados que tenemos
      en nuestra base de datos
      */
@@ -167,7 +167,7 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-    /*
+    /**
      Este metodo devuelve la fecha y la hora actual
      @return date
      */

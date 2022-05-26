@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-/*
+/**
 Clase para el majero de las Reservas
  */
 

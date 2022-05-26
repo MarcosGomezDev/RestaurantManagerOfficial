@@ -28,7 +28,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-/*
+/**
     Clase BookingSeletFragment
     Esta clase añade hace una carga de datos de una reserva a la base de datos
     Estos datos son introducidos mediante los EditText del layaout frament_booking_select
@@ -68,8 +68,8 @@ public class BookingSelectFragment extends Fragment implements View.OnClickListe
 
     @SuppressLint("ResourceAsColor")
     @Override
-    /*
-        @param View view
+    /**
+        @param  view
         Este metodo gestiona el boton alta_button
         Antes de introducir y dar de alta en la base de datos una reserva tiene que pasar una serie
         de filtros para comprobar que los datos introducidos son correctos .
@@ -112,8 +112,8 @@ public class BookingSelectFragment extends Fragment implements View.OnClickListe
             }
         }
     }
-    /*
-     @param String fecha
+    /**
+     @param  fecha
      Este metodo comprueba que una entrada de tipo String cumpla un patron de fecha
      en caso de que este patron se cumpla se devuelve true y en caso contrario false
      @return bolean
@@ -134,8 +134,8 @@ public class BookingSelectFragment extends Fragment implements View.OnClickListe
         }
 
     }
-    /*
-     @param String email
+    /**
+     @param email
      Este metodo comprueba que una direccion de email cumple los estandares de una direccion de correo
      en caso afirmativo se devuelve true en caso negativo false
      @return bolean
@@ -148,8 +148,8 @@ public class BookingSelectFragment extends Fragment implements View.OnClickListe
             return false;
         }
     }
-    /*
-        @param String Telefono
+    /**
+        @param  Telefono
         Este metodo comprueba que el campo telefono tenga una longitud determinada en caso
         afrimativo devuelve true y caso que no se encuentre dentro del rango devuelve false
         @return
@@ -162,8 +162,8 @@ public class BookingSelectFragment extends Fragment implements View.OnClickListe
             return false;
 
     }
-    /*
-     @param String personas
+    /**
+     @param  personas
      Este metodo comprueba que las personas introducidas esten dentro del rago establecido
      en caso que este dentro del rango devuelve true , en caso negativo devuelve false
      @retunr boolean

@@ -66,7 +66,7 @@ public class ItemUpdateFragment extends Fragment {
                 dataBase.getDatabaseReference()
                         .child(userUID)
                         .child(dataBase.PARENT_ITEMS())
-                        .child(currentPk).removeValue();
+                         .child(currentPk).removeValue();
                 dataBase.getDatabaseReference()
                         .child(userUID)
                         .child(dataBase.PARENT_ITEMS())
