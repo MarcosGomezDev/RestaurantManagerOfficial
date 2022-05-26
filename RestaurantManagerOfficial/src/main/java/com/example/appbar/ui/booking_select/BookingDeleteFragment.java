@@ -75,7 +75,7 @@ public class BookingDeleteFragment extends Fragment implements View.OnClickListe
     @param View view
       Este metodo elimina la reserva al hacer click en el boton eliminar
       una vez apretado el boton eliminar se elimina de la base de datos
-      y se vuelve a la pantalla principal
+      y se vuelve a la pantalla principal.
     */
     @Override
     public void onClick(View view) {
